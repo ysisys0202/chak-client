@@ -444,6 +444,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hookform/resolvers@npm:^3.10.0":
+  version: 3.10.0
+  resolution: "@hookform/resolvers@npm:3.10.0"
+  peerDependencies:
+    react-hook-form: ^7.0.0
+  checksum: 10c0/7ee44533b4cdc28c4fa2a94894c735411e5a1f830f4a617c580533321a9b901df0cc8c1e2fad81ad8d55154ebc5cb844cf9c116a3148ffae2bc48758c33cbb8e
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.13.0":
   version: 0.13.0
   resolution: "@humanwhocodes/config-array@npm:0.13.0"
@@ -1041,7 +1050,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vanilla-extract/dynamic@npm:^2.1.2":
+"@vanilla-extract/dynamic@npm:*, @vanilla-extract/dynamic@npm:^2.1.2":
   version: 2.1.2
   resolution: "@vanilla-extract/dynamic@npm:2.1.2"
   dependencies:
@@ -1086,7 +1095,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vanilla-extract/recipes@npm:^0.5.5":
+"@vanilla-extract/recipes@npm:*, @vanilla-extract/recipes@npm:^0.5.5":
   version: 0.5.5
   resolution: "@vanilla-extract/recipes@npm:0.5.5"
   peerDependencies:
@@ -1451,15 +1460,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chak-blocks@npm:^0.0.4":
-  version: 0.0.4
-  resolution: "chak-blocks@npm:0.0.4"
+"chak-blocks@npm:0.0.5":
+  version: 0.0.5
+  resolution: "chak-blocks@npm:0.0.5"
+  dependencies:
+    "@vanilla-extract/dynamic": "npm:*"
+    "@vanilla-extract/recipes": "npm:*"
   peerDependencies:
-    "@vanilla-extract/dynamic": ^2.1.2
-    "@vanilla-extract/recipes": ^0.5.5
     react: ^19.0.0
     react-dom: ^19.0.0
-  checksum: 10c0/6224659a3ac82a9d2058bbff89edc82856d6f3f8397038614023ebe1e7830a765293eb480e3ef015cc1c9976879b50e63d70781eda4f2adf9105e4bda0aa09af
+  checksum: 10c0/0887b1fed9fa0faa35a2341f5c8b203784b3de436017267d74e1d89d7e078ce98679430d869ab1032826c7cdb73f1a30c3c685680f456c59570533c40bb77905
   languageName: node
   linkType: hard
 
@@ -1467,6 +1477,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "chak-client@workspace:."
   dependencies:
+    "@hookform/resolvers": "npm:^3.10.0"
     "@types/node": "npm:^20"
     "@types/react": "npm:^19.0.2"
     "@types/react-dom": "npm:^19.0.2"
@@ -1475,13 +1486,15 @@ __metadata:
     "@vanilla-extract/next-plugin": "npm:^2.4.9"
     "@vanilla-extract/recipes": "npm:^0.5.5"
     "@vanilla-extract/sprinkles": "npm:^1.6.3"
-    chak-blocks: "npm:^0.0.4"
+    chak-blocks: "npm:0.0.5"
     eslint: "npm:^8"
     eslint-config-next: "npm:14.2.23"
     next: "npm:^15.1.6"
     react: "npm:^19.0.0"
     react-dom: "npm:^19.0.0"
+    react-hook-form: "npm:^7.54.2"
     typescript: "npm:^5"
+    zod: "npm:^3.24.1"
   languageName: unknown
   linkType: soft
 
@@ -3637,6 +3650,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-hook-form@npm:^7.54.2":
+  version: 7.54.2
+  resolution: "react-hook-form@npm:7.54.2"
+  peerDependencies:
+    react: ^16.8.0 || ^17 || ^18 || ^19
+  checksum: 10c0/6eebead2900e3d369a989e7a20429f390dc75b3897142aa3107f1f6dabb9ae64fed201ea98cdcd8676e40466c97748aeb0c0d83264f5bd3a84dbc0b8e4863415
+  languageName: node
+  linkType: hard
+
 "react-is@npm:^16.13.1":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
@@ -4534,5 +4556,12 @@ __metadata:
   version: 0.1.0
   resolution: "yocto-queue@npm:0.1.0"
   checksum: 10c0/dceb44c28578b31641e13695d200d34ec4ab3966a5729814d5445b194933c096b7ced71494ce53a0e8820685d1d010df8b2422e5bf2cdea7e469d97ffbea306f
+  languageName: node
+  linkType: hard
+
+"zod@npm:^3.24.1":
+  version: 3.24.1
+  resolution: "zod@npm:3.24.1"
+  checksum: 10c0/0223d21dbaa15d8928fe0da3b54696391d8e3e1e2d0283a1a070b5980a1dbba945ce631c2d1eccc088fdbad0f2dfa40155590bf83732d3ac4fcca2cc9237591b
   languageName: node
   linkType: hard

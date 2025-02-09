@@ -10,11 +10,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.10.0",
     "@vanilla-extract/sprinkles": "^1.6.3",
-    "chak-blocks": "^0.0.4",
+    "chak-blocks": "0.0.5",
     "next": "^15.1.6",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.54.2",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@types/node": "^20",
