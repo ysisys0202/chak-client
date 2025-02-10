@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./styles/globals.css";
 import "chak-blocks/plain/style.css";
 import "chak-blocks/context/style.css";
-import Container from "@/components/container/container";
+import Container from "@/components/responsive-container/responsive-container";
 
 export const metadata: Metadata = {
   title: "독서 기록 플랫폼 Chak.",

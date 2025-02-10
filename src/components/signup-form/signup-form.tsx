@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { InputField, Button, Input } from "chak-blocks/plain";
-import { SignupSchema } from "@/app/util/validation/auth";
+import { SignupSchema } from "@/util/validation/auth";
 import { signupFormStyles } from "./style.css";
 
 type FieldNames =
