@@ -9,7 +9,7 @@ export const reponsiveContainerStyles = style({
     },
     [`${media.lg}`]: {
       margin: "0 auto",
-      maxWidth: 1280,
+      maxWidth: 1920,
     },
   },
 });

@@ -1,10 +1,12 @@
 import { media } from "@/constants/break-points";
-import { gray, yellow } from "@/constants/colors";
+import { gray } from "@/constants/colors";
 import { globalStyle, style } from "@vanilla-extract/css";
 
 export const loginPageStyles = {
   self: style({
     position: "relative",
+    margin: "0 auto",
+    maxWidth: 1280,
     height: "100vh",
   }),
   container: style({
