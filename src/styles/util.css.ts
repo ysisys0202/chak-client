@@ -15,7 +15,7 @@ export const visuallyHidden = style({
 
 export const smOnly = style({
   "@media": {
-    [`(min-width: ${breakPoints.md})`]: {
+    [`(min-width: ${breakPoints.md}px)`]: {
       display: "none !important",
     },
   },
