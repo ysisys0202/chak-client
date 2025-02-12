@@ -6,6 +6,7 @@ import UserProfile from "@/components/user-profile/user-profile";
 import { sidemenuStyles } from "./style.css";
 import { visuallyHidden } from "@/styles/util.css";
 import LogoutButton from "../buttons/logout-button/logoutButton";
+
 type SideMenu = {
   id: string;
   label: string;
@@ -24,7 +25,7 @@ const sideMenuList: SideMenu[] = [
     id: "my-record",
     label: "나의 기록",
     icon: "book",
-    path: path.home,
+    path: path.record,
   },
 ];
 
