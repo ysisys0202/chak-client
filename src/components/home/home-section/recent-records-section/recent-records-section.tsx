@@ -1,6 +1,6 @@
-import HomeSection from "@/components/home/home-section/home-section";
-import HomeSectionHeader from "@/components/home/home-section/home-section-header";
-import HomeSectionBody from "@/components/home/home-section/home-section-body";
+import Section from "@/components/sections/shared/section";
+import SectionHeader from "@/components/sections/shared/section-header";
+import SectionBody from "@/components/sections/shared/section-body";
 import RecordCard from "@/components/record-card/review-card/record-card";
 import { recentRecordSectionStyles } from "./style.css";
 
@@ -123,12 +123,12 @@ const RecordsEmpty = () => {
 const RecentRecordsSection = () => {
   const isEmpty = recentRecords.length === 0;
   return (
-    <HomeSection>
-      <HomeSectionHeader
+    <Section>
+      <SectionHeader
         title="최근 기록 📚"
         description="기록을 차곡 차곡 쌓아보세요"
       />
-      <HomeSectionBody>
+      <SectionBody>
         {
           <>
             {isEmpty && <RecordsEmpty />}
@@ -161,8 +161,8 @@ const RecentRecordsSection = () => {
             )}
           </>
         }
-      </HomeSectionBody>
-    </HomeSection>
+      </SectionBody>
+    </Section>
   );
 };
 

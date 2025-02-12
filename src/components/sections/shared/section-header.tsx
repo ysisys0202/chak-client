@@ -1,12 +1,12 @@
 import { Typography } from "chak-blocks/plain";
-import { homeSectionHeaderStyles } from "./style.css";
+import { sectionHeaderStyles } from "./style.css";
 
 type Props = {
   title: React.ReactNode;
   description?: React.ReactNode;
 };
 
-const HomeSectionHeader = ({ title, description }: Props) => {
+const SectionHeader = ({ title, description }: Props) => {
   return (
     <header>
       <Typography as="h2" variant="title5">
@@ -15,7 +15,7 @@ const HomeSectionHeader = ({ title, description }: Props) => {
       {description && (
         <Typography
           theme="tertiary"
-          className={homeSectionHeaderStyles.description}
+          className={sectionHeaderStyles.description}
         >
           {description}
         </Typography>
@@ -24,4 +24,4 @@ const HomeSectionHeader = ({ title, description }: Props) => {
   );
 };
 
-export default HomeSectionHeader;
+export default SectionHeader;
