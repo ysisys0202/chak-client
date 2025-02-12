@@ -58,6 +58,7 @@ const LoginForm = ({ className }: { className: string }) => {
         {loginFormFileds.map(({ id, label, type, isRequired, placeholder }) => (
           <InputField
             key={id}
+            id={id}
             label={label}
             direction="vertical"
             isRequired={isRequired}

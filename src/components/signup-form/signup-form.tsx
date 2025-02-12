@@ -83,6 +83,7 @@ const SignupForm = () => {
           ({ id, label, type, isRequired, placeholder }) => (
             <InputField
               key={id}
+              id={id}
               label={label}
               direction="vertical"
               isRequired={isRequired}
