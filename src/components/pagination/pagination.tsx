@@ -16,6 +16,7 @@ const Pagination = ({ pageLength, currentPage, className }: Props) => {
           key={index + 1}
           variant={index + 1 === currentPage ? "contained" : "outlined"}
           theme="dark"
+          size="sm"
         >
           {index + 1}
         </Button>
