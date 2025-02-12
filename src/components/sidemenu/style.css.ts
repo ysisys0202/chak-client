@@ -1,8 +1,9 @@
-import { gray } from "@/constants/colors";
+import { pink } from "@/constants/colors";
 import { style } from "@vanilla-extract/css";
 
 const verticalSpace = 60;
 const sideSpace = 24;
+export const sidemenuMaxWidth = 280;
 
 export const sidemenuStyles = {
   self: style({
@@ -10,10 +11,10 @@ export const sidemenuStyles = {
     flexDirection: "column",
     alignItems: "start",
     width: "100%",
-    maxWidth: 280,
+    maxWidth: sidemenuMaxWidth,
     height: "100vh",
     borderRadius: "0 120px 0 0",
-    backgroundColor: gray[200],
+    backgroundColor: pink[100],
   }),
   logo: style({
     margin: `${verticalSpace}px 0 0 ${sideSpace}px`,
