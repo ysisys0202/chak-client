@@ -1,5 +1,5 @@
-import { gray } from "@/constants/colors";
 import { globalStyle, style } from "@vanilla-extract/css";
+import { gray } from "@/constants/colors";
 
 const cellPadding = 10;
 
@@ -74,4 +74,10 @@ globalStyle(`${recordContentStyles.cellItem} label`, {
 
 globalStyle(`${recordContentStyles.cellItem} > div`, {
   width: "100%",
+});
+
+export const buttonGroupStyle = style({
+  display: "flex",
+  justifyContent: "center",
+  gap: 20,
 });
