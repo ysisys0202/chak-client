@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Card, RatingStar, Typography } from "chak-blocks/plain";
 import { gray } from "@/constants/colors";
+import path from "@/constants/path";
 import { recordCardStyles } from "./style.css";
 
 type Props = {
@@ -31,7 +32,7 @@ const ReviewCard = ({
       as="article"
       className={recordCardStyles.self}
     >
-      <Link href={`/${id}`} className={recordCardStyles.link}>
+      <Link href={`${path.record}/${id}`} className={recordCardStyles.link}>
         <Image
           src={coverImageUrl}
           alt={`${bookTitle} 표지 이미지`}
