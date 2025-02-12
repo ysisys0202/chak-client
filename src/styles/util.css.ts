@@ -1,4 +1,5 @@
 import { style } from "@vanilla-extract/css";
+import { recipe } from "@vanilla-extract/recipes";
 import { breakPoints } from "@/constants/break-points";
 
 export const visuallyHidden = style({
@@ -62,5 +63,29 @@ export const lgHidden = style({
     [`(min-width: ${breakPoints.lg}px)`]: {
       display: "none !important",
     },
+  },
+});
+
+export const lineClampBase = style({
+  display: "-webkit-box",
+  WebkitBoxOrient: "vertical",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  width: "100%",
+});
+
+export const lineClamp = recipe({
+  base: lineClampBase,
+  variants: {
+    lines: {
+      1: { WebkitLineClamp: 1 },
+      2: { WebkitLineClamp: 2 },
+      3: { WebkitLineClamp: 3 },
+      4: { WebkitLineClamp: 4 },
+      5: { WebkitLineClamp: 5 },
+    },
+  },
+  defaultVariants: {
+    lines: 1,
   },
 });
