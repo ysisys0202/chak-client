@@ -3,6 +3,10 @@
 import { createVanillaExtractPlugin } from "@vanilla-extract/next-plugin";
 const withVanillaExtract = createVanillaExtractPlugin();
 
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    domains: ["image.aladin.co.kr"],
+  },
+};
 
 export default withVanillaExtract(nextConfig);
