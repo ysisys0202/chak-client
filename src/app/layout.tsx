@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+
 import "chak-blocks/plain/style.css";
 import "chak-blocks/context/style.css";
 import "@/styles/reset.css";
+import "@/styles/globals.css";
+
 import Container from "@/components/responsive-container/responsive-container";
 
 export const metadata: Metadata = {
