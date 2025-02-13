@@ -1,15 +1,15 @@
 import Section from "@/components/sections/shared/section";
 import SectionBody from "@/components/sections/shared/section-body";
-import RecordDetailButtonGroup from "@/components/record-table/record-detail-button-group";
+import RecordEditButtonGroup from "@/components/record-table/record-edit-button-group";
 import { recordDetailSectionStyles } from "./style.css";
-import RecordTableViewer from "@/components/record-table/record-table-viewer";
+import RecordTableForm from "@/components/record-table/record-table-form";
 
-const RecordDetailSection = () => {
+const RecordEditSection = () => {
   return (
     <Section>
       <SectionBody>
-        <RecordTableViewer />
-        <RecordDetailButtonGroup
+        <RecordTableForm />
+        <RecordEditButtonGroup
           className={recordDetailSectionStyles.buttonGroup}
         />
       </SectionBody>
@@ -17,4 +17,4 @@ const RecordDetailSection = () => {
   );
 };
 
-export default RecordDetailSection;
+export default RecordEditSection;

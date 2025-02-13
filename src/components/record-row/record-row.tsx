@@ -5,7 +5,7 @@ import { recordRowStyles } from "./style.css";
 import { Divider, Typography } from "chak-blocks/plain";
 
 type Props = {
-  id: number;
+  id: number | string;
   title: string;
   coverImageUrl: string;
   bookTitle: string;
