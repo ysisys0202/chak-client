@@ -12,6 +12,13 @@ const RecordListSection = () => {
       <SectionHeader title="나의 기록" />
       <SectionBody>
         <ul className={recordListSectionStyles.list}>
+          <RecordRow
+            id="ID"
+            title="제목"
+            coverImageUrl=""
+            bookTitle=""
+            updatedAt="업데이트 날짜"
+          />
           {records.map(({ id, title, coverImageUrl, bookTitle, updatedAt }) => (
             <RecordRow
               id={id}
