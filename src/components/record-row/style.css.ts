@@ -1,20 +1,22 @@
 import { gray } from "@/constants/colors";
-import { style } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
+import { recipe } from "@vanilla-extract/recipes";
 
-export const recordRowStyles = {
+export const styles = {
   self: style({
-    border: `1px solid ${gray[200]}`,
-    borderRadius: 8,
+    padding: "12px 20px",
   }),
   link: style({
     display: "flex",
     justifyContent: "start",
     alignItems: "center",
     gap: 12,
-    padding: "8px 24px",
   }),
   id: style({
     width: 24,
+  }),
+  title: style({
+    marginLeft: 12,
   }),
   date: style({
     marginLeft: "auto",
