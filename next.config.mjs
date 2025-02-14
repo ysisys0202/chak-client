@@ -5,7 +5,7 @@ const withVanillaExtract = createVanillaExtractPlugin();
 
 const nextConfig = {
   images: {
-    domains: ["image.aladin.co.kr"],
+    domains: ["image.aladin.co.kr", "shopping-phinf.pstatic.net"],
   },
 };
 
