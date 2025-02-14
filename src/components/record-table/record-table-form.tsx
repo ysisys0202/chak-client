@@ -47,7 +47,9 @@ const RecordTableForm = () => {
             return (
               <select name={fieldId} id={fieldId}>
                 {options?.map(({ value, name }) => (
-                  <option value={value}>{name}</option>
+                  <option key={value} value={value}>
+                    {name}
+                  </option>
                 ))}
               </select>
             );
