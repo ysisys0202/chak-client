@@ -1,5 +1,6 @@
 import { globalStyle, style } from "@vanilla-extract/css";
 import { gray } from "@/constants/colors";
+import { bookCoverImageRatio } from "@/constants/size";
 
 export const recordTableStyles = {
   self: style({
@@ -25,7 +26,7 @@ export const recordTableStyles = {
     left: "50%",
     transform: "translate(-50%, -50%)",
     height: "90%",
-    aspectRatio: "1/1.4",
+    aspectRatio: bookCoverImageRatio,
   }),
   bookInfo: style({
     flex: 2,
