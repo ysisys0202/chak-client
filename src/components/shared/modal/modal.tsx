@@ -4,7 +4,9 @@ import { Button, Card, Icon } from "chak-blocks/plain";
 import { modalStyles } from "./style.css";
 import { useEffect, useRef } from "react";
 
-const Modal = ({ children }: { children: React.ReactNode }) => {
+type Props = { className?: string; children: React.ReactNode };
+
+const Modal = ({ className, children }: Props) => {
   const modalRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -17,7 +19,12 @@ const Modal = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <Card as="dialog" ref={modalRef} rounded className={modalStyles.self}>
+    <Card
+      as="dialog"
+      ref={modalRef}
+      rounded
+      className={`${modalStyles.self} ${className}`}
+    >
       <Button
         variant="text"
         onClick={handleCloseButton}

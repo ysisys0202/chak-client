@@ -9,7 +9,6 @@ export const modalStyles = {
     padding: "40px",
     width: "80%",
     maxWidth: 800,
-    height: "auto",
     selectors: {
       "&::backdrop": {
         backgroundColor: "rgba(0,0,0,0.6)",
