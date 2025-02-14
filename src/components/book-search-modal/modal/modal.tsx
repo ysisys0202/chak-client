@@ -4,7 +4,7 @@ import { Typography } from "chak-blocks/plain";
 import List from "@/components/shared/list/list";
 import Modal from "@/components/shared/modal/modal";
 import Searchbar from "@/components/shared/searchbar/searchbar";
-import Pagination from "@/components/pagination/pagination";
+import Pagination from "@/components/shared/pagination/pagination";
 import BookListRow from "@/components/book-search-modal/list/row";
 import { styles } from "./style.css";
 

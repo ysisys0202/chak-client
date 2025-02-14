@@ -2,8 +2,8 @@ import { records } from "@/data/record";
 import Section from "@/components/sections/shared/section";
 import SectionHeader from "@/components/sections/shared/section-header";
 import SectionBody from "@/components/sections/shared/section-body";
+import Pagination from "@/components/shared/pagination/pagination";
 import RecordRow from "@/components/record-row/record-row";
-import Pagination from "@/components/pagination/pagination";
 import { recordListSectionStyles } from "./style.css";
 
 const RecordListSection = () => {
