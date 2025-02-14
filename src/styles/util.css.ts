@@ -89,3 +89,11 @@ export const lineClamp = recipe({
     lines: 1,
   },
 });
+
+export const scrollbarHidden = style({
+  selectors: {
+    "&::-webkit-scrollbar": {
+      display: "none",
+    },
+  },
+});
