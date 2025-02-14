@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
+import { RecordDetail } from "@/types/record";
 import RecordTableHeader from "@/components/record-table/record-table-header";
 import RecordTableData from "@/components/record-table/record-table-data";
 import RecordTableRow from "@/components/record-table/record-table-row";
 import { recordTableStyles } from "./style.css";
-import { RecordDetail } from "@/types/record";
 
 const bookFields = [
   {
@@ -110,14 +110,12 @@ const RecordTable = ({
             <RecordTableRow key={id}>
               <RecordTableHeader>
                 {renderLabel?.({ id, label })}
-                {/* <label htmlFor={id}>{label}</label> */}
               </RecordTableHeader>
               <RecordTableData>
                 {renderBookData?.({
                   fieldId: id as keyof RecordDetail,
                   inputType: type,
                 })}
-                {/* <input type={type} readOnly /> */}
               </RecordTableData>
             </RecordTableRow>
           ))}
