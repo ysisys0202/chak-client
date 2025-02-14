@@ -31,34 +31,27 @@ const BookListRow = ({ book }: Props) => {
     },
   ];
   return (
-    <ListRow
-      className={styles.row}
-      leftContent={
-        <div className={styles.image}>
-          <Image src={book.coverImageUrl} alt={`${book.title} 책 표지`} fill />
-        </div>
-      }
-      centerContent={
-        <>
-          <Typography as="h3" className={lineClamp({ lines: 2 })} strong>
-            {book.title}
-          </Typography>
-          <DefinitionList>
-            {additionalInfo.map(({ name, value }) => (
-              <DefinitionList.Item key={name}>
-                <DefinitionList.Term>{name}</DefinitionList.Term>
-                <DefinitionList.Description>{value}</DefinitionList.Description>
-              </DefinitionList.Item>
-            ))}
-          </DefinitionList>
-        </>
-      }
-      rightContent={
-        <Button size="sm" onClick={() => {}}>
-          선택하기
-        </Button>
-      }
-    />
+    <ListRow className={styles.row}>
+      <div className={styles.image}>
+        <Image src={book.coverImageUrl} alt={`${book.title} 책 표지`} fill />
+      </div>
+      <div>
+        <Typography as="h3" className={lineClamp({ lines: 2 })} strong>
+          {book.title}
+        </Typography>
+        <DefinitionList>
+          {additionalInfo.map(({ name, value }) => (
+            <DefinitionList.Item key={name}>
+              <DefinitionList.Term>{name}</DefinitionList.Term>
+              <DefinitionList.Description>{value}</DefinitionList.Description>
+            </DefinitionList.Item>
+          ))}
+        </DefinitionList>
+      </div>
+      <Button size="sm" onClick={() => {}} className={styles.button}>
+        선택하기
+      </Button>
+    </ListRow>
   );
 };
 

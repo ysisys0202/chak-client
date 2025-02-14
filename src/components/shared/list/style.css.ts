@@ -8,8 +8,6 @@ export const styles = {
   }),
 
   row: style({
-    display: "flex",
-    alignItems: "center",
     padding: 20,
     selectors: {
       "&:not(:last-child)": {

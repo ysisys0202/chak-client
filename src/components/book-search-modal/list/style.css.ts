@@ -1,9 +1,11 @@
 import { gray } from "@/constants/colors";
 import { bookCoverImageRatio } from "@/constants/size";
-import { globalStyle, style } from "@vanilla-extract/css";
+import { style } from "@vanilla-extract/css";
 
 export const styles = {
   row: style({
+    display: "flex",
+    alignItems: "center",
     gap: 40,
   }),
 
@@ -13,11 +15,8 @@ export const styles = {
     aspectRatio: bookCoverImageRatio,
     border: `1px solid ${gray[200]}`,
   }),
+  button: style({
+    flexShrink: 0,
+    marginLeft: "auto",
+  }),
 };
-
-globalStyle(`${styles.row} .content-area-right`, {
-  display: "flex",
-  justifyContent: "end",
-  flexShrink: 0,
-  marginLeft: "auto",
-});
