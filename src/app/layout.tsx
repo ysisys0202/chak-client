@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
+import QueryProvider from "@/query/query-provider";
+import Container from "@/components/responsive-container/responsive-container";
 
-import "chak-blocks/plain/style.css";
-import "chak-blocks/context/style.css";
 import "@/styles/reset.css";
 import "@/styles/globals.css";
-
-import Container from "@/components/responsive-container/responsive-container";
+import "chak-blocks/plain/style.css";
+import "chak-blocks/context/style.css";
 
 export const metadata: Metadata = {
   title: "독서 기록 플랫폼 Chak.",
@@ -20,7 +20,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <Container>{children}</Container>
+        <QueryProvider>
+          <Container>{children}</Container>
+        </QueryProvider>
       </body>
     </html>
   );
