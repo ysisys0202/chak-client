@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import QueryProvider from "@/providers/query";
-
+import ToastProvider from "@/providers/toast";
 import Container from "@/components/responsive-container/responsive-container";
 
 import "@/styles/reset.css";
@@ -21,9 +21,11 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <QueryProvider>
-          <Container>{children}</Container>
-        </QueryProvider>
+        <ToastProvider>
+          <QueryProvider>
+            <Container>{children}</Container>
+          </QueryProvider>
+        </ToastProvider>
       </body>
     </html>
   );
