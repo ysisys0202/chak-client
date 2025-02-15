@@ -15,13 +15,14 @@ export const fetcher = async (api: string, options?: RequestInit) => {
       }
     );
     if (!response.ok) {
-      throw new Error(`fetch error: ${response.statusText}`);
+      const { message } = await response.json();
+      throw new Error(message);
     }
     const data = await response.json();
     return data;
   } catch (error) {
     if (error instanceof Error) {
-      console.error("fetch error:", error.message);
+      console.error(error.message);
       throw new Error(error.message);
     }
   }
