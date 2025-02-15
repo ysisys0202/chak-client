@@ -9,7 +9,7 @@ const QueryProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <QueryClientProvider client={queryClient}>
       {children}
-      <ReactQueryDevtools /> {/* Devtools가 필요하다면 */}
+      <ReactQueryDevtools />
     </QueryClientProvider>
   );
 };

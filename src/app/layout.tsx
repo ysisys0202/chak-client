@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import QueryProvider from "@/query/query-provider";
+import QueryProvider from "@/providers/query";
+
 import Container from "@/components/responsive-container/responsive-container";
 
 import "@/styles/reset.css";
