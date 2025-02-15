@@ -7,7 +7,6 @@ export const LoginSchema = z.object({
 
 export const SignupSchema = z
   .object({
-    confirmPassword: z.string().min(1, "비밀번호를 다시 입력해주세요."),
     email: z.string().email({
       message: "유효한 이메일이 아니에요.",
     }),
@@ -22,8 +21,16 @@ export const SignupSchema = z
       }),
     profileImage: z.string().optional(),
   })
-  .merge(LoginSchema)
+  .merge(LoginSchema);
+
+export const SignupClientSchema = z
+  .object({
+    confirmPassword: z.string().min(1, "비밀번호를 다시 입력해주세요."),
+  })
+  .merge(SignupSchema)
   .refine((data) => data.password === data.confirmPassword, {
     message: "비밀번호가 일치하지 않아요.",
     path: ["confirmPassword"],
   });
+
+export type SignupData = z.infer<typeof SignupSchema>;

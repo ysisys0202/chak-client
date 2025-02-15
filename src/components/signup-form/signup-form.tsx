@@ -3,7 +3,9 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { InputField, Button, Input } from "chak-blocks/plain";
-import { SignupSchema } from "@/util/validation/auth";
+import { useToast } from "chak-blocks/context";
+import { useSignupMutation } from "@/query/auth";
+import { SignupClientSchema } from "@/util/validation/auth";
 import { signupFormStyles } from "./style.css";
 
 type FieldNames =
@@ -69,11 +71,14 @@ const SignupForm = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<FormData>({
-    resolver: zodResolver(SignupSchema),
+    resolver: zodResolver(SignupClientSchema),
   });
+  const { open } = useToast();
+
+  const { mutate, error } = useSignupMutation();
 
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
+    mutate(data);
   });
 
   return (
