@@ -1497,16 +1497,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chak-blocks@npm:^0.0.9":
-  version: 0.0.9
-  resolution: "chak-blocks@npm:0.0.9"
+"chak-blocks@npm:^0.0.11":
+  version: 0.0.11
+  resolution: "chak-blocks@npm:0.0.11"
   dependencies:
     "@vanilla-extract/dynamic": "npm:*"
     "@vanilla-extract/recipes": "npm:*"
   peerDependencies:
     react: ^19.0.0
     react-dom: ^19.0.0
-  checksum: 10c0/ea1a9b8b38075ff2e705d9757b6c6b0083ab6a7436b4445b5929e3511a453bb19b23224cb37ab723b8d9340d94ccb953cacbc04a60ee98b5382d7f226f2557fc
+  checksum: 10c0/cf172d2f8dc0c0f2ad14ec3af24e25feb813ecf219d9dfd2181841543de6572a10cc8c33eb757a725a622928ec9d4cc5fede09e25533206d10bcd1aa7508e4cf
   languageName: node
   linkType: hard
 
@@ -1525,7 +1525,7 @@ __metadata:
     "@vanilla-extract/next-plugin": "npm:^2.4.9"
     "@vanilla-extract/recipes": "npm:^0.5.5"
     "@vanilla-extract/sprinkles": "npm:^1.6.3"
-    chak-blocks: "npm:^0.0.9"
+    chak-blocks: "npm:^0.0.11"
     eslint: "npm:^8"
     eslint-config-next: "npm:14.2.23"
     next: "npm:^15.1.6"
