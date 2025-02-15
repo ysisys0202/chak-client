@@ -13,7 +13,7 @@
     "@hookform/resolvers": "^3.10.0",
     "@tanstack/react-query": "^5.66.0",
     "@vanilla-extract/sprinkles": "^1.6.3",
-    "chak-blocks": "^0.0.9",
+    "chak-blocks": "^0.0.11",
     "next": "^15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
