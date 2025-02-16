@@ -1,4 +1,5 @@
 import { fetcher } from "@/api/fetcher";
+import { Me } from "@/types/auth";
 import { LoginData, SignupData } from "@/util/validation/auth";
 
 export const signup = (formData: SignupData) => {
@@ -8,9 +9,12 @@ export const signup = (formData: SignupData) => {
   });
 };
 
-export const login = (formData: LoginData) => {
-  return fetcher(`/auth/login`, {
+export const logout = () => {
+  return fetcher("/auth/logout", {
     method: "POST",
-    body: JSON.stringify(formData),
   });
+};
+
+export const getAuth = (): Promise<Me> => {
+  return fetcher("/auth/me");
 };

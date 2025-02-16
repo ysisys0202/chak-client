@@ -1,11 +1,12 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useToast } from "chak-blocks/context";
-import { login, signup } from "@/api/auth";
+import { getAuth, login, signup } from "@/api/auth";
 import { LoginData, SignupData } from "@/util/validation/auth";
 import path from "@/constants/path";
+import queryKey from "@/constants/query-keys";
 
 export const useSignupMutation = () => {
   const router = useRouter();
@@ -45,4 +46,18 @@ export const useLoginMutation = () => {
       });
     },
   });
+};
+
+export const useAuthQuery = () => {
+  const {
+    data: user,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: [queryKey.auth.me],
+    queryFn: getAuth,
+    retry: false,
+  });
+
+  return { user, isLoading, isAuthenticated: !!user, error };
 };
