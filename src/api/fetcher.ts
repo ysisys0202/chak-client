@@ -12,6 +12,7 @@ export const fetcher = async (api: string, options?: RequestInit) => {
           ...defaultHeaders,
           ...options?.headers,
         },
+        credentials: "include",
       }
     );
     if (!response.ok) {
