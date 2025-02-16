@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useToast } from "chak-blocks/context";
-import { getAuth, login, signup } from "@/api/auth";
+import { getAuth, login, logout, signup } from "@/api/auth";
 import { LoginData, SignupData } from "@/util/validation/auth";
 import path from "@/constants/path";
 import queryKey from "@/constants/query-keys";
@@ -41,6 +41,26 @@ export const useLoginMutation = () => {
     onError: (error) => {
       open({
         title: "로그인 실패",
+        status: "error",
+        description: error.message,
+      });
+    },
+  });
+};
+
+export const useLogoutMutation = () => {
+  const router = useRouter();
+  const { open } = useToast();
+
+  return useMutation({
+    mutationFn: () => logout(),
+    onSuccess: () => {
+      router.push(path.login);
+      open({ title: "로그아웃", status: "success" });
+    },
+    onError: (error) => {
+      open({
+        title: "로그아웃 실패",
         status: "error",
         description: error.message,
       });

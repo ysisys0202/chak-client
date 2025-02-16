@@ -9,6 +9,13 @@ export const signup = (formData: SignupData) => {
   });
 };
 
+export const login = (formData: LoginData) => {
+  return fetcher(`/auth/login`, {
+    method: "POST",
+    body: JSON.stringify(formData),
+  });
+};
+
 export const logout = () => {
   return fetcher("/auth/logout", {
     method: "POST",

@@ -3,12 +3,18 @@
 import { gray } from "@/constants/colors";
 import { Button, Icon } from "chak-blocks/plain";
 import { logoutButtonStyles } from "./style.css";
+import { useLogoutMutation } from "@/query/auth";
 
 const LogoutButton = ({ className }: { className?: string }) => {
+  const { mutate } = useLogoutMutation();
+  const handleLogout = () => {
+    mutate();
+  };
   return (
     <Button
       theme="dark"
       variant="text"
+      onClick={handleLogout}
       className={`${className} ${logoutButtonStyles.self}`}
     >
       로그아웃 <Icon name="logout" size={20} color={gray[600]} />
