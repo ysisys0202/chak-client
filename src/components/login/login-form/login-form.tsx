@@ -3,14 +3,12 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Input, InputField } from "chak-blocks/plain";
-import { LoginSchema } from "@/util/validation/auth";
+import { LoginData, LoginSchema } from "@/util/validation/auth";
 import { loginFormStyles } from "./style.css";
 import Link from "next/link";
-type FieldNames = "loginId" | "password";
+import { useLoginMutation } from "@/query/auth";
 
-type FormData = {
-  [key in FieldNames]: string;
-};
+type FieldNames = "loginId" | "password";
 
 type SignupFormField = {
   id: FieldNames;
@@ -36,17 +34,18 @@ const loginFormFileds: SignupFormField[] = [
     placeholder: "비밀번호를 입력해주세요",
   },
 ];
+
 const LoginForm = ({ className }: { className: string }) => {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<FormData>({
+  } = useForm<LoginData>({
     resolver: zodResolver(LoginSchema),
   });
-
+  const { mutate } = useLoginMutation();
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
+    mutate(data);
   });
 
   return (

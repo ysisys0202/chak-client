@@ -33,4 +33,6 @@ export const SignupClientSchema = z
     path: ["confirmPassword"],
   });
 
+export type LoginData = z.infer<typeof SignupSchema>;
+
 export type SignupData = z.infer<typeof SignupSchema>;
