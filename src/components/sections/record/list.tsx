@@ -34,11 +34,11 @@ const RecordListSection = () => {
             />
           ))}
         </List>
-        <Pagination
+        {/* <Pagination
           pageLength={5}
           currentPage={1}
           className={recordListSectionStyles.pagination}
-        />
+        /> */}
       </SectionBody>
     </Section>
   );
