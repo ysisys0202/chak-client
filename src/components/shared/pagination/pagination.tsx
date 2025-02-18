@@ -72,7 +72,6 @@ const Pagination = ({
       )}
       {Array.from({ length: displayButtonLength }, (_, index) => {
         const pageNum = currnetPageOffset * displayButtonLength + index + 1;
-        console.log(pageNum);
         return (
           pageNum <= totalPage && (
             <Button
