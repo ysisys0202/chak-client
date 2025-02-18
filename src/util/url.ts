@@ -9,3 +9,28 @@ export const generateQueryString = (
     )
     .join("&");
 };
+
+export const addQueryParam = (
+  url: string,
+  name: string,
+  value: string
+): string => {
+  const [path, queryString] = url.split("?");
+  const newParams = new URLSearchParams(queryString);
+  newParams.set(name, value);
+
+  const newQueryString = newParams.toString();
+  return newQueryString ? `${path}?${newQueryString}` : path;
+};
+
+export const removeQueryParam = (
+  url: string,
+  paramToRemove: string
+): string => {
+  const [path, queryString] = url.split("?");
+  const newParams = new URLSearchParams(queryString);
+  newParams.delete(paramToRemove);
+
+  const newQueryString = newParams.toString();
+  return newQueryString ? `${path}?${newQueryString}` : path;
+};
