@@ -1,6 +1,6 @@
 import { fetcher } from "@/api/fetcher";
-import { BookItem, SearchBooksOptions } from "@/types/book";
 import { generateQueryString } from "@/util/url";
+import { BookItem, SearchBooksOptions } from "@/types/book";
 
 export type BookSearchResponse = {
   lastBuildDate: string;
@@ -19,4 +19,15 @@ export const searchBooks = (
     ...options,
   });
   return fetcher(`/books/search?${queryParams}`);
+};
+
+export const getBook = (isbn: string) => {
+  return fetcher(`/books/${isbn}`);
+};
+
+export const postBook = (formData: BookItem) => {
+  return fetcher(`/books`, {
+    method: "POST",
+    body: JSON.stringify(formData),
+  });
 };
