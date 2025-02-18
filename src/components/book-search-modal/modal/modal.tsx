@@ -55,17 +55,8 @@ const BookSearchModal = () => {
         개
       </Typography>
       <List className={styles.bookList}>
-        {books?.map(({ title, author, publisher, pubdate, isbn, image }) => (
-          <BookListRow
-            key={isbn}
-            book={{
-              title,
-              coverImageUrl: image,
-              author,
-              publisher,
-              pubdate,
-            }}
-          />
+        {books?.map((book) => (
+          <BookListRow key={book.isbn} book={book} />
         ))}
       </List>
       <Pagination
