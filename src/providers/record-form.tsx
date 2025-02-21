@@ -1,40 +1,47 @@
 "use client";
 
 import { createContext, useContext, useState } from "react";
-import { RecordFormData } from "@/types/record";
+import { useForm, UseFormReturn } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { BookItem } from "@/types/book";
+import { RecordData, RecordSchema } from "@/util/validation/record";
 
-type BookData = BookItem & { id: number };
+export type BookData = BookItem & { id: number };
 
 type RecordFormContextArgs = {
-  recordFormData: RecordFormData;
+  formMethods: UseFormReturn<RecordData>;
   bookData: BookData;
-  updateRecordFormData: (data: RecordFormData) => void;
+  recordData: RecordData;
   updateBookData: (data: BookData) => void;
-};
-
-const defaultValue: RecordFormContextArgs = {
-  recordFormData: {} as RecordFormData,
-  bookData: {} as BookData,
-  updateRecordFormData: () => {},
-  updateBookData: () => {},
 };
 
 const RecordFormContext = createContext<RecordFormContextArgs | null>(null);
 
 export const RecordFormProvider = ({
+  initBookData,
+  initRecordData,
   children,
 }: {
+  initBookData?: BookData;
+  initRecordData?: RecordData;
   children: React.ReactNode;
 }) => {
-  const [recordFormData, setRecordFormData] = useState<RecordFormData>(
-    defaultValue.recordFormData
-  );
-  const [bookData, setBookData] = useState<BookData>(defaultValue.bookData);
+  const formMethods = useForm<RecordData>({
+    mode: "onChange",
+    resolver: zodResolver(RecordSchema),
+    defaultValues: {
+      bookId: initRecordData?.bookId,
+      userId: initRecordData?.userId,
+      title: initRecordData?.title,
+      rating: initRecordData?.rating,
+      readingState: initRecordData?.readingState,
+      recordDetail: initRecordData?.recordDetail,
+    },
+  });
 
-  const updateRecordFormData = (data: RecordFormData) => {
-    setRecordFormData(data);
-  };
+  const [bookData, setBookData] = useState<BookData>(
+    initBookData || ({} as BookData)
+  );
 
   const updateBookData = (data: BookData) => {
     setBookData(data);
@@ -43,9 +50,9 @@ export const RecordFormProvider = ({
   return (
     <RecordFormContext.Provider
       value={{
-        recordFormData,
+        formMethods,
         bookData,
-        updateRecordFormData,
+        recordData: initRecordData || ({} as RecordData),
         updateBookData,
       }}
     >
@@ -58,7 +65,7 @@ export const useRecordFormContext = () => {
   const context = useContext(RecordFormContext);
   if (!context) {
     throw new Error(
-      "useRecordForm은 RecordFormProvider 내부에서만 사용 가능합니다."
+      "useRecordFormContext는 RecordFormProvider 내부에서만 사용 가능합니다."
     );
   }
   return context;

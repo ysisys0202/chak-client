@@ -1,60 +1,111 @@
 "use client";
 
-import React from "react";
-import RecordTable from "./record-table";
+import React, { useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
-import { useForm } from "react-hook-form";
-import TextareaAutosize from "react-textarea-autosize";
+import { RecordFormFields } from "@/types/record";
+import { generateQueryString } from "@/util/url";
+import { useAuth } from "@/providers/auth";
+import { useRecordFormContext } from "@/providers/record-form";
+import RecordTable from "@/components/record-table/record-table";
+import RecordFormField from "@/components/record-table/form-field";
 
-const recordData = {
-  id: 1,
-  title: "좋은 책",
-  readingStatus: "reading",
-  rating: 10,
-  recordDetail: "너무 재밌어요!",
-  bookId: 1,
-  bookTitle: "소스 코드:더 비기닝",
-  bookAuthor: "빌 게이츠",
-  bookPublisher: "조은 출판",
-  bookGenre: "전기",
-  pageCount: "500",
+const recordFormFields: RecordFormFields = {
+  title: {
+    type: "text",
+  },
+  readingState: {
+    type: "select",
+    options: [
+      { value: "pre-reading", name: "읽기 전" },
+      { value: "reading", name: "읽는 중" },
+      { value: "stop", name: "중단" },
+      { value: "done", name: "완독" },
+    ],
+  },
+  rating: {
+    type: "select",
+    options: Array.from({ length: 10 }, (_, index) => ({
+      value: index + 1,
+      name: index + 1,
+    })),
+    dataType: "number",
+  },
+  recordDetail: {
+    type: "textarea",
+  },
 };
 
 const RecordTableForm = () => {
-  const { register } = useForm();
+  const pathname = usePathname();
+  const router = useRouter();
+  const { user } = useAuth();
+  const {
+    bookData,
+    formMethods: { register, setValue },
+  } = useRecordFormContext();
+
+  useEffect(() => {
+    setValue("bookId", bookData.id, { shouldValidate: true });
+    setValue("userId", user.id, { shouldValidate: true });
+    setValue("isPublic", false, { shouldValidate: true });
+  }, [setValue, bookData, user]);
+
+  const handleBookSearchModal = () => {
+    router.replace(
+      `${pathname}?${generateQueryString({
+        "book-search-modal": true,
+      })}`
+    );
+  };
+
   return (
-    <form action="">
+    <form>
+      <input
+        type="text"
+        hidden
+        {...register("bookId", { valueAsNumber: true })}
+      />
+      <input
+        type="text"
+        hidden
+        value={user.id}
+        {...register("userId", { valueAsNumber: true })}
+      />
+      <input
+        type="text"
+        hidden
+        value={user.id}
+        {...register("isPublic", { setValueAs: (value) => value === "true" })}
+      />
       <RecordTable
-        renderLabel={({ label, id }) => <label htmlFor={id}>{label}</label>}
+        renderLabel={({ id, label }) => <label htmlFor={id}>{label}</label>}
         renderBookCoverImage={() => (
-          <button type="button">
-            <Image
-              src="https://image.aladin.co.kr/product/35718/16/cover500/893292497x_2.jpg"
-              alt="책 표지"
-              fill
-            />
-            <input type="text" readOnly disabled hidden />
+          <button type="button" onClick={handleBookSearchModal}>
+            {bookData?.image && (
+              <Image
+                src={bookData.image}
+                alt={`${bookData.title}의 표지 이미지`}
+                fill
+              />
+            )}
           </button>
         )}
-        renderBookData={({ fieldId, inputType, options }) => (
-          <input type={inputType} readOnly disabled />
-        )}
-        renderRecordData={({ fieldId, inputType, options }) => {
-          if (inputType === "textarea") {
-            return <TextareaAutosize />;
+        renderBookData={(fieldId) => bookData[fieldId]}
+        renderRecordData={(fieldId) => {
+          if (!recordFormFields[fieldId]) {
+            return null;
           }
-          if (inputType === "select") {
-            return (
-              <select name={fieldId} id={fieldId}>
-                {options?.map(({ value, name }) => (
-                  <option key={value} value={value}>
-                    {name}
-                  </option>
-                ))}
-              </select>
-            );
-          }
-          return <input type={inputType} />;
+          const { type, options, dataType } = recordFormFields[fieldId];
+          return (
+            <RecordFormField
+              type={type}
+              id={fieldId}
+              dataType={dataType}
+              options={options}
+              register={register}
+            />
+          );
         }}
       />
     </form>

@@ -37,9 +37,13 @@ const BookListRow = ({ book }: Props) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
+  const {
+    formMethods: { setValue },
+  } = useRecordFormContext();
 
   const registerBook = (data: BookData) => {
     updateBookData(data);
+    setValue("bookId", data.id, { shouldValidate: true });
     router.replace(
       removeQueryParam(`${pathname}?${searchParams}`, "book-search-modal")
     );

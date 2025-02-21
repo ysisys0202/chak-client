@@ -2,7 +2,7 @@ import { useParams, useRouter } from "next/navigation";
 import { Button } from "chak-blocks/plain";
 import { RecordData } from "@/util/validation/record";
 import { useRecordFormContext } from "@/providers/record-form";
-import { useUpdateRecordMutation } from "@/query/record";
+import { useCreateRecordMutation } from "@/query/record";
 import ButtonGroup from "./button-group";
 
 const RecordEditButtonGroup = ({ className }: { className?: string }) => {
@@ -11,9 +11,9 @@ const RecordEditButtonGroup = ({ className }: { className?: string }) => {
   const {
     formMethods: { handleSubmit },
   } = useRecordFormContext();
-  const { mutate } = useUpdateRecordMutation();
+  const { mutate } = useCreateRecordMutation();
 
-  const handleSave = (data: RecordData) => mutate({ id, recordData: data });
+  const handleSave = (data: RecordData) => mutate(data);
   const handleBack = () => {
     router.back();
   };

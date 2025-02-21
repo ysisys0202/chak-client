@@ -6,6 +6,10 @@ const queryKey = {
     search: "/books/search",
     book: "/books",
   },
+  records: {
+    list: "/records/list",
+    one: "/records/one",
+  },
 };
 
 export default queryKey;

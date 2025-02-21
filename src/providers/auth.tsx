@@ -8,7 +8,10 @@ import { Me } from "@/types/auth";
 import path from "@/constants/path";
 import { useAuthQuery } from "@/query/auth";
 
-const AuthContext = createContext<Me | null>(null);
+const AuthContext = createContext<{
+  user: Me;
+  isAuthenticated: boolean;
+} | null>(null);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
@@ -29,10 +32,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     return null;
   }
 
-  const { loginId, nickname } = user;
-
   return (
-    <AuthContext.Provider value={{ loginId, nickname }}>
+    <AuthContext.Provider value={{ user, isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );
