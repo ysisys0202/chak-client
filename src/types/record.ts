@@ -22,13 +22,12 @@ export type RecordDetail = RecordFormData & {
 export type RecordResponse = {
   id: number;
   userId: number;
-  readingStatus: string;
+  readingState: string;
   startDate?: string;
   endDate?: string;
   rating?: number;
   title: string;
-  RecordDetail: string;
-  RecordOneline: string;
+  recordDetail: string;
   isPublic: boolean;
   createdAt: string;
   updatedAt: string;
@@ -39,6 +38,8 @@ export type RecordResponse = {
   bookAuthor: string;
   bookPublisher: string;
   bookImage: string;
+  bookIsbn: string;
+  bookPubdate: string;
 };
 
 export type RecordFormFields = {

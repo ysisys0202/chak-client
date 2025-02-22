@@ -17,10 +17,10 @@ const RecordTableViewer = () => {
     image: data?.bookImage || "",
     publisher: data?.bookPublisher || "",
     author: data?.bookAuthor || "",
-    pubdate: "",
+    pubdate: data?.bookIsbn || "",
     link: "",
     discount: "",
-    isbn: "",
+    isbn: data?.bookPubdate || "",
     description: "",
   };
 
@@ -28,9 +28,9 @@ const RecordTableViewer = () => {
     bookId: data?.bookId,
     userId: data?.userId,
     title: data?.title,
-    readingState: data?.readingStatus,
+    readingState: data?.readingState,
     rating: data?.rating,
-    recordDetail: data?.RecordDetail,
+    recordDetail: data?.recordDetail,
     isPublic: data?.isPublic,
   };
 
