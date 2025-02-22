@@ -15,6 +15,7 @@ const RecordEditSection = () => {
   const isModalOpen = !!searchParmas.get("book-search-modal");
   const { id } = useParams() as unknown as { id: number };
   const { data } = useRecordQuery(id);
+
   const bookData: BookData = {
     id: data?.bookId || NaN,
     title: data?.title || "",
@@ -32,9 +33,9 @@ const RecordEditSection = () => {
     bookId: data?.bookId || NaN,
     userId: data?.userId || NaN,
     title: data?.title || "",
-    readingState: data?.readingStatus || "",
+    readingState: data?.readingState || "",
     rating: data?.rating || NaN,
-    recordDetail: data?.RecordDetail || "",
+    recordDetail: data?.recordDetail || "",
     isPublic: data?.isPublic || false,
   };
   return (
