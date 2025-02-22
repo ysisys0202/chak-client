@@ -13,7 +13,7 @@ export const getRecords = (
   const queryParams = generateQueryString({
     ...options,
   });
-  return fetcher(`/records/${queryParams}`);
+  return fetcher(`/records?${queryParams}`);
 };
 
 export const getRecord = (id: number): Promise<RecordResponse> => {
