@@ -9,6 +9,7 @@ import { useAuth } from "@/providers/auth";
 import { useRecordFormContext } from "@/providers/record-form";
 import RecordTable from "@/components/record-table/record-table";
 import RecordFormField from "@/components/record-table/form-field";
+import BookSelectButton from "../book/select-button/select-button";
 
 const recordFormFields: RecordFormFields = {
   title: {
@@ -81,15 +82,12 @@ const RecordTableForm = () => {
       <RecordTable
         renderLabel={({ id, label }) => <label htmlFor={id}>{label}</label>}
         renderBookCoverImage={() => (
-          <button type="button" onClick={handleBookSearchModal}>
-            {bookData?.image && (
-              <Image
-                src={bookData.image}
-                alt={`${bookData.title}의 표지 이미지`}
-                fill
-              />
-            )}
-          </button>
+          <BookSelectButton
+            type="button"
+            onClick={handleBookSearchModal}
+            coverImageUrl={bookData.image}
+            alt={bookData.title}
+          />
         )}
         renderBookData={(fieldId) => bookData[fieldId]}
         renderRecordData={(fieldId) => {
