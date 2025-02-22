@@ -1,11 +1,11 @@
 import Link from "next/link";
-import path from "@/constants/path";
 import { IconProps, Typography } from "chak-blocks/plain";
+import path from "@/constants/path";
 import SidemenuItem from "@/components/sidemenu/sidemenu-item";
 import UserProfile from "@/components/user-profile/user-profile";
-import { sidemenuStyles } from "./style.css";
+import LogoutButton from "@/components/buttons/logout-button/logoutButton";
 import { visuallyHidden } from "@/styles/util.css";
-import LogoutButton from "../buttons/logout-button/logoutButton";
+import { sidemenuStyles } from "./style.css";
 
 type SideMenu = {
   id: string;
@@ -37,7 +37,7 @@ const Sidemenu = ({ className }: { className: string }) => {
           Chak
         </Typography>
       </Link>
-      <UserProfile nickname="김유저" className={sidemenuStyles.userProfile} />
+      <UserProfile className={sidemenuStyles.userProfile} />
       <nav className={sidemenuStyles.nav}>
         <h2 className={visuallyHidden}>Chak 서비스 메뉴</h2>
         <ul>
