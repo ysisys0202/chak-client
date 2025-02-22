@@ -11,6 +11,8 @@ import RecordTable from "@/components/record-table/record-table";
 import RecordFormField from "@/components/record-table/form-field";
 import BookSelectButton from "../book/select-button/select-button";
 
+const maxRating = 10;
+
 const recordFormFields: RecordFormFields = {
   title: {
     type: "text",
@@ -24,9 +26,9 @@ const recordFormFields: RecordFormFields = {
   },
   rating: {
     type: "select",
-    options: Array.from({ length: 10 }, (_, index) => ({
-      value: index + 1,
-      name: index + 1,
+    options: Array.from({ length: maxRating }, (_, index) => ({
+      value: maxRating - index,
+      name: maxRating - index,
     })),
     dataType: "number",
   },
