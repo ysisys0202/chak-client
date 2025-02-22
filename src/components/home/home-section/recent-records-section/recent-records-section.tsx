@@ -1,16 +1,23 @@
+"use client";
+
+import { useAuth } from "@/providers/auth";
+import { useRecordsQuery } from "@/query/record";
 import Section from "@/components/sections/shared/section";
 import SectionHeader from "@/components/sections/shared/section-header";
 import SectionBody from "@/components/sections/shared/section-body";
 import RecordCard from "@/components/record-card/review-card/record-card";
 import { recentRecordSectionStyles } from "./style.css";
-import { records } from "@/data/record";
 
 const RecordsEmpty = () => {
   return <div>"아직 작성된 기록이 없어요"</div>;
 };
 
 const RecentRecordsSection = () => {
-  const isEmpty = records.length === 0;
+  const {
+    user: { id },
+  } = useAuth();
+  const { data, isLoading } = useRecordsQuery(id);
+  const isEmpty = !isLoading && data?.length === 0;
   return (
     <Section>
       <SectionHeader
@@ -23,12 +30,12 @@ const RecentRecordsSection = () => {
             {isEmpty && <RecordsEmpty />}
             {!isEmpty && (
               <ul className={recentRecordSectionStyles.list}>
-                {records.map(
+                {data?.map(
                   ({
                     id,
                     title,
-                    description,
-                    coverImageUrl,
+                    recordDetail,
+                    bookImage,
                     bookTitle,
                     updatedAt,
                     rating,
@@ -37,8 +44,8 @@ const RecentRecordsSection = () => {
                       <RecordCard
                         id={id}
                         title={title}
-                        description={description}
-                        coverImageUrl={coverImageUrl}
+                        description={recordDetail}
+                        coverImageUrl={bookImage}
                         bookTitle={bookTitle}
                         updatedAt={updatedAt}
                         rating={rating}
