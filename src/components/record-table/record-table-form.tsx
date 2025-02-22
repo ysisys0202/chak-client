@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import Image from "next/image";
+import { readingStateMessage } from "@/constants/message";
 import { RecordFormFields } from "@/types/record";
 import { generateQueryString } from "@/util/url";
 import { useAuth } from "@/providers/auth";
@@ -17,12 +17,10 @@ const recordFormFields: RecordFormFields = {
   },
   readingState: {
     type: "select",
-    options: [
-      { value: "pre-reading", name: "읽기 전" },
-      { value: "reading", name: "읽는 중" },
-      { value: "stop", name: "중단" },
-      { value: "done", name: "완독" },
-    ],
+    options: Object.entries(readingStateMessage).map(([value, name]) => ({
+      value,
+      name,
+    })),
   },
   rating: {
     type: "select",

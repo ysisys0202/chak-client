@@ -22,7 +22,7 @@ export type RecordDetail = RecordFormData & {
 export type RecordResponse = {
   id: number;
   userId: number;
-  readingState: string;
+  readingState: "pre-reading" | "reading" | "stop" | "done";
   startDate?: string;
   endDate?: string;
   rating?: number;

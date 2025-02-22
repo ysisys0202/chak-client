@@ -3,6 +3,7 @@
 import React from "react";
 import RecordTable from "./record-table";
 import { useParams } from "next/navigation";
+import { readingStateMessage } from "@/constants/message";
 import { useRecordQuery } from "@/query/record";
 import { BookData } from "@/providers/record-form";
 import BookCoverImage from "../book/cover-image/cover-image";
@@ -28,7 +29,7 @@ const RecordTableViewer = () => {
     bookId: data?.bookId,
     userId: data?.userId,
     title: data?.title,
-    readingState: data?.readingState,
+    readingState: data ? readingStateMessage[data.readingState] : "",
     rating: data?.rating,
     recordDetail: data?.recordDetail,
     isPublic: data?.isPublic,
