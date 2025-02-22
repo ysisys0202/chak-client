@@ -12,8 +12,12 @@ const RecordDetailButtonGroup = ({ className }: { className?: string }) => {
   const { mutate } = useDeleteRecordMutation();
 
   const handleDelete = () => {
-    confirm("삭제된 기록은 복구할 수 없습니다. 정말 삭제하시겠습니까?");
-    mutate(id as unknown as number);
+    const deleteConfirm = confirm(
+      "삭제된 기록은 복구할 수 없습니다. 정말 삭제하시겠습니까?"
+    );
+    if (deleteConfirm) {
+      mutate(id as unknown as number);
+    }
   };
   return (
     <ButtonGroup className={className}>
