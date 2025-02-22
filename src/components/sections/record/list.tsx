@@ -38,6 +38,7 @@ const RecordListSection = () => {
           />
           {data?.map(({ id, title, bookImage, bookTitle, updatedAt }) => (
             <RecordRow
+              key={id}
               id={id}
               title={title}
               coverImageUrl={bookImage}
