@@ -29,6 +29,7 @@ export const useRecordQuery = (id: number) => {
 export const useCreateRecordMutation = () => {
   const router = useRouter();
   const { open } = useToast();
+
   return useMutation({
     mutationFn: createRecord,
     onSuccess: (data) => {
@@ -39,22 +40,28 @@ export const useCreateRecordMutation = () => {
 };
 
 export const useUpdateRecordMutation = () => {
+  const router = useRouter();
   const { open } = useToast();
+
   return useMutation({
     mutationFn: ({ id, recordData }: { id: number; recordData: RecordData }) =>
       updateRecord(id, recordData),
-    onSuccess: () => {
+    onSuccess: (data) => {
       open({ title: "기록이 성공적으로 수정되었어요." });
+      router.replace(`${path.record}/${data.id}`);
     },
   });
 };
 
 export const useDeleteRecordMutation = () => {
+  const router = useRouter();
   const { open } = useToast();
+
   return useMutation({
     mutationFn: (id: number) => deleteRecord(id),
     onSuccess: () => {
       open({ title: "기록이 삭제되었어요." });
+      router.replace(`${path.record}`);
     },
   });
 };
