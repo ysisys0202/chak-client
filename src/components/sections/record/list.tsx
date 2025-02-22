@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "chak-blocks/plain";
 import path from "@/constants/path";
-import { records } from "@/data/record";
+import { useAuth } from "@/providers/auth";
+import { useRecordsQuery } from "@/query/record";
 import Section from "@/components/sections/shared/section";
 import SectionHeader from "@/components/sections/shared/section-header";
 import SectionBody from "@/components/sections/shared/section-body";
@@ -11,6 +14,10 @@ import RecordRow from "@/components/record-row/record-row";
 import { recordListSectionStyles } from "./style.css";
 
 const RecordListSection = () => {
+  const {
+    user: { id },
+  } = useAuth();
+  const { data } = useRecordsQuery(id);
   return (
     <Section>
       <SectionHeader title="나의 기록" />
@@ -23,12 +30,17 @@ const RecordListSection = () => {
         </Link>
 
         <List>
-          <RecordRow id="ID" title="제목" updatedAt="업데이트 날짜" header />
-          {records.map(({ id, title, coverImageUrl, bookTitle, updatedAt }) => (
+          <RecordRow
+            id="header"
+            title="제목"
+            updatedAt="업데이트 날짜"
+            header
+          />
+          {data?.map(({ id, title, bookImage, bookTitle, updatedAt }) => (
             <RecordRow
               id={id}
               title={title}
-              coverImageUrl={coverImageUrl}
+              coverImageUrl={bookImage}
               bookTitle={bookTitle}
               updatedAt={updatedAt}
             />

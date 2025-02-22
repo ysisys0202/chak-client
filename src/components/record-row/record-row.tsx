@@ -26,9 +26,6 @@ const RecordRow = ({
   return (
     <ListRow key={id} className={styles.self}>
       <Link key={id} href={`${path.record}/${id}`} className={styles.link}>
-        <Typography variant="text2" theme="tertiary" className={styles.id}>
-          {id}
-        </Typography>
         {header ? (
           <Typography variant="text2" theme="tertiary">
             표지

@@ -1,6 +1,4 @@
-import { gray } from "@/constants/colors";
-import { style, styleVariants } from "@vanilla-extract/css";
-import { recipe } from "@vanilla-extract/recipes";
+import { style } from "@vanilla-extract/css";
 
 export const styles = {
   self: style({
@@ -11,9 +9,6 @@ export const styles = {
     justifyContent: "start",
     alignItems: "center",
     gap: 12,
-  }),
-  id: style({
-    width: 24,
   }),
   title: style({
     marginLeft: 12,
