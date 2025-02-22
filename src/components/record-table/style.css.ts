@@ -61,6 +61,7 @@ export const recordTableDataStyle = style([
   {
     width: "100%",
     borderLeft: `1px solid ${gray[600]}`,
+    whiteSpace: "pre-wrap",
   },
 ]);
 
