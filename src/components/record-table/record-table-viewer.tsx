@@ -1,40 +1,28 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import RecordTable from "./record-table";
 import { useParams } from "next/navigation";
 import { useRecordQuery } from "@/query/record";
 import { BookData } from "@/providers/record-form";
+import BookCoverImage from "../book/cover-image/cover-image";
 
 const RecordTableViewer = () => {
   const { id } = useParams() as unknown as { id: number };
   const { data } = useRecordQuery(id);
-  const bookData: BookData = data
-    ? {
-        id: data.bookId,
-        title: data.title,
-        image: data.bookImage,
-        publisher: data.bookPublisher,
-        author: data.bookAuthor,
-        pubdate: "",
-        link: "",
-        discount: "",
-        isbn: "",
-        description: "",
-      }
-    : {
-        id: NaN,
-        title: "",
-        image: "",
-        publisher: "",
-        author: "",
-        pubdate: "",
-        link: "",
-        discount: "",
-        isbn: "",
-        description: "",
-      };
+
+  const bookData: BookData = {
+    id: data?.bookId || NaN,
+    title: data?.title || "",
+    image: data?.bookImage || "",
+    publisher: data?.bookPublisher || "",
+    author: data?.bookAuthor || "",
+    pubdate: "",
+    link: "",
+    discount: "",
+    isbn: "",
+    description: "",
+  };
 
   const recordData = {
     bookId: data?.bookId,
@@ -49,13 +37,16 @@ const RecordTableViewer = () => {
   return (
     <RecordTable
       renderLabel={({ label }) => label}
-      renderBookCoverImage={() => (
-        <Image
-          src={data?.bookImage || ""}
-          alt={`${data?.title} 책 표지`}
-          fill
-        />
-      )}
+      renderBookCoverImage={() =>
+        data ? (
+          <BookCoverImage
+            imageUrl={data.bookImage}
+            alt={`${data.title} 책 표지`}
+          />
+        ) : (
+          <BookCoverImage.Skeleton />
+        )
+      }
       renderBookData={(fieldId) => bookData[fieldId]}
       renderRecordData={(fieldId) => recordData[fieldId]}
     />

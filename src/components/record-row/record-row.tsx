@@ -4,6 +4,7 @@ import path from "@/constants/path";
 import { Typography } from "chak-blocks/plain";
 import ListRow from "@/components/shared/list/row";
 import { styles } from "./style.css";
+import BookCoverImage from "../book/cover-image/cover-image";
 
 type Props = {
   id: number | string;
@@ -33,11 +34,11 @@ const RecordRow = ({
             표지
           </Typography>
         ) : (
-          <Image
-            src={coverImageUrl as string}
-            alt={`${bookTitle} 커버 이미지`}
-            width={30}
-            height={40}
+          <BookCoverImage
+            imageUrl={coverImageUrl as string}
+            alt={`${bookTitle} 책 표지`}
+            width="30px"
+            height="40px"
           />
         )}
 
