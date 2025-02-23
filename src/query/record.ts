@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
 import { useToast } from "chak-blocks/context";
 import {
   createRecord,
@@ -16,6 +16,26 @@ export const useRecordsQuery = (userId?: number) => {
   return useQuery({
     queryKey: [queryKey.records.list, userId],
     queryFn: () => getRecords({ userId }),
+  });
+};
+
+export const useRecordsInfiniteQuery = (userId?: number) => {
+  const display = 12;
+  return useInfiniteQuery({
+    queryKey: [queryKey.records.list, userId],
+    queryFn: ({ pageParam }) => {
+      const nextPageItem = (pageParam - 1) * display;
+      return getRecords({ userId, start: nextPageItem, display });
+    },
+    initialPageParam: 1,
+
+    getNextPageParam: (lastPage) => {
+      const isLast = lastPage.start >= lastPage.total;
+      if (isLast) {
+        return undefined;
+      }
+      return (lastPage.start + display) / display + 1;
+    },
   });
 };
 

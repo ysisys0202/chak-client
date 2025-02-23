@@ -29,7 +29,7 @@ const RecordListSection = () => {
           <Button theme="success">새 기록 추가</Button>
         </Link>
 
-        <List>
+        {/* <List>
           <RecordRow
             id="header"
             title="제목"
@@ -46,7 +46,7 @@ const RecordListSection = () => {
               updatedAt={updatedAt}
             />
           ))}
-        </List>
+        </List> */}
         {/* <Pagination
           pageLength={5}
           currentPage={1}
