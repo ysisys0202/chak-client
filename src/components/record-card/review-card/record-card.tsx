@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Card, RatingStar, Typography } from "chak-blocks/plain";
 import { gray } from "@/constants/colors";
 import path from "@/constants/path";
+import { formatShortDate } from "@/util/common";
 import { recordCardStyles } from "./style.css";
 
 type Props = {
@@ -12,7 +13,7 @@ type Props = {
   coverImageUrl: string;
   bookTitle: string;
   rating?: number;
-  updatedAt: string | Date;
+  updatedAt: string;
 };
 
 const ReviewCard = ({
@@ -59,7 +60,7 @@ const ReviewCard = ({
           <div className={recordCardStyles.bottom}>
             <RatingStar value={rating} />
             <Typography variant="text2" theme="tertiary" as="span">
-              {updatedAt.toString()}
+              {formatShortDate(updatedAt)}
             </Typography>
           </div>
         </div>

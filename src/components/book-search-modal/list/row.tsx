@@ -6,6 +6,7 @@ import { BookItem } from "@/types/book";
 import { useBookMutation, useBookQuery } from "@/query/books";
 import { BookData, useRecordFormContext } from "@/providers/record-form";
 import { removeQueryParam } from "@/util/url";
+import { formatShortDate } from "@/util/common";
 import DefinitionList from "@/components/shared/definition/list";
 import ListRow from "@/components/shared/list/row";
 import { lineClamp } from "@/styles/util.css";
@@ -31,7 +32,6 @@ const BookListRow = ({ book }: Props) => {
     },
   ];
 
-  const { refetch } = useBookQuery(book.isbn);
   const { mutateAsync } = useBookMutation();
   const { updateBookData } = useRecordFormContext();
   const searchParams = useSearchParams();
@@ -41,31 +41,25 @@ const BookListRow = ({ book }: Props) => {
     formMethods: { setValue },
   } = useRecordFormContext();
 
-  const registerBook = (data: BookData) => {
-    updateBookData(data);
-    setValue("bookId", data.id, { shouldValidate: true });
+  const registerBook = (book: BookData) => {
+    updateBookData({ ...book, pubdate: formatShortDate(book.pubdate) });
+    setValue("bookId", book.id, { shouldValidate: true });
     router.replace(
       removeQueryParam(`${pathname}?${searchParams}`, "book-search-modal")
     );
   };
 
   const handleSelectBook = useCallback(async () => {
-    const result = await refetch();
-
-    if (!result.isError) {
-      registerBook(result.data);
-    }
-    const isNotFound = result.error?.message.includes("찾을 수 없습니다.");
-
-    if (isNotFound) {
-      try {
-        const data = await mutateAsync(book);
-        registerBook(data);
-      } catch (error) {
+    try {
+      const resBook = await mutateAsync(book);
+      registerBook(resBook);
+    } catch (error) {
+      if (error instanceof Error) {
         console.error(error);
+        throw new Error(error.message);
       }
     }
-  }, [refetch, mutateAsync]);
+  }, [mutateAsync]);
 
   return (
     <ListRow className={styles.row}>

@@ -2,16 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import path from "@/constants/path";
 import { Typography } from "chak-blocks/plain";
+import { formatShortDate } from "@/util/common";
 import ListRow from "@/components/shared/list/row";
+import BookCoverImage from "@/components/book/cover-image/cover-image";
 import { styles } from "./style.css";
-import BookCoverImage from "../book/cover-image/cover-image";
 
 type Props = {
   id: number | string;
   title: string;
   coverImageUrl?: string;
   bookTitle?: string;
-  updatedAt: string | Date;
+  updatedAt: string;
   header?: boolean;
 };
 
@@ -52,7 +53,7 @@ const RecordRow = ({
           as="span"
           className={styles.date}
         >
-          {updatedAt.toString()}
+          {header ? updatedAt : formatShortDate(updatedAt)}
         </Typography>
       </Link>
     </ListRow>

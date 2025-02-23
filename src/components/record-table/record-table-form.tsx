@@ -9,7 +9,7 @@ import { useAuth } from "@/providers/auth";
 import { useRecordFormContext } from "@/providers/record-form";
 import RecordTable from "@/components/record-table/record-table";
 import RecordFormField from "@/components/record-table/form-field";
-import BookSelectButton from "../book/select-button/select-button";
+import BookSelectButton from "@/components/book/select-button/select-button";
 
 const maxRating = 10;
 

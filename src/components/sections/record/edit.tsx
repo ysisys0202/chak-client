@@ -3,6 +3,7 @@
 import { useParams, useSearchParams } from "next/navigation";
 import { BookData, RecordFormProvider } from "@/providers/record-form";
 import { useRecordQuery } from "@/query/record";
+import { formatShortDate } from "@/util/common";
 import Section from "@/components/sections/shared/section";
 import SectionBody from "@/components/sections/shared/section-body";
 import RecordEditButtonGroup from "@/components/record-table/record-edit-button-group";
@@ -22,10 +23,10 @@ const RecordEditSection = () => {
     image: data?.bookImage || "",
     publisher: data?.bookPublisher || "",
     author: data?.bookAuthor || "",
-    pubdate: "",
+    pubdate: data ? formatShortDate(data.bookPubdate) : "",
     link: "",
     discount: "",
-    isbn: "",
+    isbn: data?.bookIsbn || "",
     description: "",
   };
 
