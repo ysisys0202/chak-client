@@ -14,7 +14,7 @@ const RecordTableViewer = () => {
   const { data } = useRecordQuery(id);
   const bookData: BookData = {
     id: data?.bookId || NaN,
-    title: data?.title || "",
+    title: data?.bookTitle || "",
     image: data?.bookImage || "",
     publisher: data?.bookPublisher || "",
     author: data?.bookAuthor || "",
