@@ -3,7 +3,7 @@ import { RecordItemResponse, RecordResponse } from "@/types/record";
 import { generateQueryString } from "@/util/url";
 import { RecordData } from "@/util/validation/record";
 
-type GetRecordsOptions = {
+export type GetRecordsOptions = {
   userId?: number;
   start?: number;
   display?: number;

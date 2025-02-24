@@ -6,16 +6,17 @@ import {
   deleteRecord,
   getRecord,
   getRecords,
+  GetRecordsOptions,
   updateRecord,
 } from "@/api/record";
 import path from "@/constants/path";
 import queryKey from "@/constants/query-keys";
 import { RecordData } from "@/util/validation/record";
 
-export const useRecordsQuery = (userId?: number) => {
+export const useRecordsQuery = (options: GetRecordsOptions) => {
   return useQuery({
-    queryKey: [queryKey.records.list, userId],
-    queryFn: () => getRecords({ userId }),
+    queryKey: [queryKey.records.list, options.userId, options.start],
+    queryFn: () => getRecords(options),
   });
 };
 

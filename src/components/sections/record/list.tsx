@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "chak-blocks/plain";
 import path from "@/constants/path";
 import { useAuth } from "@/providers/auth";
@@ -13,11 +14,28 @@ import Pagination from "@/components/shared/pagination/pagination";
 import RecordRow from "@/components/record-row/record-row";
 import { recordListSectionStyles } from "./style.css";
 
+const display = 10;
+
 const RecordListSection = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const page = searchParams.get("page") ? Number(searchParams.get("page")) : 1;
+  const start = (page - 1) * display + 1;
+
   const {
     user: { id },
   } = useAuth();
-  const { data } = useRecordsQuery(id);
+
+  const { data } = useRecordsQuery({
+    userId: id,
+    start: start - 1,
+    display,
+  });
+
+  const handlePagination = (value: number) => {
+    router.push(`${path.record}?page=${value}`);
+  };
+
   return (
     <Section>
       <SectionHeader title="나의 기록" />
@@ -28,30 +46,32 @@ const RecordListSection = () => {
         >
           <Button theme="success">새 기록 추가</Button>
         </Link>
-
-        {/* <List>
+        <List>
           <RecordRow
             id="header"
             title="제목"
             updatedAt="업데이트 날짜"
             header
           />
-          {data?.map(({ id, title, bookImage, bookTitle, updatedAt }) => (
-            <RecordRow
-              key={id}
-              id={id}
-              title={title}
-              coverImageUrl={bookImage}
-              bookTitle={bookTitle}
-              updatedAt={updatedAt}
-            />
-          ))}
-        </List> */}
-        {/* <Pagination
-          pageLength={5}
-          currentPage={1}
+          {data?.items?.map(
+            ({ id, title, bookImage, bookTitle, updatedAt }) => (
+              <RecordRow
+                key={id}
+                id={id}
+                title={title}
+                coverImageUrl={bookImage}
+                bookTitle={bookTitle}
+                updatedAt={updatedAt}
+              />
+            )
+          )}
+        </List>
+        <Pagination
+          totalPage={data ? Math.ceil(data.total / data.display) : 0}
+          currentPage={page}
+          onPagination={handlePagination}
           className={recordListSectionStyles.pagination}
-        /> */}
+        />
       </SectionBody>
     </Section>
   );
