@@ -105,3 +105,6 @@ export const purple = {
 export const white = "#fff";
 
 export const black = "#000";
+
+export const background = "rgba(255,255,255,0.6)";
+export const border = "#ffecc7";

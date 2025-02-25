@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { IconProps, Typography } from "chak-blocks/plain";
+import Image from "next/image";
+import { IconProps } from "chak-blocks/plain";
 import path from "@/constants/path";
 import SidemenuItem from "@/components/sidemenu/sidemenu-item";
 import UserProfile from "@/components/user-profile/user-profile";
@@ -33,9 +34,7 @@ const Sidemenu = ({ className }: { className: string }) => {
   return (
     <aside className={`${sidemenuStyles.self} ${className}`}>
       <Link href={path.home} className={sidemenuStyles.logo}>
-        <Typography variant="title4" strong>
-          Chak
-        </Typography>
+        <Image src="/image/logo.png" alt="Chak" width={68} height={20} />
       </Link>
       <UserProfile className={sidemenuStyles.userProfile} />
       <nav className={sidemenuStyles.nav}>

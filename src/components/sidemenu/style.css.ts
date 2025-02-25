@@ -1,4 +1,4 @@
-import { pink } from "@/constants/colors";
+import { background } from "@/constants/colors";
 import { style } from "@vanilla-extract/css";
 
 const verticalSpace = 60;
@@ -14,7 +14,8 @@ export const sidemenuStyles = {
     maxWidth: sidemenuMaxWidth,
     height: "100vh",
     borderRadius: "0 120px 0 0",
-    backgroundColor: pink[100],
+    backgroundColor: background,
+    border: `1px solid #ffecc7`,
   }),
   logo: style({
     margin: `${verticalSpace}px 0 0 ${sideSpace}px`,
