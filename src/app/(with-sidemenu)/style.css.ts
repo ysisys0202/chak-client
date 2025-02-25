@@ -11,7 +11,7 @@ export const sidemenuLayoutStyles = {
     bottom: 0,
   }),
   content: style({
-    padding: "60px 0",
+    padding: "120px 0",
     width: `calc(100% - ${sidemenuMaxWidth + 40}px)`,
     maxWidth: 1120,
     marginLeft: sidemenuMaxWidth + 40,
