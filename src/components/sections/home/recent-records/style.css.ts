@@ -1,7 +1,9 @@
 import { style } from "@vanilla-extract/css";
 
 export const recentRecordSectionStyles = {
-  self: style({}),
+  self: style({
+    marginTop: 80,
+  }),
   list: style({
     display: "grid",
     gridTemplateColumns: "repeat(4, 1fr)",

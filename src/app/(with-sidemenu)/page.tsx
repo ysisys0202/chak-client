@@ -1,4 +1,4 @@
-import RecentRecordsSection from "@/components/home/home-section/recent-records-section/recent-records-section";
+import RecentRecordsSection from "@/components/sections/home/recent-records/recent-records";
 
 const HomePage = () => {
   return (
