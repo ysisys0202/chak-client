@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Card, RatingStar, Typography } from "chak-blocks/plain";
+import { Card, Typography } from "chak-blocks/plain";
 import { gray } from "@/constants/colors";
 import path from "@/constants/path";
 import { formatShortDate } from "@/util/common";
-import { recordCardStyles } from "./style.css";
+import Rating from "@/components/shared/rating/rating";
+import { styles } from "./style.css";
 
 type Props = {
   id: number;
@@ -31,34 +32,29 @@ const ReviewCard = ({
       borderColor={gray[200]}
       rounded
       as="article"
-      className={recordCardStyles.self}
+      className={styles.self}
     >
-      <Link href={`${path.record}/${id}`} className={recordCardStyles.link}>
+      <Link href={`${path.record}/${id}`} className={styles.link}>
         <Image
           src={coverImageUrl}
           alt={`${bookTitle} 표지 이미지`}
           width={200}
           height={180}
-          className={recordCardStyles.image}
+          className={styles.image}
         />
-        <div className={recordCardStyles.content}>
-          <Typography
-            as="h3"
-            variant="title5"
-            strong
-            className={recordCardStyles.title}
-          >
+        <div className={styles.content}>
+          <Typography as="h3" variant="text1" strong className={styles.title}>
             {title}
           </Typography>
           <Typography
-            variant="text1"
+            variant="text2"
             theme="secondary"
-            className={recordCardStyles.description}
+            className={styles.description}
           >
             {description}
           </Typography>
-          <div className={recordCardStyles.bottom}>
-            <RatingStar value={rating} />
+          <div className={styles.bottom}>
+            <Rating value={rating} />
             <Typography variant="text2" theme="tertiary" as="span">
               {formatShortDate(updatedAt)}
             </Typography>
