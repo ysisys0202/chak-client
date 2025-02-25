@@ -7,7 +7,7 @@ type Props = {
 };
 
 const List = ({ className, children }: Props) => {
-  return <ul className={`${className} ${styles.list}`}>{children}</ul>;
+  return <ul className={`${className}`}>{children}</ul>;
 };
 
 export default List;
