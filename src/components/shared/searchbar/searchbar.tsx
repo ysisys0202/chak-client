@@ -6,10 +6,16 @@ import { styles } from "./style.css";
 
 type Props = {
   className: React.ReactNode;
+
   onSearch: (query: string) => void;
+  placeholder?: string;
 };
 
-const Searchbar = ({ className, onSearch }: Props) => {
+const Searchbar = ({
+  className,
+  onSearch,
+  placeholder = "검색어를 입력해주세요.",
+}: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSearch = () => {
@@ -25,6 +31,7 @@ const Searchbar = ({ className, onSearch }: Props) => {
         type="text"
         ref={inputRef}
         className={styles.input}
+        placeholder={placeholder}
         onKeyDown={(event: React.KeyboardEvent<HTMLInputElement>) => {
           if (event.key === "Enter") {
             handleSearch();

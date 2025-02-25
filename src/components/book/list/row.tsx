@@ -3,7 +3,7 @@ import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Button, Typography } from "chak-blocks/plain";
 import { BookItem } from "@/types/book";
-import { useBookMutation, useBookQuery } from "@/query/books";
+import { useBookMutation } from "@/query/books";
 import { BookData, useRecordFormContext } from "@/providers/record-form";
 import { removeQueryParam } from "@/util/url";
 import { formatShortDate } from "@/util/common";
@@ -11,6 +11,7 @@ import DefinitionList from "@/components/shared/definition/list";
 import ListRow from "@/components/shared/list/row";
 import { lineClamp } from "@/styles/util.css";
 import { styles } from "./style.css";
+import BookListRowSkeleton from "./row-skeleton";
 
 type Props = {
   book: BookItem;
@@ -85,5 +86,7 @@ const BookListRow = ({ book }: Props) => {
     </ListRow>
   );
 };
+
+BookListRow.Skeleton = BookListRowSkeleton;
 
 export default BookListRow;

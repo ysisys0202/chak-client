@@ -3,7 +3,7 @@ import { style } from "@vanilla-extract/css";
 
 export const styles = {
   self: style({
-    maxHeight: 820,
+    height: "calc(100vh - 40px)",
   }),
 
   searchbar: style({

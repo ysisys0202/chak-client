@@ -1,5 +1,5 @@
-import { background } from "@/constants/colors";
 import { style } from "@vanilla-extract/css";
+import { background, border } from "@/constants/colors";
 
 const verticalSpace = 60;
 const sideSpace = 24;
@@ -15,7 +15,7 @@ export const sidemenuStyles = {
     height: "100vh",
     borderRadius: "0 120px 0 0",
     backgroundColor: background,
-    border: `1px solid #ffecc7`,
+    border: `1px solid ${border}`,
   }),
   logo: style({
     margin: `${verticalSpace}px 0 0 ${sideSpace}px`,

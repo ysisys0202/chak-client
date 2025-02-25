@@ -8,7 +8,7 @@ import Section from "@/components/sections/shared/section";
 import SectionBody from "@/components/sections/shared/section-body";
 import RecordEditButtonGroup from "@/components/record-table/record-edit-button-group";
 import RecordTableForm from "@/components/record-table/record-table-form";
-import BookSearchModal from "@/components/book-search-modal/modal/modal";
+import BookSearchModal from "@/components/book/search/modal/modal";
 import { recordDetailSectionStyles } from "./style.css";
 
 const RecordEditSection = () => {
