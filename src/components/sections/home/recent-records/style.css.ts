@@ -7,6 +7,6 @@ export const styles = {
   list: style({
     display: "grid",
     gridTemplateColumns: "repeat(4, 1fr)",
-    gap: "16px 12px",
+    gap: "26px 24px",
   }),
 };
