@@ -21,7 +21,7 @@ const BookSelectButton = ({
       {coverImageUrl ? (
         <BookCoverImage imageUrl={coverImageUrl} alt={`${alt} 표지 이미지`} />
       ) : (
-        <Typography as="span" variant="text3">
+        <Typography as="span" variant="text2">
           기록할 책을 <br />
           선택해주세요
         </Typography>

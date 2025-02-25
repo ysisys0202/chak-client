@@ -45,7 +45,7 @@ const RecordRow = ({
           variant={header ? "text2" : "text1"}
           className={styles.title}
         >
-          {title}
+          {bookTitle}
         </Typography>
         <Typography
           variant="text2"

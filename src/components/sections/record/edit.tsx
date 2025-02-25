@@ -6,10 +6,10 @@ import { useRecordQuery } from "@/query/record";
 import { formatShortDate } from "@/util/common";
 import Section from "@/components/sections/shared/section";
 import SectionBody from "@/components/sections/shared/section-body";
-import RecordEditButtonGroup from "@/components/record-table/record-edit-button-group";
-import RecordTableForm from "@/components/record-table/record-table-form";
+import RecordEditButtonGroup from "@/components/record/button/record-edit-button-group";
 import BookSearchModal from "@/components/book/search/modal/modal";
 import { recordDetailSectionStyles } from "./style.css";
+import RecordForm from "@/components/record/form/record-form";
 
 const RecordEditSection = () => {
   const searchParmas = useSearchParams();
@@ -43,7 +43,7 @@ const RecordEditSection = () => {
     <Section>
       <SectionBody>
         <RecordFormProvider initBookData={bookData} initRecordData={recordData}>
-          <RecordTableForm />
+          <RecordForm />
           <RecordEditButtonGroup
             className={recordDetailSectionStyles.buttonGroup}
           />

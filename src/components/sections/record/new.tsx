@@ -4,10 +4,10 @@ import { useSearchParams } from "next/navigation";
 import { RecordFormProvider } from "@/providers/record-form";
 import Section from "@/components/sections/shared/section";
 import SectionBody from "@/components/sections/shared/section-body";
-import RecordTableForm from "@/components/record-table/record-table-form";
 import BookSearchModal from "@/components/book/search/modal/modal";
-import RecordNewButtonGroup from "@/components/record-table/record-new-button-group";
+import RecordNewButtonGroup from "@/components/record/button/record-new-button-group";
 import { recordDetailSectionStyles } from "./style.css";
+import RecordForm from "@/components/record/form/record-form";
 
 const RecordEditSection = () => {
   const searchParmas = useSearchParams();
@@ -17,7 +17,7 @@ const RecordEditSection = () => {
     <Section>
       <SectionBody>
         <RecordFormProvider>
-          <RecordTableForm />
+          <RecordForm />
           <RecordNewButtonGroup
             className={recordDetailSectionStyles.buttonGroup}
           />

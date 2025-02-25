@@ -14,8 +14,14 @@ const RecordEditButtonGroup = ({ className }: { className?: string }) => {
   const { mutate } = useUpdateRecordMutation();
 
   const handleSave = (data: RecordData) => mutate({ id, recordData: data });
+
   const handleBack = () => {
-    router.back();
+    const backConfirm = confirm(
+      "아직 기록이 저장되지 않았습니다. 뒤로 돌아가시겠습니까?"
+    );
+    if (backConfirm) {
+      router.back();
+    }
   };
 
   return (

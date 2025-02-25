@@ -7,7 +7,6 @@ import ButtonGroup from "./button-group";
 
 const RecordEditButtonGroup = ({ className }: { className?: string }) => {
   const router = useRouter();
-  const { id } = useParams() as unknown as { id: number };
   const {
     formMethods: { handleSubmit },
   } = useRecordFormContext();
