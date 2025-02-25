@@ -11,12 +11,18 @@ export const styles = {
 
   image: style({
     position: "relative",
-    height: 100,
+    width: 70,
+    height: 98,
     aspectRatio: bookCoverImageRatio,
     border: `1px solid ${gray[200]}`,
   }),
   button: style({
     flexShrink: 0,
     marginLeft: "auto",
+  }),
+  skeletonInfo: style({
+    display: "flex",
+    flexDirection: "column",
+    gap: 4,
   }),
 };

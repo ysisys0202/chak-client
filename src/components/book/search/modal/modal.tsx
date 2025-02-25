@@ -8,6 +8,7 @@ import Modal from "@/components/shared/modal/modal";
 import Searchbar from "@/components/shared/searchbar/searchbar";
 import Pagination from "@/components/shared/pagination/pagination";
 import BookListRow from "@/components/book/list/row";
+import SearchPlaceholder from "@/components/book/search/placeholder/search-placeholder";
 import { styles } from "./style.css";
 
 const display = 30;
@@ -53,7 +54,7 @@ const BookSearchModal = () => {
         onSearch={handleSearch}
         placeholder="책 제목, 출판사, 작가 이름으로 책 검색"
       />
-      {!isSearched && <Typography>기록할 책을 검색해주세요!</Typography>}
+      {!isSearched && <SearchPlaceholder />}
       {isSearched && isLoading && (
         <List className={styles.bookList}>
           {Array.from({ length: display }, (_, index) => (
@@ -62,7 +63,7 @@ const BookSearchModal = () => {
         </List>
       )}
       {isSearched && !isLoading && isEmpty && (
-        <Typography>검색 결과가 존재하지 않아요.</Typography>
+        <SearchPlaceholder mode="no-result" />
       )}
       {isSearched && !isLoading && !isEmpty && (
         <>

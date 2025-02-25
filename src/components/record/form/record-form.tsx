@@ -40,13 +40,7 @@ const RecordForm = () => {
 
   return (
     <form>
-      <RecordViewerTitle>
-        책 정보 입력
-        <br />
-        <Typography variant="text1">
-          책을 선택하면 자동으로 책 정보가 채워져요.
-        </Typography>
-      </RecordViewerTitle>
+      <RecordViewerTitle>책 정보 입력</RecordViewerTitle>
 
       <BookInfo
         bookData={bookData}

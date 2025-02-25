@@ -1,7 +1,6 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { Typography } from "chak-blocks/plain";
 import { recordFields } from "@/constants/record";
 import { readingStateMessage } from "@/constants/message";
 import { BookData } from "@/providers/record-form";
@@ -12,7 +11,7 @@ import BookInfo from "@/components/record/viewer/book-info/book-info";
 import RecordRow from "@/components/record/viewer/row/record-viewer-row";
 import RecordData from "@/components/record/viewer//data/record-viewer-data";
 import RecordLabel from "@/components/record/viewer//label/record-viewer-label";
-import RecordViewerTitle from "./title/record-viewer-title";
+import RecordViewerTitle from "@/components/record/viewer//title/record-viewer-title";
 
 const RecordViewer = () => {
   const { id } = useParams() as unknown as { id: number };
@@ -38,7 +37,6 @@ const RecordViewer = () => {
     recordDetail: data?.recordDetail,
     isPublic: data?.isPublic,
   };
-
   return (
     <div>
       <RecordViewerTitle>책 정보</RecordViewerTitle>
