@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css";
 
-export const recentRecordSectionStyles = {
+export const styles = {
   self: style({
     marginTop: 80,
   }),

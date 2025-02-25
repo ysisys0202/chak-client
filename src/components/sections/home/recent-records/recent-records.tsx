@@ -8,7 +8,7 @@ import Section from "@/components/sections/shared/section";
 import SectionHeader from "@/components/sections/shared/section-header";
 import SectionBody from "@/components/sections/shared/section-body";
 import RecordCard from "@/components/record-card/review-card/record-card";
-import { recentRecordSectionStyles } from "./style.css";
+import { styles } from "./style.css";
 
 const RecordsEmpty = () => {
   return <div>"아직 작성된 기록이 없어요"</div>;
@@ -31,7 +31,7 @@ const RecentRecordsSection = () => {
   }, [inView]);
 
   return (
-    <Section className={recentRecordSectionStyles.self}>
+    <Section className={styles.self}>
       <SectionHeader
         title="최근 기록 📚"
         description="기록을 차곡 차곡 쌓아보세요"
@@ -41,7 +41,7 @@ const RecentRecordsSection = () => {
           <>
             {isEmpty && <RecordsEmpty />}
             {!isEmpty && (
-              <ul className={recentRecordSectionStyles.list}>
+              <ul className={styles.list}>
                 {data?.pages.map((page) =>
                   page.items.map(
                     ({
