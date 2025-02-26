@@ -13,7 +13,7 @@ const SectionBody = ({ className, children }: Props) => {
       as="div"
       rounded
       variant="filled"
-      color={background}
+      color={background.ghost}
       className={`${sectionBodyStyles.self} ${className}`}
     >
       {children}

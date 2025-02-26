@@ -15,3 +15,18 @@ export const formatShortDate = (dateString?: string) => {
 
   return `${yy}.${mm}.${dd}`;
 };
+
+export const scrollHandler = () => {
+  const html = document.documentElement;
+  const body = document.body;
+
+  const disableScroll = () => {
+    html.classList.add("no-scroll");
+    body.classList.add("no-scroll");
+  };
+  const enableScroll = () => {
+    html.classList.remove("no-scroll");
+    body.classList.remove("no-scroll");
+  };
+  return { disableScroll, enableScroll };
+};

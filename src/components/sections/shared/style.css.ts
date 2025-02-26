@@ -1,4 +1,5 @@
 import { style } from "@vanilla-extract/css";
+import { orange } from "@/constants/colors";
 
 export const sectionHeaderStyles = {
   description: style({
@@ -10,6 +11,6 @@ export const sectionBodyStyles = {
   self: style({
     marginTop: 20,
     padding: 40,
-    border: "1px solid #ffecc7",
+    border: `1px solid ${orange}`,
   }),
 };

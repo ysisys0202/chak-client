@@ -1,6 +1,6 @@
-import { gray } from "@/constants/colors";
-import { bookCoverImageRatio } from "@/constants/size";
 import { style } from "@vanilla-extract/css";
+import { shades } from "@/constants/colors";
+import { bookCoverImageRatio } from "@/constants/size";
 
 export const styles = {
   row: style({
@@ -14,7 +14,7 @@ export const styles = {
     width: 70,
     height: 98,
     aspectRatio: bookCoverImageRatio,
-    border: `1px solid ${gray[200]}`,
+    border: `1px solid ${shades[200]}`,
   }),
   button: style({
     flexShrink: 0,

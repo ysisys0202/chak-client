@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { gray } from "@/constants/colors";
+import { shades } from "@/constants/colors";
 
 export const signupFormStyles = {
   self: style({
@@ -10,7 +10,7 @@ export const signupFormStyles = {
     width: "100%",
     maxWidth: "500px",
     borderRadius: 8,
-    border: `1px solid ${gray[200]}`,
+    border: `1px solid ${shades[200]}`,
   }),
   fileds: style({
     display: "flex",

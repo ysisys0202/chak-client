@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { gray } from "@/constants/colors";
+import { shades } from "@/constants/colors";
 
 export const styles = {
   self: style({
@@ -7,8 +7,8 @@ export const styles = {
     padding: 0,
     width: "100%",
     height: "100%",
-    backgroundColor: gray[50],
-    border: `1px solid ${gray[200]}`,
+    backgroundColor: shades[50],
+    border: `1px solid ${shades[200]}`,
     overflow: "hidden",
   }),
 };

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Card, Typography } from "chak-blocks/plain";
-import { gray } from "@/constants/colors";
+import { shades } from "@/constants/colors";
 import path from "@/constants/path";
 import { formatShortDate } from "@/util/common";
 import Rating from "@/components/shared/rating/rating";
@@ -29,7 +29,7 @@ const ReviewCard = ({
   return (
     <Card
       variant="outlined"
-      borderColor={gray[200]}
+      borderColor={shades[200]}
       rounded
       as="article"
       className={styles.self}

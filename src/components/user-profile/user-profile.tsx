@@ -4,7 +4,8 @@ import { Typography } from "chak-blocks/plain";
 import Image from "next/image";
 import { gray } from "@/constants/colors";
 import { useAuth } from "@/providers/auth";
-import { userProfileStyles } from "./style.css";
+import { styles } from "./style.css";
+
 type ProfileImageProps = {
   className?: string;
 };
@@ -14,13 +15,12 @@ const UserProfile = ({ className }: ProfileImageProps) => {
     user: { nickname, profileImage },
   } = useAuth();
   return (
-    <div className={`${userProfileStyles.self} ${className}`}>
-      <div className={userProfileStyles.profileImage}>
+    <div className={`${styles.self} ${className}`}>
+      <div className={styles.profileImage}>
         <Image
           src={profileImage || "/image/default-user-profile.png"}
           alt={`${nickname}님의 프로필 이미지`}
-          width={80}
-          height={80}
+          fill
         />
       </div>
       <Typography variant="title5" color={gray[500]}>

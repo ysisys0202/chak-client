@@ -1,5 +1,5 @@
 import { createVar, style } from "@vanilla-extract/css";
-import { gray } from "@/constants/colors";
+import { shades } from "@/constants/colors";
 import { bookCoverImageRatio } from "@/constants/size";
 
 export const widthVar = createVar();
@@ -11,7 +11,7 @@ export const styles = {
     width: widthVar,
     height: heightVar,
     aspectRatio: bookCoverImageRatio,
-    border: `1px solid ${gray[200]}`,
+    border: `1px solid ${shades[200]}`,
     overflow: "hidden",
   }),
   skeletion: style({

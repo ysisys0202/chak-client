@@ -1,4 +1,5 @@
 import { style } from "@vanilla-extract/css";
+import { shades } from "@/constants/colors";
 
 export const styles = {
   self: style({
@@ -8,7 +9,7 @@ export const styles = {
     padding: "20px",
     height: "calc(100% - 200px)",
     borderRadius: 8,
-    border: `1px solid #32302A`,
+    border: `1px solid ${shades[900]}`,
   }),
   text: style({
     marginTop: 80,

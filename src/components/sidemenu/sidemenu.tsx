@@ -1,7 +1,11 @@
+"use client";
+
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { IconProps } from "chak-blocks/plain";
 import path from "@/constants/path";
+import { combineClassNames } from "@/util/common";
 import SidemenuItem from "@/components/sidemenu/sidemenu-item";
 import UserProfile from "@/components/user-profile/user-profile";
 import LogoutButton from "@/components/buttons/logout-button/logoutButton";
@@ -31,8 +35,15 @@ const sideMenuList: SideMenu[] = [
 ];
 
 const Sidemenu = ({ className }: { className: string }) => {
+  const searchParams = useSearchParams();
+  const isActive = searchParams.get("sidemenu") === "true";
+  const classNames = combineClassNames(
+    className,
+    sidemenuStyles.self,
+    isActive && "is-active"
+  );
   return (
-    <aside className={`${sidemenuStyles.self} ${className}`}>
+    <aside className={classNames}>
       <Link href={path.home} className={sidemenuStyles.logo}>
         <Image src="/image/logo.png" alt="Chak" width={68} height={20} />
       </Link>

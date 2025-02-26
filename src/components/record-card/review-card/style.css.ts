@@ -1,10 +1,10 @@
 import { style } from "@vanilla-extract/css";
-import { gray } from "@/constants/colors";
-import { lineClampBase } from "@/styles/util.css";
+import { shades } from "@/constants/colors";
 import { bookCoverImageRatio } from "@/constants/size";
+import { lineClampBase } from "@/styles/util.css";
 
 const recordCardStyle = style({
-  border: `1px solid ${gray[200]}`,
+  border: `1px solid ${shades[200]}`,
   overflow: "hidden",
   borderRadius: 12,
   aspectRatio: bookCoverImageRatio,

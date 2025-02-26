@@ -1,5 +1,5 @@
 import { keyframes, style } from "@vanilla-extract/css";
-import { gray, yellow } from "@/constants/colors";
+import { shades } from "@/constants/colors";
 
 const text1Interaction = keyframes({
   "12%": { transform: "translate(-50%, -50%)", opacity: 0 },
@@ -47,8 +47,8 @@ const commonAnimationProperty = "3s ease forwards";
 export const loginIntroStyles = {
   self: style({
     padding: `80px 20px`,
-    backgroundColor: yellow[50],
-    borderRight: `1px solid  ${gray[100]}`,
+    backgroundColor: shades[50],
+    borderRight: `1px solid  ${shades[100]}`,
   }),
   bookInteractionArea: style({
     position: "relative",

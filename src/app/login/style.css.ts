@@ -1,6 +1,6 @@
-import { media } from "@/constants/break-points";
-import { gray } from "@/constants/colors";
 import { globalStyle, style } from "@vanilla-extract/css";
+import { media } from "@/constants/break-points";
+import { shades } from "@/constants/colors";
 
 export const loginPageStyles = {
   self: style({
@@ -18,7 +18,7 @@ export const loginPageStyles = {
     width: "100%",
     height: "60%",
     borderRadius: 8,
-    border: `1px solid ${gray[200]}`,
+    border: `1px solid ${shades[200]}`,
     overflow: "hidden",
   }),
   intro: style({

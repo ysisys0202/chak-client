@@ -1,5 +1,6 @@
 import { style } from "@vanilla-extract/css";
-import { background, border } from "@/constants/colors";
+import { background, orange } from "@/constants/colors";
+import { media } from "@/constants/break-points";
 
 const verticalSpace = 60;
 const sideSpace = 24;
@@ -11,22 +12,43 @@ export const sidemenuStyles = {
     flexDirection: "column",
     alignItems: "start",
     width: "100%",
-    maxWidth: sidemenuMaxWidth,
     height: "100vh",
+    backgroundColor: background.solid,
+    border: `1px solid ${orange}`,
     borderRadius: "0 120px 0 0",
-    backgroundColor: background,
-    border: `1px solid ${border}`,
+    zIndex: 500,
+    "@media": {
+      [media.lg]: {
+        maxWidth: sidemenuMaxWidth,
+        backgroundColor: background.ghost,
+      },
+    },
   }),
   logo: style({
-    margin: `${verticalSpace}px 0 0 ${sideSpace}px`,
+    margin: `120px 0 0 ${sideSpace}px`,
+    "@media": {
+      [media.lg]: {
+        marginTop: verticalSpace,
+      },
+    },
   }),
   userProfile: style({
-    margin: "0 auto",
-    marginTop: 120,
+    marginTop: 40,
+    marginLeft: sideSpace,
+    "@media": {
+      [media.lg]: {
+        margin: "120px auto 0",
+      },
+    },
   }),
   nav: style({
-    marginTop: 80,
+    marginTop: 40,
     width: "100%",
+    "@media": {
+      [media.lg]: {
+        marginTop: 80,
+      },
+    },
   }),
   logoutButton: style({
     marginTop: "auto",
