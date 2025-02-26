@@ -15,6 +15,9 @@ export const styles = {
     gridTemplateColumns: "repeat(1, 1fr)",
     gap: "16px 14px",
     "@media": {
+      [media.sm]: {
+        gridTemplateColumns: "repeat(2, 1fr)",
+      },
       [media.md]: {
         gridTemplateColumns: "repeat(3, 1fr)",
         gap: "20px 18px",
