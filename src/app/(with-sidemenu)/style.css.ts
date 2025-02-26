@@ -29,7 +29,9 @@ export const styles = {
   content: style({
     margin: "0 auto",
     padding: "80px 0",
+    width: "100%",
     maxWidth: 892,
+
     "@media": {
       [media.lg]: {
         margin: 0,
