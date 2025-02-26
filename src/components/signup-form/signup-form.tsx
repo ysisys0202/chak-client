@@ -3,7 +3,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { InputField, Button, Input } from "chak-blocks/plain";
-import { useToast } from "chak-blocks/context";
 import { useSignupMutation } from "@/query/auth";
 import { SignupClientSchema } from "@/util/validation/auth";
 import { signupFormStyles } from "./style.css";
@@ -73,9 +72,8 @@ const SignupForm = () => {
   } = useForm<FormData>({
     resolver: zodResolver(SignupClientSchema),
   });
-  const { open } = useToast();
 
-  const { mutate, error } = useSignupMutation();
+  const { mutate } = useSignupMutation();
 
   const onSubmit = handleSubmit((data) => {
     mutate(data);

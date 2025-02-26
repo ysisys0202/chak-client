@@ -1,4 +1,3 @@
-import { gray, white } from "@/constants/colors";
 import { style } from "@vanilla-extract/css";
 
 export const recordListSectionStyles = {

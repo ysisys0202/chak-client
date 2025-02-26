@@ -60,7 +60,7 @@ const BookListRow = ({ book }: Props) => {
         throw new Error(error.message);
       }
     }
-  }, [mutateAsync]);
+  }, [mutateAsync, book, registerBook]);
 
   return (
     <ListRow className={styles.row}>

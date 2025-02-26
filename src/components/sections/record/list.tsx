@@ -49,22 +49,19 @@ const RecordListSection = () => {
         <List>
           <RecordRow
             id="header"
-            title="제목"
+            bookTitle="제목"
             updatedAt="업데이트 날짜"
             header
           />
-          {data?.items?.map(
-            ({ id, title, bookImage, bookTitle, updatedAt }) => (
-              <RecordRow
-                key={id}
-                id={id}
-                title={title}
-                coverImageUrl={bookImage}
-                bookTitle={bookTitle}
-                updatedAt={updatedAt}
-              />
-            )
-          )}
+          {data?.items?.map(({ id, bookImage, bookTitle, updatedAt }) => (
+            <RecordRow
+              key={id}
+              id={id}
+              coverImageUrl={bookImage}
+              bookTitle={bookTitle}
+              updatedAt={updatedAt}
+            />
+          ))}
         </List>
         <Pagination
           totalPage={data ? Math.ceil(data.total / data.display) : 0}

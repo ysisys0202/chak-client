@@ -11,7 +11,7 @@ import RecordCard from "@/components/record-card/review-card/record-card";
 import { styles } from "./style.css";
 
 const RecordsEmpty = () => {
-  return <div>"아직 작성된 기록이 없어요"</div>;
+  return <div>아직 작성된 기록이 없어요</div>;
 };
 
 const RecentRecordsSection = () => {
@@ -28,7 +28,7 @@ const RecentRecordsSection = () => {
     if (inView && hasNextPage && hasNextPage && !isFetching) {
       fetchNextPage();
     }
-  }, [inView]);
+  }, [inView, hasNextPage, isFetching, fetchNextPage]);
 
   return (
     <Section className={styles.self}>

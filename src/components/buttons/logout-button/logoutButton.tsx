@@ -1,6 +1,6 @@
 "use client";
 
-import { gray } from "@/constants/colors";
+import { shades } from "@/constants/colors";
 import { Button, Icon } from "chak-blocks/plain";
 import { logoutButtonStyles } from "./style.css";
 import { useLogoutMutation } from "@/query/auth";
@@ -17,7 +17,7 @@ const LogoutButton = ({ className }: { className?: string }) => {
       onClick={handleLogout}
       className={`${className} ${logoutButtonStyles.self}`}
     >
-      로그아웃 <Icon name="logout" size={20} color={gray[600]} />
+      로그아웃 <Icon name="logout" size={20} color={shades[600]} />
     </Button>
   );
 };

@@ -2,7 +2,7 @@
 
 import { Typography } from "chak-blocks/plain";
 import Image from "next/image";
-import { gray } from "@/constants/colors";
+import { shades } from "@/constants/colors";
 import { useAuth } from "@/providers/auth";
 import { styles } from "./style.css";
 
@@ -23,7 +23,7 @@ const UserProfile = ({ className }: ProfileImageProps) => {
           fill
         />
       </div>
-      <Typography variant="title5" color={gray[500]}>
+      <Typography variant="title5" color={shades[600]}>
         {nickname}
       </Typography>
     </div>

@@ -1,10 +1,10 @@
-import { gray } from "@/constants/colors";
+import { shades } from "@/constants/colors";
 import { style } from "@vanilla-extract/css";
 
 export const styles = {
   self: style({
     display: "flex",
-    border: `1px solid ${gray[600]}`,
+    border: `1px solid ${shades[600]}`,
     borderRadius: 8,
     overflow: "hidden",
   }),

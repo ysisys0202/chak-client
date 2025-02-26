@@ -1,4 +1,4 @@
-import { gray } from "@/constants/colors";
+import { shades } from "@/constants/colors";
 import { style } from "@vanilla-extract/css";
 
 export const styles = {
@@ -26,7 +26,7 @@ export const styles = {
         borderRadius: "4px",
       },
       "&::-webkit-scrollbar-thumb:hover": {
-        background: gray[50],
+        background: shades[50],
       },
     },
   }),

@@ -1,4 +1,4 @@
-import { gray } from "@/constants/colors";
+import { shades } from "@/constants/colors";
 import { style } from "@vanilla-extract/css";
 
 const selfStyle = style({
@@ -13,7 +13,7 @@ const barStyle = {
   width: "100%",
   height: 3,
   borderRadius: 4,
-  backgroundColor: gray[800],
+  backgroundColor: shades[800],
 };
 
 export const styles = {

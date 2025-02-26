@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import path from "@/constants/path";
 import { Typography } from "chak-blocks/plain";
@@ -9,16 +8,14 @@ import { styles } from "./style.css";
 
 type Props = {
   id: number | string;
-  title: string;
   coverImageUrl?: string;
-  bookTitle?: string;
+  bookTitle: string;
   updatedAt: string;
   header?: boolean;
 };
 
 const RecordRow = ({
   id,
-  title,
   coverImageUrl,
   bookTitle,
   updatedAt,

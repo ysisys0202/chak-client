@@ -2,7 +2,6 @@
 
 import React, { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { Typography } from "chak-blocks/plain";
 import { recordFields, recordFormFields } from "@/constants/record";
 import { useAuth } from "@/providers/auth";
 import { useRecordFormContext } from "@/providers/record-form";
