@@ -5,7 +5,7 @@ export const styles = {
   self: style({
     maxWidth: 580,
   }),
-  body: style({
+  card: style({
     position: "relative",
     overflowY: "clip",
   }),

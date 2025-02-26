@@ -25,7 +25,7 @@ const RecordRow = ({
     <ListRow key={id} className={styles.self}>
       <Link key={id} href={`${path.record}/${id}`} className={styles.link}>
         {header ? (
-          <Typography variant="text2" theme="tertiary">
+          <Typography variant="text2" theme="tertiary" className={styles.text}>
             표지
           </Typography>
         ) : (
@@ -34,6 +34,7 @@ const RecordRow = ({
             alt={`${bookTitle} 책 표지`}
             width="30px"
             height="40px"
+            className={styles.image}
           />
         )}
 

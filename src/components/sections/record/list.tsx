@@ -12,7 +12,7 @@ import SectionBody from "@/components/sections/shared/section-body";
 import List from "@/components/shared/list/list";
 import Pagination from "@/components/shared/pagination/pagination";
 import RecordRow from "@/components/record-row/record-row";
-import { recordListSectionStyles } from "./style.css";
+import { listStyles } from "./style.css";
 
 const display = 10;
 
@@ -40,19 +40,11 @@ const RecordListSection = () => {
     <Section>
       <SectionHeader title="나의 기록" />
       <SectionBody>
-        <Link
-          href={path.recordNew}
-          className={recordListSectionStyles.newButton}
-        >
+        <Link href={path.recordNew} className={listStyles.newButton}>
           <Button theme="success">새 기록 추가</Button>
         </Link>
         <List>
-          <RecordRow
-            id="header"
-            bookTitle="제목"
-            updatedAt="업데이트 날짜"
-            header
-          />
+          <RecordRow id="header" bookTitle="제목" updatedAt="작성일" header />
           {data?.items?.map(({ id, bookImage, bookTitle, updatedAt }) => (
             <RecordRow
               key={id}
@@ -67,7 +59,7 @@ const RecordListSection = () => {
           totalPage={data ? Math.ceil(data.total / data.display) : 0}
           currentPage={page}
           onPagination={handlePagination}
-          className={recordListSectionStyles.pagination}
+          className={listStyles.pagination}
         />
       </SectionBody>
     </Section>

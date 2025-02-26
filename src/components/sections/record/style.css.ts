@@ -1,13 +1,12 @@
 import { style } from "@vanilla-extract/css";
 
-export const recordListSectionStyles = {
+export const listStyles = {
   newButton: style({
     display: "block",
     marginLeft: "auto",
     marginBottom: 16,
     width: "fit-content",
   }),
-
   pagination: style({
     marginTop: 16,
   }),

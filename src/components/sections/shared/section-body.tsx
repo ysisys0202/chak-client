@@ -1,5 +1,3 @@
-import { Card } from "chak-blocks/plain";
-import { background } from "@/constants/colors";
 import { sectionBodyStyles } from "./style.css";
 
 type Props = {
@@ -9,15 +7,7 @@ type Props = {
 
 const SectionBody = ({ className, children }: Props) => {
   return (
-    <Card
-      as="div"
-      rounded
-      variant="filled"
-      color={background.ghost}
-      className={`${sectionBodyStyles.self} ${className}`}
-    >
-      {children}
-    </Card>
+    <div className={`${sectionBodyStyles.self} ${className}`}>{children}</div>
   );
 };
 
