@@ -3,6 +3,8 @@ import { UseFormRegister } from "react-hook-form";
 import TextareaAutosize from "react-textarea-autosize";
 import { RecordData } from "@/util/validation/record";
 import { DataTypes } from "@/types/data";
+import { style } from "@vanilla-extract/css";
+import { styles } from "./style.css";
 
 type Props = {
   type: HTMLInputElement["type"] | "select" | "textarea";
@@ -10,17 +12,31 @@ type Props = {
   options?: { value: string | number; name: string | number }[];
   register: UseFormRegister<RecordData>;
   dataType?: DataTypes;
+  className?: string;
 };
 
-const RecordFormField = ({ type, id, options, dataType, register }: Props) => {
+const RecordFormField = ({
+  type,
+  id,
+  options,
+  dataType,
+  register,
+  className,
+}: Props) => {
   if (type === "textarea") {
-    return <TextareaAutosize {...register(id)} />;
+    return (
+      <TextareaAutosize
+        {...register(id)}
+        className={`${styles.textarea} ${className ?? ""}`}
+      />
+    );
   }
   if (type === "select") {
     return (
       <select
         id={id}
         {...register(id, { valueAsNumber: dataType === "number" })}
+        className={`${styles.select} ${className ?? ""}`}
       >
         {options?.map(({ value, name }) => (
           <option key={value} value={value}>
@@ -30,7 +46,13 @@ const RecordFormField = ({ type, id, options, dataType, register }: Props) => {
       </select>
     );
   }
-  return <input type={type} {...register(id)} />;
+  return (
+    <input
+      type={type}
+      {...register(id)}
+      className={`${styles.input} ${className ?? ""}`}
+    />
+  );
 };
 
 export default RecordFormField;
