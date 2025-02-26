@@ -1,7 +1,9 @@
 "use  client";
 
 import { Button } from "chak-blocks/plain";
-import { paginationStyles } from "./style.css";
+import { styles } from "./style.css";
+import { Icon } from "chak-blocks/plain";
+import { combineClassNames } from "@/util/common";
 
 type Props = {
   totalPage: number;
@@ -18,6 +20,8 @@ const Pagination = ({
   displayButtonLength = 5,
   onPagination,
 }: Props) => {
+  const classNames = combineClassNames(className, styles.self);
+
   const morePage = displayButtonLength < totalPage;
   const currnetPageOffset = Math.ceil(currentPage / displayButtonLength) - 1;
   const totalPageOffset = Math.ceil(totalPage / displayButtonLength);
@@ -49,7 +53,7 @@ const Pagination = ({
   };
 
   return (
-    <div className={`${paginationStyles.self} ${className}`}>
+    <div className={classNames}>
       {morePage && (
         <>
           <Button
@@ -57,16 +61,19 @@ const Pagination = ({
             theme="dark"
             size="sm"
             onClick={handleFirstButton}
+            className={styles.button}
           >
-            처음
+            <Icon name="chevron" size={16} className={styles.doublePrevIcon} />
+            <Icon name="chevron" size={16} className={styles.prevIcon} />
           </Button>
           <Button
             variant="outlined"
             theme="dark"
             size="sm"
             onClick={handlePrevButton}
+            className={styles.button}
           >
-            이전
+            <Icon name="chevron" size={16} className={styles.prevIcon} />
           </Button>
         </>
       )}
@@ -95,16 +102,19 @@ const Pagination = ({
             theme="dark"
             size="sm"
             onClick={handleNextButton}
+            className={styles.button}
           >
-            다음
+            <Icon name="chevron" size={16} className={styles.nextIcon} />
           </Button>
           <Button
             variant="outlined"
             theme="dark"
             size="sm"
             onClick={handleLastButton}
+            className={styles.button}
           >
-            끝
+            <Icon name="chevron" size={16} className={styles.nextIcon} />
+            <Icon name="chevron" size={16} className={styles.doubleNextIcon} />
           </Button>
         </>
       )}

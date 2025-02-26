@@ -11,6 +11,7 @@ export const styles = {
   term: style({
     display: "flex",
     alignItems: "center",
+    flexShrink: 0,
     selectors: {
       "&::after": {
         content: ":",
