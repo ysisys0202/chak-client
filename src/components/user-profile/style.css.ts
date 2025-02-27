@@ -14,7 +14,7 @@ export const styles = {
     width: 40,
     height: 40,
     borderRadius: "50%",
-    border: `1px solid ${shades[200]}`,
+    border: `1px solid ${shades[100]}`,
     backgroundColor: shades[50],
     "@media": {
       [media.md]: {

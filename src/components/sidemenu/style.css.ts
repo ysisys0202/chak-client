@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css";
-import { background, orange } from "@/constants/colors";
-import { media } from "@/constants/break-points";
+import { background, orange, shades } from "@/constants/colors";
+import { breakPoints, media } from "@/constants/break-points";
 
 const verticalSpace = 60;
 const sideSpace = 24;
@@ -12,9 +12,10 @@ export const sidemenuStyles = {
     flexDirection: "column",
     alignItems: "start",
     width: "100%",
+    maxWidth: breakPoints.sm,
     height: "100vh",
     backgroundColor: background.solid,
-    border: `1px solid ${orange}`,
+    border: `1px solid ${shades[100]}`,
     borderRadius: "0 120px 0 0",
     zIndex: 500,
     "@media": {

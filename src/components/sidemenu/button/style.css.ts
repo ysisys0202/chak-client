@@ -2,10 +2,14 @@ import { shades } from "@/constants/colors";
 import { style } from "@vanilla-extract/css";
 
 const selfStyle = style({
-  width: 26,
-  height: 26,
+  display: "block",
+  width: 36,
+  height: 36,
   margin: 0,
-  padding: 0,
+  padding: 5,
+  borderRadius: "50%",
+  backdropFilter: "blur(1px)",
+  backgroundColor: "rgba(255,255,255,0.6)",
   boxSizing: "border-box",
 });
 
