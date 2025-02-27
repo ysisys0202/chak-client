@@ -1,8 +1,7 @@
 import { media } from "@/constants/break-points";
-import { background, shades } from "@/constants/colors";
+import { background } from "@/constants/colors";
 import { lineClampBase } from "@/styles/util.css";
 import { style } from "@vanilla-extract/css";
-12;
 
 const selfStyles = style({
   padding: "8px 4px",

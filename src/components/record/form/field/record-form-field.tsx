@@ -3,7 +3,6 @@ import { UseFormRegister } from "react-hook-form";
 import TextareaAutosize from "react-textarea-autosize";
 import { RecordData } from "@/util/validation/record";
 import { DataTypes } from "@/types/data";
-import { style } from "@vanilla-extract/css";
 import { styles } from "./style.css";
 
 type Props = {
