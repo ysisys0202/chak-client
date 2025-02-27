@@ -10,12 +10,14 @@ import RecordEditButtonGroup from "@/components/record/button/record-edit-button
 import BookSearchModal from "@/components/book/search/modal/modal";
 import { recordDetailSectionStyles } from "./style.css";
 import RecordForm from "@/components/record/form/record-form";
+import axios from "axios";
 
 const RecordEditSection = () => {
   const searchParmas = useSearchParams();
   const isModalOpen = !!searchParmas.get("book-search-modal");
   const { id } = useParams() as unknown as { id: number };
-  const { data } = useRecordQuery(id);
+  const { data, error } = useRecordQuery(id);
+  console.log(axios.isAxiosError(error));
 
   const bookData: BookData = {
     id: data?.bookId || NaN,

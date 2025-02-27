@@ -27,7 +27,9 @@ export const getBook = (isbn: string) => {
 
 export const postBook = (formData: BookItem) => {
   return fetcher(`/books`, {
-    method: "POST",
-    body: JSON.stringify(formData),
+    options: {
+      method: "POST",
+      data: formData,
+    },
   });
 };

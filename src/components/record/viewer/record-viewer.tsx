@@ -1,6 +1,10 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useEffect } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { AxiosError } from "axios";
+import { useToast } from "chak-blocks/context";
+import path from "@/constants/path";
 import { recordFields } from "@/constants/record";
 import { readingStateMessage } from "@/constants/message";
 import { BookData } from "@/providers/record-form";
@@ -15,7 +19,20 @@ import RecordViewerTitle from "@/components/record/viewer//title/record-viewer-t
 
 const RecordViewer = () => {
   const { id } = useParams() as unknown as { id: number };
-  const { data } = useRecordQuery(id);
+  const { data, error } = useRecordQuery(id);
+  const router = useRouter();
+  const { open } = useToast();
+
+  useEffect(() => {
+    if (error) {
+      const axiosError = error as AxiosError<{ message: string }>;
+      if (axiosError.response?.status === 403) {
+        open({ status: "error", title: axiosError.response.data.message });
+        router.replace(path.home);
+      }
+    }
+  }, [error]);
+
   const bookData: BookData = {
     id: data?.bookId || NaN,
     title: data?.bookTitle || "",

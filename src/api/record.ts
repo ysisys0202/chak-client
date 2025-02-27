@@ -26,8 +26,10 @@ export const createRecord = (
   recordData: RecordData
 ): Promise<RecordItemResponse> => {
   return fetcher(`/records/`, {
-    method: "POST",
-    body: JSON.stringify(recordData),
+    options: {
+      method: "POST",
+      data: recordData,
+    },
   });
 };
 
@@ -36,13 +38,15 @@ export const updateRecord = (
   recordData: RecordData
 ): Promise<RecordItemResponse> => {
   return fetcher(`/records/${id}`, {
-    method: "PUT",
-    body: JSON.stringify(recordData),
+    options: {
+      method: "PUT",
+      data: recordData,
+    },
   });
 };
 
 export const deleteRecord = (id: number) => {
   return fetcher(`/records/${id}`, {
-    method: "DELETE",
+    options: { method: "DELETE" },
   });
 };

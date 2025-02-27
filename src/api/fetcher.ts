@@ -1,30 +1,45 @@
-const defaultHeaders = {
-  "Content-Type": "application/json",
-};
+import axios, { AxiosError, AxiosRequestConfig } from "axios";
 
-export const fetcher = async (api: string, options?: RequestInit) => {
+const axiosClient = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_DOMAIN,
+  headers: {
+    "Content-Type": "application/json",
+  },
+  withCredentials: true,
+});
+
+export const fetcher = async (
+  api: string,
+  {
+    options,
+    onSuccess,
+    onError,
+  }: {
+    options?: AxiosRequestConfig;
+    onSuccess?: (data: unknown) => void;
+    onError?: (error: AxiosError) => void;
+  } = {}
+) => {
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_DOMAIN}${api}`,
-      {
-        ...options,
-        headers: {
-          ...defaultHeaders,
-          ...options?.headers,
-        },
-        credentials: "include",
-      }
-    );
-    if (!response.ok) {
-      const { message } = await response.json();
-      throw new Error(message);
-    }
-    const data = await response.json();
-    return data;
+    const { headers, data, method } = options || {};
+
+    const response = await axiosClient({
+      url: api,
+      method,
+      headers,
+      data,
+      ...options,
+    });
+
+    onSuccess?.(response.data);
+    return response.data;
   } catch (error) {
-    if (error instanceof Error) {
-      console.error(error.message);
-      throw new Error(error.message);
+    if (axios.isAxiosError(error)) {
+      onError?.(error);
+      throw error;
     }
+    throw new Error(
+      "예상치 못한 에러가 발생했습니다. 잠시 후 다시 시도해주세요."
+    );
   }
 };
