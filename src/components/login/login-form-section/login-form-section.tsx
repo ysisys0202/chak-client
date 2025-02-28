@@ -1,14 +1,15 @@
 import { Typography } from "chak-blocks/plain";
+import { shades } from "@/constants/colors";
 import LoginForm from "@/components/login/login-form/login-form";
-import { loginFormSectionStyles } from "./style.css";
+import { styles } from "./style.css";
 
 const LoginFormSection = () => {
   return (
-    <section className={loginFormSectionStyles.self}>
-      <Typography as="h1" variant="title2" theme="tertiary">
-        Chak 로그인 하기
+    <section className={styles.self}>
+      <Typography as="h1" variant="title2" color={shades[800]}>
+        로그인
       </Typography>
-      <LoginForm className={loginFormSectionStyles.form} />
+      <LoginForm className={styles.form} />
     </section>
   );
 };

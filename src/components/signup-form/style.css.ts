@@ -1,5 +1,6 @@
 import { style } from "@vanilla-extract/css";
-import { shades } from "@/constants/colors";
+import { background, shades } from "@/constants/colors";
+import { breakPoints } from "@/constants/break-points";
 
 export const signupFormStyles = {
   self: style({
@@ -8,7 +9,7 @@ export const signupFormStyles = {
     gap: 80,
     padding: "40px",
     width: "100%",
-    maxWidth: "500px",
+    maxWidth: breakPoints.sm,
     borderRadius: 8,
     border: `1px solid ${shades[200]}`,
   }),

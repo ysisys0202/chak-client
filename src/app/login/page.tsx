@@ -6,7 +6,6 @@ const LoginPage = () => {
   return (
     <main className={loginPageStyles.self}>
       <div className={loginPageStyles.container}>
-        <LoginIntroSection className={loginPageStyles.intro} />
         <LoginFormSection />
       </div>
     </main>

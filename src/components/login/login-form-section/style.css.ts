@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css";
 
-export const loginFormSectionStyles = {
+export const styles = {
   self: style({
     display: "flex",
     flexDirection: "column",

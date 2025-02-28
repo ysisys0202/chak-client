@@ -60,7 +60,6 @@ const LoginForm = ({ className }: { className: string }) => {
             id={id}
             label={label}
             direction="vertical"
-            isRequired={isRequired}
             className={loginFormStyles.field}
           >
             <Input
