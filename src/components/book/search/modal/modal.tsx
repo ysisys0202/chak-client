@@ -13,7 +13,11 @@ import { styles } from "./style.css";
 
 const display = 30;
 
-const BookSearchModal = () => {
+type Props = {
+  onClose?: () => void;
+};
+
+const BookSearchModal = ({ onClose }: Props) => {
   const [query, setQuery] = useState<string>("");
   const [curerntPage, setCurrentPage] = useState<number>(1);
   const [start, setStart] = useState<number>(1);
@@ -45,7 +49,7 @@ const BookSearchModal = () => {
   }, [curerntPage]);
 
   return (
-    <Modal className={styles.self}>
+    <Modal className={styles.self} onClose={onClose}>
       <Typography variant="title5" as="h3">
         기록할 책 검색하기
       </Typography>

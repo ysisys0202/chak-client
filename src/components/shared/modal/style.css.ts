@@ -12,7 +12,7 @@ export const modalStyles = {
     maxWidth: 800,
     selectors: {
       "&::backdrop": {
-        backgroundColor: "rgba(0,0,0,0.6)",
+        display: "none",
       },
     },
     "@media": {

@@ -14,14 +14,22 @@ import RecordEditButtonGroup from "@/components/record/button/record-edit-button
 import BookSearchModal from "@/components/book/search/modal/modal";
 import RecordForm from "@/components/record/form/record-form";
 import { recordDetailSectionStyles } from "./style.css";
+import { removeQueryParam } from "@/util/url";
 
 const RecordEditSection = () => {
+  const router = useRouter();
+  const { id } = useParams() as unknown as { id: number };
   const searchParmas = useSearchParams();
   const isModalOpen = !!searchParmas.get("book-search-modal");
-  const { id } = useParams() as unknown as { id: number };
   const { data, error } = useRecordQuery(id);
   const { open } = useToast();
-  const router = useRouter();
+
+  const handleModalClose = () => {
+    router.replace(
+      removeQueryParam(`${path.recordEdit}/${id}`, "book-search-modal")
+    );
+  };
+
   useEffect(() => {
     if (error) {
       const axiosError = error as AxiosError<{ message: string }>;
@@ -62,7 +70,7 @@ const RecordEditSection = () => {
           <RecordEditButtonGroup
             className={recordDetailSectionStyles.buttonGroup}
           />
-          {isModalOpen && <BookSearchModal />}
+          {isModalOpen && <BookSearchModal onClose={handleModalClose} />}
         </RecordFormProvider>
       </SectionBody>
     </Section>
