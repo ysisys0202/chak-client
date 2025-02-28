@@ -2,11 +2,11 @@
 
 import { createContext, useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Typography } from "chak-blocks/plain";
 import { useToast } from "chak-blocks/context";
 import { Me } from "@/types/auth";
 import path from "@/constants/path";
 import { useAuthQuery } from "@/query/auth";
+import FullScreenLoader from "@/components/shared/loading/full-screen-loader";
 
 const AuthContext = createContext<{
   user: Me;
@@ -15,7 +15,7 @@ const AuthContext = createContext<{
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
-  const { user, isAuthenticated, isLoading, error } = useAuthQuery();
+  const { user, isAuthenticated, isLoading } = useAuthQuery();
   const { open } = useToast();
 
   // TODO : useToast open 함수를 useEffect의 dependency array에 추가하면 무한 렌더링 이슈 발생, chak-blocks 확인 필요
@@ -26,14 +26,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, [user, isLoading, isAuthenticated]);
 
-  if (isLoading) return <Typography>로딩 중...</Typography>;
-
-  if (!user || error) {
-    return null;
-  }
-
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated }}>
+    <AuthContext.Provider
+      value={{
+        user: user || {
+          loginId: "",
+          nickname: "",
+          id: NaN,
+          profileImage: "",
+        },
+        isAuthenticated,
+      }}
+    >
+      {isLoading && <FullScreenLoader />}
       {children}
     </AuthContext.Provider>
   );
