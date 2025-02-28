@@ -38,7 +38,7 @@ next-env.d.ts
 # Yarn berry
 
 .yarn/*
-
+!.yarn/releases/
 
 # Env
 
