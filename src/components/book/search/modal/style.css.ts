@@ -12,7 +12,7 @@ export const styles = {
 
   bookList: style({
     marginTop: 20,
-    height: "calc(100% - 200px)",
+    height: "calc(100vh - 200px)",
     overflow: "auto",
     selectors: {
       "&::-webkit-scrollbar": {
