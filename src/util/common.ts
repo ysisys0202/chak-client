@@ -1,3 +1,5 @@
+export const isClient = typeof window !== "undefined";
+
 export const combineClassNames = (
   ...classes: (string | undefined | null | false)[]
 ): string => {
@@ -17,6 +19,13 @@ export const formatShortDate = (dateString?: string) => {
 };
 
 export const scrollHandler = () => {
+  if (isClient) {
+    return {
+      disableScroll: () => {},
+      enableScroll: () => {},
+    };
+  }
+
   const html = document.documentElement;
   const body = document.body;
 
@@ -28,5 +37,6 @@ export const scrollHandler = () => {
     html.classList.remove("no-scroll");
     body.classList.remove("no-scroll");
   };
+
   return { disableScroll, enableScroll };
 };

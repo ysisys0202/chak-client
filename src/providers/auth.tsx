@@ -26,19 +26,23 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, [user, isLoading, isAuthenticated]);
 
+  if (isLoading) {
+    return <FullScreenLoader />;
+  }
+
   return (
     <AuthContext.Provider
       value={{
         user: user || {
           loginId: "",
           nickname: "",
-          id: NaN,
+          id: 0,
           profileImage: "",
         },
         isAuthenticated,
       }}
     >
-      {isLoading && <FullScreenLoader />}
+      {isLoading}
       {children}
     </AuthContext.Provider>
   );
