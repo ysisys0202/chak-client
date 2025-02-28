@@ -19,10 +19,12 @@ export type RecordDetail = RecordFormData & {
   pubdate: string;
 };
 
+export type ReadingStates = "pre-reading" | "reading" | "stop" | "done";
+
 export type RecordItemResponse = {
   id: number;
   userId: number;
-  readingState: "pre-reading" | "reading" | "stop" | "done";
+  readingState: ReadingStates;
   startDate?: string;
   endDate?: string;
   rating?: number;
@@ -40,6 +42,13 @@ export type RecordItemResponse = {
   bookImage: string;
   bookIsbn: string;
   bookPubdate: string;
+};
+
+export type RecordCountByReadingStateResponse = {
+  done: number;
+  "pre-reading": number;
+  reading: number;
+  stop: number;
 };
 
 export type RecordResponse = {

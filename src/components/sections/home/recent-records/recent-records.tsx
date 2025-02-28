@@ -31,7 +31,7 @@ const RecentRecordsSection = () => {
   }, [inView, hasNextPage, isFetching, fetchNextPage]);
 
   return (
-    <Section className={styles.self}>
+    <Section>
       <SectionHeader
         title="최근 기록 📚"
         description="기록을 차곡 차곡 쌓아보세요"

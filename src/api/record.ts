@@ -1,5 +1,10 @@
 import { fetcher } from "@/api/fetcher";
-import { RecordItemResponse, RecordResponse } from "@/types/record";
+import {
+  ReadingStates,
+  RecordCountByReadingStateResponse,
+  RecordItemResponse,
+  RecordResponse,
+} from "@/types/record";
 import { generateQueryString } from "@/util/url";
 import { RecordData } from "@/util/validation/record";
 
@@ -7,6 +12,7 @@ export type GetRecordsOptions = {
   userId?: number;
   start?: number;
   display?: number;
+  readingState?: ReadingStates;
 };
 
 export const getRecords = (
@@ -21,6 +27,11 @@ export const getRecords = (
 export const getRecord = (id: number): Promise<RecordItemResponse> => {
   return fetcher(`/records/${id}`);
 };
+
+export const getRecordCountByReadingState =
+  (): Promise<RecordCountByReadingStateResponse> => {
+    return fetcher(`/records/count/by-reading-state`);
+  };
 
 export const createRecord = (
   recordData: RecordData

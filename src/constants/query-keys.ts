@@ -9,6 +9,7 @@ const queryKey = {
   records: {
     list: "/records/list",
     one: "/records/one",
+    countByReadingState: "/records/count/by-reading-state",
   },
 };
 

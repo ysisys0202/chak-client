@@ -1,12 +1,13 @@
 import { style } from "@vanilla-extract/css";
 
 export const listStyles = {
-  newButton: style({
-    display: "block",
-    marginLeft: "auto",
+  utilArea: style({
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
     marginBottom: 16,
-    width: "fit-content",
   }),
+
   pagination: style({
     marginTop: 16,
   }),

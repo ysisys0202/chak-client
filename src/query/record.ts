@@ -5,6 +5,7 @@ import {
   createRecord,
   deleteRecord,
   getRecord,
+  getRecordCountByReadingState,
   getRecords,
   GetRecordsOptions,
   updateRecord,
@@ -15,7 +16,12 @@ import { RecordData } from "@/util/validation/record";
 
 export const useRecordsQuery = (options: GetRecordsOptions) => {
   return useQuery({
-    queryKey: [queryKey.records.list, options.userId, options.start],
+    queryKey: [
+      queryKey.records.list,
+      options.userId,
+      options.start,
+      options.readingState,
+    ],
     queryFn: () => getRecords(options),
   });
 };
@@ -37,6 +43,13 @@ export const useRecordsInfiniteQuery = (userId?: number) => {
       }
       return (lastPage.start + display) / display + 1;
     },
+  });
+};
+
+export const useRecordCountByReadingState = () => {
+  return useQuery({
+    queryKey: [queryKey.records.countByReadingState],
+    queryFn: getRecordCountByReadingState,
   });
 };
 
