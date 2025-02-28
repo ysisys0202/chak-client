@@ -35,10 +35,10 @@ const WelcomeSection = () => {
               기록하기
             </Button>
             <Image
-              src="/image/ch_welcome.png"
-              alt="인사하는 초록색 책 캐릭터"
-              width={560}
-              height={570}
+              src="/image/open_book.png"
+              alt="펼쳐져 있는 책 이미지"
+              width={300}
+              height={130}
               className={styles.image}
             />
           </Card>

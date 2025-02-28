@@ -11,20 +11,16 @@ export const styles = {
   }),
   image: style({
     position: "absolute",
-    right: -16,
-    bottom: -33,
+    right: 20,
+    bottom: 20,
     width: "auto",
-    height: "90%",
-    aspectRatio: "560/570",
-    transform: "rotate(3deg)",
+    height: 40,
+    aspectRatio: "300/130",
     "@media": {
-      [media.md]: {
-        right: -34,
-        bottom: -33,
-        height: "120%",
-      },
       [media.lg]: {
-        height: "110%",
+        right: 40,
+        bottom: 40,
+        height: 60,
       },
     },
   }),
