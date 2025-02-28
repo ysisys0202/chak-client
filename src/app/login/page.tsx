@@ -1,4 +1,3 @@
-import LoginIntroSection from "@/components/login/login-intro-section/login-intro-section";
 import LoginFormSection from "@/components/login/login-form-section/login-form-section";
 import { loginPageStyles } from "./style.css";
 

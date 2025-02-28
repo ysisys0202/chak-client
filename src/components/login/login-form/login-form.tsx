@@ -54,7 +54,7 @@ const LoginForm = ({ className }: { className: string }) => {
       onSubmit={onSubmit}
     >
       <div className={loginFormStyles.fields}>
-        {loginFormFileds.map(({ id, label, type, isRequired, placeholder }) => (
+        {loginFormFileds.map(({ id, label, type, placeholder }) => (
           <InputField
             key={id}
             id={id}

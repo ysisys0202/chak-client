@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { background, orange, shades } from "@/constants/colors";
+import { background, shades } from "@/constants/colors";
 import { breakPoints, media } from "@/constants/break-points";
 
 const verticalSpace = 60;

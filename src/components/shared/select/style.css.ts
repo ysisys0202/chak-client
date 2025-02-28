@@ -1,4 +1,4 @@
-import { background, shades, white } from "@/constants/colors";
+import { background, shades } from "@/constants/colors";
 import { style } from "@vanilla-extract/css";
 
 export const styles = {

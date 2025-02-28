@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { background, shades } from "@/constants/colors";
+import { shades } from "@/constants/colors";
 import { breakPoints } from "@/constants/break-points";
 
 export const signupFormStyles = {

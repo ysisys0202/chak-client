@@ -6,7 +6,6 @@ import SectionBody from "@/components/sections/shared/section-body";
 import { styles } from "./style.css";
 import RecordFolder from "@/components/record/folder/record-folder";
 import { useRecordCountByReadingState } from "@/query/record";
-import { getRecordCountByReadingState } from "@/api/record";
 import Link from "next/link";
 import path from "@/constants/path";
 
