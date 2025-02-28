@@ -15,10 +15,10 @@ const SearchPlaceholder = ({ mode = "before-search" }: Props) => {
           : "검색한 책을 찾지 못했어요. \n다른 키워드로 검색해보세요."}
       </Typography>
       <Image
-        src="/image/ch_search_no_result.png"
+        src={isBeforeSearch ? "/image/smile_book.png" : "/image/sad_book.png"}
         alt="검색하는 오렌지 캐릭터"
-        width={560}
-        height={566}
+        width={240}
+        height={268}
         className={styles.image}
       />
     </div>

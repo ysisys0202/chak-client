@@ -22,12 +22,12 @@ export const styles = {
     left: "50%",
     bottom: "5%",
     transform: "translateX(-50%)",
-    width: 140,
+    width: 120,
     height: "auto",
     "@media": {
       [media.md]: {
         bottom: "20%",
-        width: 200,
+        width: 160,
       },
     },
   }),
