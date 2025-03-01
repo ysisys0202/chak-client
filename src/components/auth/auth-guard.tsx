@@ -19,13 +19,10 @@ const AuthGuard = ({ children }: { children: React.ReactNode }) => {
       router.replace(path.login);
     }
   }, [user, isAuthenticating, isAuthenticated]);
-
-  return (
-    <>
-      {isAuthenticating && <FullScreenLoader />}
-      {children}
-    </>
-  );
+  if (isAuthenticating) {
+    return <FullScreenLoader />;
+  }
+  return <>{children}</>;
 };
 
 export default AuthGuard;
