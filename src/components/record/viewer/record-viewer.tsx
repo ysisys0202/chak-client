@@ -1,14 +1,6 @@
-"use client";
-
-import { useEffect } from "react";
-import { useParams, useRouter } from "next/navigation";
-import { AxiosError } from "axios";
-import { useToast } from "chak-blocks/context";
-import path from "@/constants/path";
 import { recordFields } from "@/constants/record";
 import { readingStateMessage } from "@/constants/message";
 import { BookData } from "@/providers/record-form";
-import { useRecordQuery } from "@/query/record";
 import { formatShortDate } from "@/util/common";
 import BookCoverImage from "@/components/book/cover-image/cover-image";
 import BookInfo from "@/components/record/viewer/book-info/book-info";
@@ -16,43 +8,29 @@ import RecordRow from "@/components/record/viewer/row/record-viewer-row";
 import RecordData from "@/components/record/viewer//data/record-viewer-data";
 import RecordLabel from "@/components/record/viewer//label/record-viewer-label";
 import RecordViewerTitle from "@/components/record/viewer//title/record-viewer-title";
+import { RecordItemResponse } from "@/types/record";
 
-const RecordViewer = () => {
-  const { id } = useParams() as unknown as { id: number };
-  const { data, error } = useRecordQuery(id);
-  const router = useRouter();
-  const { open } = useToast();
-
-  useEffect(() => {
-    if (error) {
-      const axiosError = error as AxiosError<{ message: string }>;
-      if (axiosError.response?.status === 403) {
-        open({ status: "error", title: axiosError.response.data.message });
-        router.replace(path.home);
-      }
-    }
-  }, [error]);
-
+const RecordViewer = ({ record }: { record: RecordItemResponse }) => {
   const bookData: BookData = {
-    id: data?.bookId || NaN,
-    title: data?.bookTitle || "",
-    image: data?.bookImage || "",
-    publisher: data?.bookPublisher || "",
-    author: data?.bookAuthor || "",
-    pubdate: formatShortDate(data?.bookPubdate) || "",
+    id: record.bookId,
+    title: record.bookTitle,
+    image: record.bookImage,
+    publisher: record.bookPublisher,
+    author: record.bookAuthor,
+    pubdate: formatShortDate(record.bookPubdate),
     link: "",
     discount: "",
-    isbn: data?.bookIsbn || "",
+    isbn: record.bookIsbn,
     description: "",
   };
   const recordData = {
-    bookId: data?.bookId,
-    userId: data?.userId,
-    title: data?.title,
-    readingState: data ? readingStateMessage[data.readingState] : "",
-    rating: data?.rating,
-    recordDetail: data?.recordDetail,
-    isPublic: data?.isPublic,
+    bookId: record.bookId,
+    userId: record.userId,
+    title: record.title,
+    readingState: readingStateMessage[record.readingState],
+    rating: record.rating,
+    recordDetail: record.recordDetail,
+    isPublic: record.isPublic,
   };
   return (
     <div>
@@ -60,10 +38,10 @@ const RecordViewer = () => {
       <BookInfo
         bookData={bookData}
         bookCoverImage={
-          data ? (
+          record ? (
             <BookCoverImage
-              imageUrl={data.bookImage}
-              alt={`${data.title} 책 표지`}
+              imageUrl={record.bookImage}
+              alt={`${record.title} 책 표지`}
             />
           ) : (
             <BookCoverImage.Skeleton />

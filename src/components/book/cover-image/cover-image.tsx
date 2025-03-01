@@ -14,8 +14,8 @@ type Props = {
 };
 
 const BookCoverSkeleton = ({
-  width,
-  height,
+  width = "100%",
+  height = "100%",
   className,
 }: Omit<Props, "imageUrl" | "alt">) => {
   const classNames = combineClassNames(className, styles.self);

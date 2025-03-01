@@ -1,10 +1,11 @@
-import { fetcher } from "@/api/fetcher";
+import { AxiosRequestConfig } from "axios";
 import {
   ReadingStates,
   RecordCountByReadingStateResponse,
   RecordItemResponse,
   RecordResponse,
 } from "@/types/record";
+import { fetcher } from "@/api/fetcher";
 import { generateQueryString } from "@/util/url";
 import { RecordData } from "@/util/validation/record";
 
@@ -24,8 +25,11 @@ export const getRecords = (
   return fetcher(`/records?${queryParams}`);
 };
 
-export const getRecord = (id: number): Promise<RecordItemResponse> => {
-  return fetcher(`/records/${id}`);
+export const getRecord = (
+  id: number,
+  options: AxiosRequestConfig = {}
+): Promise<RecordItemResponse> => {
+  return fetcher(`/records/${id}`, { options });
 };
 
 export const getRecordCountByReadingState =
