@@ -40,3 +40,10 @@ export const scrollHandler = () => {
 
   return { disableScroll, enableScroll };
 };
+
+export const handleConfirm = (message: string, confirmCallback: () => void) => {
+  const isConfirmed = confirm(message);
+  if (isConfirmed) {
+    confirmCallback();
+  }
+};

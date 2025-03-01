@@ -1,9 +1,10 @@
 import { useParams, useRouter } from "next/navigation";
 import { Button } from "chak-blocks/plain";
 import { RecordData } from "@/util/validation/record";
+import { handleConfirm } from "@/util/common";
 import { useRecordFormContext } from "@/providers/record-form";
 import { useUpdateRecordMutation } from "@/query/record";
-import ButtonGroup from "./button-group";
+import ButtonGroup from "@/components/record/button/button-group";
 
 const RecordEditButtonGroup = ({ className }: { className?: string }) => {
   const router = useRouter();
@@ -16,12 +17,12 @@ const RecordEditButtonGroup = ({ className }: { className?: string }) => {
   const handleSave = (data: RecordData) => mutate({ id, recordData: data });
 
   const handleBack = () => {
-    const backConfirm = confirm(
-      "아직 기록이 저장되지 않았습니다. 뒤로 돌아가시겠습니까?"
+    handleConfirm(
+      "아직 기록이 저장되지 않았습니다. 뒤로 돌아가시겠습니까?",
+      () => {
+        router.back();
+      }
     );
-    if (backConfirm) {
-      router.back();
-    }
   };
 
   return (

@@ -5,20 +5,22 @@ import { useParams } from "next/navigation";
 import { Button } from "chak-blocks/plain";
 import path from "@/constants/path";
 import { useDeleteRecordMutation } from "@/query/record";
-import ButtonGroup from "./button-group";
+import { handleConfirm } from "@/util/common";
+import ButtonGroup from "@/components/record/button/button-group";
 
 const RecordDetailButtonGroup = ({ className }: { className?: string }) => {
   const { id } = useParams();
   const { mutate } = useDeleteRecordMutation();
 
   const handleDelete = () => {
-    const deleteConfirm = confirm(
-      "삭제된 기록은 복구할 수 없습니다. 정말 삭제하시겠습니까?"
+    handleConfirm(
+      "삭제된 기록은 복구할 수 없습니다. 정말 삭제하시겠습니까?",
+      () => {
+        mutate(Number(id));
+      }
     );
-    if (deleteConfirm) {
-      mutate(id as unknown as number);
-    }
   };
+
   return (
     <ButtonGroup className={className}>
       <Link href={`${path.recordEdit}/${id}`}>
