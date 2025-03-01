@@ -1,17 +1,18 @@
-"use client";
-
-import { useSearchParams } from "next/navigation";
 import { RecordFormProvider } from "@/providers/record-form";
 import Section from "@/components/sections/shared/section";
 import SectionBody from "@/components/sections/shared/section-body";
 import BookSearchModal from "@/components/book/search/modal/modal";
+import RecordForm from "@/components/record/form/record-form";
 import RecordNewButtonGroup from "@/components/record/button/record-new-button-group";
 import { recordDetailSectionStyles } from "./style.css";
-import RecordForm from "@/components/record/form/record-form";
+import { NewPageQueryParams } from "@/app/(with-sidemenu)/record/new/page";
 
-const RecordEditSection = () => {
-  const searchParmas = useSearchParams();
-  const isModalOpen = !!searchParmas.get("book-search-modal");
+const RecordNewSection = ({
+  queryParams,
+}: {
+  queryParams: NewPageQueryParams;
+}) => {
+  const isModalOpen = queryParams["book-search-modal"];
 
   return (
     <Section>
@@ -41,4 +42,4 @@ const RecordEditSection = () => {
   );
 };
 
-export default RecordEditSection;
+export default RecordNewSection;

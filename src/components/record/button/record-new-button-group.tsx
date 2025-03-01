@@ -1,9 +1,11 @@
+"use client";
+
 import { useRouter } from "next/navigation";
 import { Button } from "chak-blocks/plain";
 import { RecordData } from "@/util/validation/record";
 import { useRecordFormContext } from "@/providers/record-form";
 import { useCreateRecordMutation } from "@/query/record";
-import ButtonGroup from "./button-group";
+import ButtonGroup from "@/components/record/button/button-group";
 
 const RecordEditButtonGroup = ({ className }: { className?: string }) => {
   const router = useRouter();
