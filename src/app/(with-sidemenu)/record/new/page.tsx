@@ -1,17 +1,9 @@
 import RecordNewSection from "@/components/sections/record/new";
-import React from "react";
 
-export type NewPageQueryParams = { "book-search-modal": string };
-
-const RecordNewPage = async ({
-  searchParams,
-}: {
-  searchParams: Promise<NewPageQueryParams>;
-}) => {
-  const queryParams = await searchParams;
+const RecordNewPage = () => {
   return (
     <main>
-      <RecordNewSection queryParams={queryParams} />
+      <RecordNewSection />
     </main>
   );
 };

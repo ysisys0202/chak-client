@@ -5,15 +5,8 @@ import BookSearchModal from "@/components/book/search/modal/modal";
 import RecordForm from "@/components/record/form/record-form";
 import RecordNewButtonGroup from "@/components/record/button/record-new-button-group";
 import { recordDetailSectionStyles } from "./style.css";
-import { NewPageQueryParams } from "@/app/(with-sidemenu)/record/new/page";
 
-const RecordNewSection = ({
-  queryParams,
-}: {
-  queryParams: NewPageQueryParams;
-}) => {
-  const isModalOpen = queryParams["book-search-modal"];
-
+const RecordNewSection = () => {
   return (
     <Section>
       <SectionBody>
@@ -35,7 +28,7 @@ const RecordNewSection = ({
           <RecordNewButtonGroup
             className={recordDetailSectionStyles.buttonGroup}
           />
-          {isModalOpen && <BookSearchModal />}
+          <BookSearchModal />
         </RecordFormProvider>
       </SectionBody>
     </Section>
