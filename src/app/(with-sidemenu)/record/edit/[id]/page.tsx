@@ -1,12 +1,35 @@
+import { forbidden } from "next/navigation";
+import axios from "axios";
+import { getRecord } from "@/api/record";
+import { getToken } from "@/util/auth";
 import RecordEditSection from "@/components/sections/record/edit";
-import React from "react";
 
-const RecordEditPage = () => {
-  return (
-    <main>
-      <RecordEditSection />
-    </main>
-  );
+const RecordDetailPage = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) => {
+  const token = await getToken();
+  const { id } = await params;
+
+  try {
+    const record = await getRecord(Number(id), {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return (
+      <main>
+        <RecordEditSection record={record} />
+      </main>
+    );
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response?.status === 403) {
+        forbidden();
+      }
+    }
+  }
 };
 
-export default RecordEditPage;
+export default RecordDetailPage;

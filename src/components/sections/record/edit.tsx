@@ -1,66 +1,35 @@
-"use client";
-
-import { useEffect } from "react";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
-import { AxiosError } from "axios";
-import { useToast } from "chak-blocks/context";
+import { readingStateMessage } from "@/constants/message";
+import { RecordItemResponse } from "@/types/record";
 import { BookData, RecordFormProvider } from "@/providers/record-form";
-import { useRecordQuery } from "@/query/record";
 import { formatShortDate } from "@/util/common";
-import path from "@/constants/path";
 import Section from "@/components/sections/shared/section";
 import SectionBody from "@/components/sections/shared/section-body";
 import RecordEditButtonGroup from "@/components/record/button/record-edit-button-group";
 import BookSearchModal from "@/components/book/search/modal/modal";
 import RecordForm from "@/components/record/form/record-form";
 import { recordDetailSectionStyles } from "./style.css";
-import { removeQueryParam } from "@/util/url";
 
-const RecordEditSection = () => {
-  const router = useRouter();
-  const { id } = useParams() as unknown as { id: number };
-  const searchParmas = useSearchParams();
-  const isModalOpen = !!searchParmas.get("book-search-modal");
-  const { data, error } = useRecordQuery(id);
-  const { open } = useToast();
-
-  const handleModalClose = () => {
-    router.replace(
-      removeQueryParam(`${path.recordEdit}/${id}`, "book-search-modal")
-    );
-  };
-
-  useEffect(() => {
-    if (error) {
-      const axiosError = error as AxiosError<{ message: string }>;
-      if (axiosError.response?.status === 403) {
-        open({ status: "error", title: axiosError.response.data.message });
-        router.replace(path.home);
-      }
-    }
-  }, [error]);
-
+const RecordEditSection = ({ record }: { record: RecordItemResponse }) => {
   const bookData: BookData = {
-    id: data?.bookId || NaN,
-    title: data?.bookTitle || "",
-    image: data?.bookImage || "",
-    publisher: data?.bookPublisher || "",
-    author: data?.bookAuthor || "",
-    pubdate: data ? formatShortDate(data.bookPubdate) : "",
+    id: record.bookId,
+    title: record.bookTitle,
+    image: record.bookImage,
+    publisher: record.bookPublisher,
+    author: record.bookAuthor,
+    pubdate: formatShortDate(record.bookPubdate),
     link: "",
     discount: "",
-    isbn: data?.bookIsbn || "",
+    isbn: record.bookIsbn,
     description: "",
   };
-
   const recordData = {
-    bookId: data?.bookId || NaN,
-    userId: data?.userId || NaN,
-    title: data?.title || "",
-    readingState: data?.readingState || "",
-    rating: data?.rating || NaN,
-    recordDetail: data?.recordDetail || "",
-    isPublic: data?.isPublic || false,
+    bookId: record.bookId,
+    userId: record.userId,
+    title: record.title,
+    readingState: readingStateMessage[record.readingState],
+    rating: record.rating || 0,
+    recordDetail: record.recordDetail,
+    isPublic: record.isPublic,
   };
   return (
     <Section>
@@ -70,7 +39,7 @@ const RecordEditSection = () => {
           <RecordEditButtonGroup
             className={recordDetailSectionStyles.buttonGroup}
           />
-          {isModalOpen && <BookSearchModal onClose={handleModalClose} />}
+          {<BookSearchModal />}
         </RecordFormProvider>
       </SectionBody>
     </Section>

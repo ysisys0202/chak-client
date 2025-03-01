@@ -1,3 +1,5 @@
+"use client";
+
 import { useParams, useRouter } from "next/navigation";
 import { Button } from "chak-blocks/plain";
 import { RecordData } from "@/util/validation/record";

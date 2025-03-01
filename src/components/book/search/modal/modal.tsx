@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter, useParams, useSearchParams } from "next/navigation";
 import { Typography } from "chak-blocks/plain";
+import path from "@/constants/path";
 import { useSearchBooksQuery } from "@/query/books";
+import { removeQueryParam } from "@/util/url";
 import List from "@/components/shared/list/list";
 import Modal from "@/components/shared/modal/modal";
 import Searchbar from "@/components/shared/searchbar/searchbar";
@@ -13,11 +16,17 @@ import { styles } from "./style.css";
 
 const display = 30;
 
-type Props = {
-  onClose?: () => void;
-};
+const BookSearchModal = () => {
+  const router = useRouter();
+  const { id } = useParams() as unknown as { id: number };
+  const searchParmas = useSearchParams();
+  const isModalOpen = !!searchParmas.get("book-search-modal");
 
-const BookSearchModal = ({ onClose }: Props) => {
+  const handleModalClose = () => {
+    router.replace(
+      removeQueryParam(`${path.recordEdit}/${id}`, "book-search-modal")
+    );
+  };
   const [query, setQuery] = useState<string>("");
   const [curerntPage, setCurrentPage] = useState<number>(1);
   const [start, setStart] = useState<number>(1);
@@ -48,8 +57,12 @@ const BookSearchModal = ({ onClose }: Props) => {
     setStart((curerntPage - 1) * display + 1);
   }, [curerntPage]);
 
+  if (!isModalOpen) {
+    return null;
+  }
+
   return (
-    <Modal className={styles.self} onClose={onClose}>
+    <Modal className={styles.self} onClose={handleModalClose}>
       <Typography variant="title5" as="h3">
         기록할 책 검색하기
       </Typography>
