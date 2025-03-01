@@ -4,6 +4,7 @@ import { style } from "@vanilla-extract/css";
 export const styles = {
   self: style({
     height: "calc(100vh - 40px)",
+    minHeight: 500,
   }),
 
   searchbar: style({

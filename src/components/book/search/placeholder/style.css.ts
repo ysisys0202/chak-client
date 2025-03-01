@@ -9,7 +9,6 @@ export const styles = {
     alignItems: "center",
     position: "relative",
     padding: "20px",
-    height: "calc(100% - 200px)",
     borderRadius: 8,
     border: `1px solid ${shades[100]}`,
   }),
@@ -18,15 +17,13 @@ export const styles = {
     whiteSpace: "pre-wrap",
   }),
   image: style({
-    position: "absolute",
-    left: "50%",
-    bottom: "5%",
-    transform: "translateX(-50%)",
+    marginTop: 180,
     width: 120,
     height: "auto",
     "@media": {
       [media.md]: {
-        bottom: "20%",
+        marginTop: 240,
+        marginBottom: 120,
         width: 160,
       },
     },
