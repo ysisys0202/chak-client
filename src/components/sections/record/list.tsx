@@ -30,12 +30,10 @@ const RecordListSection = () => {
     | undefined;
   const start = (page - 1) * display + 1;
 
-  const {
-    user: { id },
-  } = useAuth();
+  const { user } = useAuth();
 
   const { data } = useRecordsQuery({
-    userId: id,
+    userId: user?.id,
     start: start - 1,
     display,
     readingState,

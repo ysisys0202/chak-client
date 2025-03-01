@@ -15,11 +15,9 @@ const RecordsEmpty = () => {
 };
 
 const RecentRecordsSection = () => {
-  const {
-    user: { id },
-  } = useAuth();
+  const { user } = useAuth();
   const { data, isFetching, fetchNextPage, hasNextPage, isFetched } =
-    useRecordsInfiniteQuery(id);
+    useRecordsInfiniteQuery(user?.id || 0);
   const { ref: triggerRef, inView } = useInView();
 
   const isEmpty = isFetched && data?.pages[0].items.length === 0;

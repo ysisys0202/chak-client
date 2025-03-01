@@ -25,7 +25,7 @@ const RecordForm = () => {
 
   useEffect(() => {
     setValue("bookId", bookData.id, { shouldValidate: true });
-    setValue("userId", user.id, { shouldValidate: true });
+    setValue("userId", user?.id || 0, { shouldValidate: true });
     setValue("isPublic", false, { shouldValidate: true });
   }, [setValue, bookData, user]);
 
@@ -81,13 +81,13 @@ const RecordForm = () => {
       <input
         type="text"
         hidden
-        value={user.id}
+        value={user?.id}
         {...register("userId", { valueAsNumber: true })}
       />
       <input
         type="text"
         hidden
-        value={user.id}
+        value={user?.id}
         {...register("isPublic", { setValueAs: (value) => value === "true" })}
       />
     </form>

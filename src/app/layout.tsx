@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AuthProvider from "@/providers/auth";
 import QueryProvider from "@/providers/query";
 import ToastProvider from "@/providers/toast";
 import Container from "@/components/responsive-container/responsive-container";
@@ -23,7 +24,9 @@ export default function RootLayout({
       <body>
         <ToastProvider>
           <QueryProvider>
-            <Container>{children}</Container>
+            <AuthProvider>
+              <Container>{children}</Container>
+            </AuthProvider>
           </QueryProvider>
         </ToastProvider>
       </body>

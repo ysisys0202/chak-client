@@ -11,20 +11,18 @@ type ProfileImageProps = {
 };
 
 const UserProfile = ({ className }: ProfileImageProps) => {
-  const {
-    user: { nickname, profileImage },
-  } = useAuth();
+  const { user } = useAuth();
   return (
     <div className={`${styles.self} ${className}`}>
       <div className={styles.profileImage}>
         <Image
-          src={profileImage || "/image/default-user-profile.png"}
-          alt={`${nickname}님의 프로필 이미지`}
+          src={user?.profileImage || "/image/default-user-profile.png"}
+          alt={`${user?.nickname}님의 프로필 이미지`}
           fill
         />
       </div>
       <Typography variant="title5" color={shades[600]}>
-        {nickname}
+        {user?.nickname}
       </Typography>
     </div>
   );

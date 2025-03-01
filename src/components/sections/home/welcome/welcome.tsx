@@ -13,16 +13,14 @@ import Image from "next/image";
 import Card from "@/components/shared/card/card";
 
 const WelcomeSection = () => {
-  const {
-    user: { nickname },
-  } = useAuth();
+  const { user } = useAuth();
 
   return (
     <Section className={styles.self}>
       <SectionHeader
         title={
           <>
-            <strong>{nickname}</strong>님, 요즘 어떤 책을 읽고 계신가요?
+            <strong>{user?.nickname}</strong>님, 요즘 어떤 책을 읽고 계신가요?
           </>
         }
       />
