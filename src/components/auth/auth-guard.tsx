@@ -4,7 +4,6 @@ import { getAuth } from "@/api/auth";
 const AuthGuard = async ({ children }: { children: React.ReactNode }) => {
   try {
     const token = await getToken();
-    console.log("auth guard :", token);
     await getAuth({
       headers: {
         Authorization: `Bearer ${token}`,
