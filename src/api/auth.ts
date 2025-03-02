@@ -1,3 +1,4 @@
+import { AxiosRequestConfig } from "axios";
 import { fetcher } from "@/api/fetcher";
 import { Me } from "@/types/auth";
 import { LoginData, SignupData } from "@/util/validation/auth";
@@ -28,6 +29,6 @@ export const logout = () => {
   });
 };
 
-export const getAuth = (): Promise<Me> => {
-  return fetcher("/auth/me");
+export const getAuth = (options: AxiosRequestConfig = {}): Promise<Me> => {
+  return fetcher("/auth/me", { options });
 };

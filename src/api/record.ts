@@ -17,12 +17,15 @@ export type GetRecordsOptions = {
 };
 
 export const getRecords = (
-  options?: GetRecordsOptions
+  queryOptions: GetRecordsOptions,
+  options: AxiosRequestConfig = {}
 ): Promise<RecordResponse> => {
   const queryParams = generateQueryString({
-    ...options,
+    ...queryOptions,
   });
-  return fetcher(`/records?${queryParams}`);
+  return fetcher(`/records?${queryParams}`, {
+    options,
+  });
 };
 
 export const getRecord = (
