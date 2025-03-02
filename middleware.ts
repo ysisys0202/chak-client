@@ -1,23 +1,22 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export function middleware(request: NextRequest) {
-  const url = request.nextUrl;
+export function middleware(req: NextRequest) {
+  console.log("🔄 Middleware 실행됨!");
+  console.log("📌 요청 URL:", req.nextUrl.pathname);
 
-  // API 요청인지 페이지 요청인지 확인
-  if (url.pathname.startsWith("/api/")) {
-    console.log("API 요청:", url.pathname);
-  } else {
-    console.log("페이지 요청:", url.pathname);
+  const token = req.cookies.get("token")?.value;
+  console.log("🔑 Token:", token ?? "토큰 없음");
+
+  if (token) {
+    const requestHeaders = new Headers(req.headers);
+    requestHeaders.set("Authorization", `Bearer ${token}`);
+
+    return NextResponse.next({
+      request: {
+        headers: requestHeaders,
+      },
+    });
   }
-
-  // 쿠키 정보 출력
-  console.log("All cookies:", request.cookies.getAll());
-  console.log("Token cookie:", request.cookies.get("token"));
 
   return NextResponse.next();
 }
-
-export const config = {
-  matcher: "/:path*", // 모든 경로에 대해 미들웨어 실행
-};
