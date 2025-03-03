@@ -4,6 +4,7 @@ import { apiFetcher } from "@/api/fetcher";
 
 export const POST = async (req: NextRequest) => {
   try {
+    console.log("login api 실행 🧶🧶🧶🧶🧶🧶");
     const { loginId, password } = await req.json();
 
     const data = await apiFetcher("/auth/login", {
@@ -12,7 +13,7 @@ export const POST = async (req: NextRequest) => {
     });
 
     const response = NextResponse.json({ message: "로그인 성공" });
-
+    console.log("token 😄😄😄😄😄", data.token);
     const token = data.token;
     response.cookies.set("token", token, {
       httpOnly: true,
