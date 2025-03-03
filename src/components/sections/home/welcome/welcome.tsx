@@ -1,26 +1,30 @@
-"use client";
-
-import { Button, Typography } from "chak-blocks/plain";
 import Link from "next/link";
+import Image from "next/image";
+import { Button, Typography } from "chak-blocks/plain";
 import path from "@/constants/path";
-import { useAuth } from "@/providers/auth";
-
+import { getAuth } from "@/api/auth";
+import { getToken } from "@/util/auth";
+import Card from "@/components/shared/card/card";
 import Section from "@/components/sections/shared/section";
 import SectionHeader from "@/components/sections/shared/section-header";
 import SectionBody from "@/components/sections/shared/section-body";
 import { styles } from "./style.css";
-import Image from "next/image";
-import Card from "@/components/shared/card/card";
 
-const WelcomeSection = () => {
-  const { user } = useAuth();
+const WelcomeSection = async () => {
+  const token = await getToken();
+  const data = await getAuth({
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
   return (
     <Section className={styles.self}>
       <SectionHeader
         title={
           <>
-            <strong>{user?.nickname}</strong>님, 요즘 어떤 책을 읽고 계신가요?
+            {data.nickname}
+            님, 요즘 어떤 책을 읽고 계신가요?
           </>
         }
       />

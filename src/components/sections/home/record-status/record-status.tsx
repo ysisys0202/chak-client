@@ -1,16 +1,20 @@
-"use client";
-
+import Link from "next/link";
+import path from "@/constants/path";
+import { getRecordCountByReadingState } from "@/api/record";
+import { getToken } from "@/util/auth";
 import Section from "@/components/sections/shared/section";
 import SectionHeader from "@/components/sections/shared/section-header";
 import SectionBody from "@/components/sections/shared/section-body";
-import { styles } from "./style.css";
 import RecordFolder from "@/components/record/folder/record-folder";
-import { useRecordCountByReadingState } from "@/query/record";
-import Link from "next/link";
-import path from "@/constants/path";
+import { styles } from "./style.css";
 
-const RecordStatusSection = () => {
-  const { data } = useRecordCountByReadingState();
+const RecordStatusSection = async () => {
+  const token = await getToken();
+  const data = await getRecordCountByReadingState({
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
   return (
     <Section>

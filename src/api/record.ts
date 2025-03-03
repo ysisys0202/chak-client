@@ -33,10 +33,11 @@ export const getRecord = (
   return clientFetcher(`/records/${id}`, options);
 };
 
-export const getRecordCountByReadingState =
-  (): Promise<RecordCountByReadingStateResponse> => {
-    return clientFetcher(`/records/count/by-reading-state`);
-  };
+export const getRecordCountByReadingState = (
+  options: AxiosRequestConfig = {}
+): Promise<RecordCountByReadingStateResponse> => {
+  return clientFetcher(`/records/count/by-reading-state`, options);
+};
 
 export const createRecord = (
   recordData: RecordData
