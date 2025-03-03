@@ -3,7 +3,7 @@ import { style } from "@vanilla-extract/css";
 
 export const styles = {
   self: style({
-    height: "calc(100vh - 40px)",
+    height: "calc(100% - 40px)",
     minHeight: 500,
   }),
 
@@ -13,7 +13,7 @@ export const styles = {
 
   bookList: style({
     marginTop: 20,
-    height: "calc(100vh - 200px)",
+    height: "calc(100% - 200px)",
     overflow: "auto",
     selectors: {
       "&::-webkit-scrollbar": {
