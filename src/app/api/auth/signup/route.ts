@@ -32,5 +32,3 @@ export const POST = async (req: NextRequest) => {
     return NextResponse.json({ message: "로그인 실패" }, { status: 500 });
   }
 };
-
-export default POST;

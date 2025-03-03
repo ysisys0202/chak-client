@@ -3,6 +3,8 @@ import RecordStatusSection from "@/components/sections/home/record-status/record
 import RecentRecordsSection from "@/components/sections/home/recent-records/recent-records";
 import { styles } from "./page.css";
 
+export const dynamic = "force-dynamic";
+
 const HomePage = () => {
   return (
     <main className={styles.self}>

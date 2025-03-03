@@ -7,7 +7,6 @@ import {
   getRecord,
   getRecordCountByReadingState,
   getRecords,
-  GetRecordsOptions,
   updateRecord,
 } from "@/api/record";
 import path from "@/constants/path";

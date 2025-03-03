@@ -7,6 +7,8 @@ import Error from "@/components/error/error";
 
 const display = 10;
 
+export const dynamic = "force-dynamic";
+
 const RecordListPage = async ({
   searchParams,
 }: {
