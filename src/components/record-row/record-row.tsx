@@ -4,6 +4,7 @@ import { Typography } from "chak-blocks/plain";
 import { formatShortDate } from "@/util/common";
 import ListRow from "@/components/shared/list/row";
 import BookCoverImage from "@/components/book/cover-image/cover-image";
+import RecordRowSkeleton from "@/components/record-row/record-row-skeleton";
 import { styles } from "./style.css";
 
 type Props = {
@@ -57,5 +58,7 @@ const RecordRow = ({
     </ListRow>
   );
 };
+
+RecordRow.Skeleton = RecordRowSkeleton;
 
 export default RecordRow;
