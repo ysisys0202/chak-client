@@ -22,25 +22,35 @@ const BookCoverSkeleton = ({
   return (
     <div
       className={classNames}
-      style={assignInlineVars({
-        [widthVar]: width,
-        [heightVar]: height,
-      })}
+      style={{
+        ...assignInlineVars({
+          [widthVar]: width,
+          [heightVar]: height,
+        }),
+      }}
     >
       <Skeleton className={styles.skeletion} />
     </div>
   );
 };
 
-const BookCoverImage = ({ imageUrl, alt, width, height, className }: Props) => {
+const BookCoverImage = ({
+  imageUrl,
+  alt,
+  width = "100%",
+  height = "100%",
+  className,
+}: Props) => {
   const classNames = combineClassNames(className, styles.self);
   return (
     <div
       className={classNames}
-      style={assignInlineVars({
-        [widthVar]: width,
-        [heightVar]: height,
-      })}
+      style={{
+        ...assignInlineVars({
+          [widthVar]: width,
+          [heightVar]: height,
+        }),
+      }}
     >
       <Image src={imageUrl} alt={alt} fill />
     </div>
