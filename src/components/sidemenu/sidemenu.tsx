@@ -45,7 +45,7 @@ const Sidemenu = ({ className }: { className: string }) => {
   return (
     <aside className={classNames}>
       <Link href={path.home} className={sidemenuStyles.logo}>
-        <Image src="/image/logo.png" alt="Chak" width={68} height={20} />
+        <Image src="/image/logo.svg" alt="Chak" width={68} height={20} />
       </Link>
       <UserProfile className={sidemenuStyles.userProfile} />
       <nav className={sidemenuStyles.nav}>

@@ -10,8 +10,13 @@ import "chak-blocks/plain/style.css";
 import "chak-blocks/context/style.css";
 
 export const metadata: Metadata = {
-  title: "독서 기록 플랫폼 Chak.",
-  description: "독서 기록 플랫폼 Chak와 책과 함께한 모든 순간을 기록해보세요",
+  title: "책에 관한 모든 기억을 Chak",
+  description: "독서 기록 플랫폼 Chak와 책에 대한 모든 기억을 기록해보세요",
+  openGraph: {
+    title: "책에 관한 모든 기억을 Chak",
+    description: "독서 기록 플랫폼 Chak와 책에 대한 모든 기억을 기록해보세요",
+    images: ["/image/og.jpg"],
+  },
 };
 
 export default function RootLayout({

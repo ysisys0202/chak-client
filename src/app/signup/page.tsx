@@ -1,6 +1,17 @@
+import { Metadata } from "next";
+import { Typography } from "chak-blocks/plain";
 import SignupForm from "@/components/signup-form/signup-form";
 import { signupPageStyle } from "./style.css";
-import { Typography } from "chak-blocks/plain";
+
+export const metadata: Metadata = {
+  title: "회원가입 | 책에 관한 모든 기억을 Chak",
+  description: "Chak 회원가입 페이지",
+  openGraph: {
+    title: "회원가입 | 책에 관한 모든 기억을 Chak",
+    description: "Chak 회원가입 페이지",
+    images: ["/image/og.jpg"],
+  },
+};
 
 const SignupPage = () => {
   return (
