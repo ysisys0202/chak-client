@@ -3,8 +3,12 @@ import { cookies } from "next/headers";
 
 export const middleware = async (req: NextRequest) => {
   const { pathname, search } = req.nextUrl;
-  const isExclude = ["/auth/login", "/auth/signup", "/auth/logout"];
-  if (isExclude.includes(pathname)) {
+  const excludedPaths = [
+    "/api/auth/login",
+    "/api/auth/signup",
+    "/api/auth/logout",
+  ];
+  if (excludedPaths.includes(pathname)) {
     return NextResponse.next();
   }
 
