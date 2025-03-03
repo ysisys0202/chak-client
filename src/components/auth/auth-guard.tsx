@@ -6,7 +6,6 @@ import path from "@/constants/path";
 const AuthGuard = async ({ children }: { children: React.ReactNode }) => {
   try {
     const token = await getToken();
-
     await getAuth({
       headers: {
         Authorization: `Bearer ${token}`,
@@ -16,10 +15,8 @@ const AuthGuard = async ({ children }: { children: React.ReactNode }) => {
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw new Error(error.message);
+      redirect(path.login);
     }
-
-    redirect(path.login);
   }
 };
 
