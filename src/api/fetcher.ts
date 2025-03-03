@@ -1,17 +1,25 @@
-import axios, { AxiosError, AxiosRequestConfig } from "axios";
+import axios, { AxiosError, AxiosRequestConfig, AxiosInstance } from "axios";
 
-const axiosClient = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_DOMAIN,
+const defaultOptions = {
   headers: {
     "Content-Type": "application/json",
   },
   withCredentials: true,
-});
+};
 
-export const fetcher = async (
+const createAxiosInstance = (baseURL: string) =>
+  axios.create({ baseURL, ...defaultOptions });
+
+const clientAxios = createAxiosInstance(
+  `${process.env.NEXT_PUBLIC_CLIENT_DOMAIN}/api` || ""
+);
+const apiAxios = createAxiosInstance(process.env.NEXT_PUBLIC_API_DOMAIN || "");
+
+const fetcher = async (
+  axiosClient: AxiosInstance,
   api: string,
   {
-    options,
+    options = {},
     onSuccess,
     onError,
   }: {
@@ -21,16 +29,7 @@ export const fetcher = async (
   } = {}
 ) => {
   try {
-    const { headers, data, method } = options || {};
-
-    const response = await axiosClient({
-      url: api,
-      method,
-      headers,
-      data,
-      ...options,
-    });
-
+    const response = await axiosClient({ url: api, ...options });
     onSuccess?.(response.data);
     return response.data;
   } catch (error) {
@@ -39,7 +38,13 @@ export const fetcher = async (
       throw error;
     }
     throw new Error(
-      "예상치 못한 에러가 발생했습니다. 잠시 후 다시 시도해주세요."
+      error instanceof Error ? error.message : "예기치 못한 에러"
     );
   }
 };
+
+export const clientFetcher = (api: string, options?: AxiosRequestConfig) =>
+  fetcher(clientAxios, api, { options });
+
+export const apiFetcher = (api: string, options?: AxiosRequestConfig) =>
+  fetcher(apiAxios, api, { options });

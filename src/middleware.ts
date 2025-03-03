@@ -1,22 +1,42 @@
 import { NextRequest, NextResponse } from "next/server";
+import { cookies } from "next/headers";
 
-export function middleware(req: NextRequest) {
-  console.log("🔄 Middleware 실행됨!");
-  console.log("📌 요청 URL:", req.nextUrl.pathname);
-
-  const token = req.cookies.get("token")?.value;
-  console.log("🔑 Token:", token ?? "토큰 없음");
-
-  if (token) {
-    const requestHeaders = new Headers(req.headers);
-    requestHeaders.set("Authorization", `Bearer ${token}`);
-
-    return NextResponse.next({
-      request: {
-        headers: requestHeaders,
-      },
-    });
+export const middleware = async (req: NextRequest) => {
+  const pathname = req.nextUrl.pathname.replace("/api", "");
+  const isExclude = ["/auth/login", "/auth/signup", "/auth/logout"];
+  if (isExclude.includes(pathname)) {
+    return NextResponse.next();
   }
 
-  return NextResponse.next();
-}
+  const method = req.method;
+  const cookie = await cookies();
+  const token = cookie.get("token")?.value;
+  const authHeader = req.headers.get("authorization");
+  const body = method !== "GET" ? await req.json() : null;
+
+  //TODO : headers 온전히 전달
+
+  const options: RequestInit = {
+    method,
+    headers: {
+      Authorization: token ? `Bearer ${token}` : authHeader || "",
+      "Content-Type": "application/json",
+    },
+    body: body ? JSON.stringify(body) : null,
+  };
+
+  const backendResponse = await fetch(
+    `${process.env.NEXT_PUBLIC_API_DOMAIN}${pathname}`,
+    options
+  );
+
+  const responseBody = await backendResponse.json();
+
+  return NextResponse.json(responseBody, {
+    status: backendResponse.status,
+  });
+};
+
+export const config = {
+  matcher: "/api/:path*",
+};

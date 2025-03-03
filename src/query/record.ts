@@ -14,18 +14,6 @@ import path from "@/constants/path";
 import queryKey from "@/constants/query-keys";
 import { RecordData } from "@/util/validation/record";
 
-export const useRecordsQuery = (options: GetRecordsOptions) => {
-  return useQuery({
-    queryKey: [
-      queryKey.records.list,
-      options.userId,
-      options.start,
-      options.readingState,
-    ],
-    queryFn: () => getRecords(options),
-  });
-};
-
 export const useRecordsInfiniteQuery = (userId?: number) => {
   const display = 12;
   return useInfiniteQuery({

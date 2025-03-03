@@ -5,7 +5,7 @@ import {
   RecordItemResponse,
   RecordResponse,
 } from "@/types/record";
-import { fetcher } from "@/api/fetcher";
+import { clientFetcher } from "@/api/fetcher";
 import { generateQueryString } from "@/util/url";
 import { RecordData } from "@/util/validation/record";
 
@@ -23,31 +23,27 @@ export const getRecords = (
   const queryParams = generateQueryString({
     ...queryOptions,
   });
-  return fetcher(`/records?${queryParams}`, {
-    options,
-  });
+  return clientFetcher(`/records?${queryParams}`, options);
 };
 
 export const getRecord = (
   id: number,
   options: AxiosRequestConfig = {}
 ): Promise<RecordItemResponse> => {
-  return fetcher(`/records/${id}`, { options });
+  return clientFetcher(`/records/${id}`, options);
 };
 
 export const getRecordCountByReadingState =
   (): Promise<RecordCountByReadingStateResponse> => {
-    return fetcher(`/records/count/by-reading-state`);
+    return clientFetcher(`/records/count/by-reading-state`);
   };
 
 export const createRecord = (
   recordData: RecordData
 ): Promise<RecordItemResponse> => {
-  return fetcher(`/records/`, {
-    options: {
-      method: "POST",
-      data: recordData,
-    },
+  return clientFetcher(`/records/`, {
+    method: "POST",
+    data: recordData,
   });
 };
 
@@ -55,16 +51,12 @@ export const updateRecord = (
   id: number,
   recordData: RecordData
 ): Promise<RecordItemResponse> => {
-  return fetcher(`/records/${id}`, {
-    options: {
-      method: "PUT",
-      data: recordData,
-    },
+  return clientFetcher(`/records/${id}`, {
+    method: "PUT",
+    data: recordData,
   });
 };
 
 export const deleteRecord = (id: number) => {
-  return fetcher(`/records/${id}`, {
-    options: { method: "DELETE" },
-  });
+  return clientFetcher(`/records/${id}`, { method: "DELETE" });
 };

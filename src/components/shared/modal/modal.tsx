@@ -22,7 +22,6 @@ const Modal = ({ onClose, className, children }: Props) => {
   return createPortal(
     <Dimmed
       onClick={(event) => {
-        console.log(event.target === event.currentTarget);
         if (event.target === event.currentTarget) {
           handleClose();
         }

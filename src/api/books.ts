@@ -1,4 +1,4 @@
-import { fetcher } from "@/api/fetcher";
+import { clientFetcher } from "@/api/fetcher";
 import { generateQueryString } from "@/util/url";
 import { BookItem, SearchBooksOptions } from "@/types/book";
 
@@ -18,18 +18,16 @@ export const searchBooks = (
     query,
     ...options,
   });
-  return fetcher(`/books/search?${queryParams}`);
+  return clientFetcher(`/books/search?${queryParams}`);
 };
 
 export const getBook = (isbn: string) => {
-  return fetcher(`/books/${isbn}`);
+  return clientFetcher(`/books/${isbn}`);
 };
 
 export const postBook = (formData: BookItem) => {
-  return fetcher(`/books`, {
-    options: {
-      method: "POST",
-      data: formData,
-    },
+  return clientFetcher(`/books`, {
+    method: "POST",
+    data: formData,
   });
 };
