@@ -2,12 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
 export const middleware = async (req: NextRequest) => {
-  const pathname = req.nextUrl.pathname.replace("/api", "");
+  const { pathname, search } = req.nextUrl;
   const isExclude = ["/auth/login", "/auth/signup", "/auth/logout"];
   if (isExclude.includes(pathname)) {
     return NextResponse.next();
   }
 
+  const api = `${pathname.replace("/api", "")}${search}`;
   const method = req.method;
   const cookie = await cookies();
   const token = cookie.get("token")?.value;
@@ -26,7 +27,7 @@ export const middleware = async (req: NextRequest) => {
   };
 
   const backendResponse = await fetch(
-    `${process.env.NEXT_PUBLIC_API_DOMAIN}${pathname}`,
+    `${process.env.NEXT_PUBLIC_API_DOMAIN}${api}`,
     options
   );
 
