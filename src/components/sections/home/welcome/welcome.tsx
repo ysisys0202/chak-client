@@ -2,32 +2,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button, Typography } from "chak-blocks/plain";
 import path from "@/constants/path";
-import { getAuth } from "@/api/auth";
-import { getToken } from "@/util/auth";
 import Card from "@/components/shared/card/card";
 import Section from "@/components/sections/shared/section";
-import SectionHeader from "@/components/sections/shared/section-header";
 import SectionBody from "@/components/sections/shared/section-body";
+import WelcomeHeader from "@/components/sections/home/welcome/welcome-header";
 import { styles } from "./style.css";
 
-const WelcomeSection = async () => {
-  const token = await getToken();
-  const data = await getAuth({
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
+const WelcomeSection = () => {
   return (
     <Section className={styles.self}>
-      <SectionHeader
-        title={
-          <>
-            {data.nickname}
-            님, 요즘 어떤 책을 읽고 계신가요?
-          </>
-        }
-      />
+      <WelcomeHeader />
       <Link href={path.recordNew}>
         <SectionBody>
           <Card className={styles.card}>

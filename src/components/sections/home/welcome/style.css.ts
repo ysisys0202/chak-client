@@ -27,4 +27,9 @@ export const styles = {
   button: style({
     marginTop: 20,
   }),
+  sekeletonHeader: style({
+    display: "flex",
+    alignItems: "end",
+    gap: 4,
+  }),
 };
