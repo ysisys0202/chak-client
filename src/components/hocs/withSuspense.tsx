@@ -5,8 +5,11 @@ const withSuspense = <Props extends object>(
   Component: ComponentType<Props>,
   fallback: ReactNode = <FullScreenLoader />
 ) => {
-  const ContainerComponent: React.FC<Props> = ({ ...props }) => (
-    <Suspense fallback={fallback}>
+  const ContainerComponent: React.FC<Props & { suspenseKey?: string }> = ({
+    suspenseKey,
+    ...props
+  }) => (
+    <Suspense key={suspenseKey} fallback={fallback}>
       <Component {...(props as Props)} />
     </Suspense>
   );

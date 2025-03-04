@@ -44,11 +44,12 @@ const SuspenseListSection = () => {
   );
 };
 
-const RecordListSection = async ({
-  searchParams,
-}: {
+type Props = {
   searchParams: { page?: string; "reading-state"?: ReadingStates };
-}) => {
+  suspenseKey?: string;
+};
+
+const RecordListSection = async ({ searchParams }: Props) => {
   const page = Number(searchParams.page) || 1;
 
   const readingState = searchParams["reading-state"];
@@ -98,4 +99,12 @@ const RecordListSection = async ({
   }
 };
 
-export default withSuspense(RecordListSection, <SuspenseListSection />);
+export default withSuspense(
+  (props: Props) => (
+    <RecordListSection
+      {...props}
+      suspenseKey={`${props.searchParams?.["reading-state"]} ${props.searchParams?.page}}`}
+    />
+  ),
+  <SuspenseListSection />
+);
