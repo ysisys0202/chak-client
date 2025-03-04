@@ -22,6 +22,12 @@ const dash = keyframes({
 
 export const styles = {
   self: style({
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: 8,
+  }),
+  svg: style({
     animation: `${spin} ${duration}s linear infinite`,
   }),
   path: style({

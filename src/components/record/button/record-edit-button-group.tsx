@@ -14,7 +14,7 @@ const RecordEditButtonGroup = ({ className }: { className?: string }) => {
   const {
     formMethods: { handleSubmit },
   } = useRecordFormContext();
-  const { mutate } = useUpdateRecordMutation();
+  const { mutate, isPending } = useUpdateRecordMutation();
 
   const handleSave = (data: RecordData) => mutate({ id, recordData: data });
 
@@ -29,7 +29,11 @@ const RecordEditButtonGroup = ({ className }: { className?: string }) => {
 
   return (
     <ButtonGroup className={className}>
-      <Button theme="primary" onClick={handleSubmit(handleSave)}>
+      <Button
+        theme="primary"
+        onClick={handleSubmit(handleSave)}
+        disabled={isPending}
+      >
         저장하기
       </Button>
       <Button theme="dark" variant="outlined" onClick={handleBack}>

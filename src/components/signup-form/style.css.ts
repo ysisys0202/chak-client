@@ -26,4 +26,11 @@ export const signupFormStyles = {
     width: "100%",
     maxWidth: 200,
   }),
+  loadingSpinner: style({
+    position: "fixed",
+    top: "50%",
+    left: "50%",
+    zIndex: 50,
+    transform: "translate(-50%, -100%)",
+  }),
 };

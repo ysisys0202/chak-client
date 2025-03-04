@@ -6,6 +6,7 @@ import { InputField, Button, Input } from "chak-blocks/plain";
 import { useSignupMutation } from "@/query/auth";
 import { SignupClientSchema } from "@/util/validation/auth";
 import { signupFormStyles } from "./style.css";
+import Spinner from "../shared/loading/loading-spinner";
 
 type FieldNames =
   | "loginId"
@@ -73,40 +74,43 @@ const SignupForm = () => {
     resolver: zodResolver(SignupClientSchema),
   });
 
-  const { mutate } = useSignupMutation();
+  const { mutate, isPending } = useSignupMutation();
 
   const onSubmit = handleSubmit((data) => {
     mutate(data);
   });
 
   return (
-    <form className={signupFormStyles.self} onSubmit={onSubmit}>
-      <div className={signupFormStyles.fileds}>
-        {signupFormFileds.map(
-          ({ id, label, type, isRequired, placeholder }) => (
-            <InputField
-              key={id}
-              id={id}
-              label={label}
-              direction="vertical"
-              isRequired={isRequired}
-              errorText={errors[id] ? errors[id].message : undefined}
-            >
-              <Input
-                type={type}
-                placeholder={placeholder}
-                className={signupFormStyles.input}
-                theme={errors[id] ? "error" : "primary"}
-                {...register(id)}
-              />
-            </InputField>
-          )
-        )}
-      </div>
-      <Button disabled={isSubmitting} className={signupFormStyles.button}>
-        가입하기
-      </Button>
-    </form>
+    <>
+      {isPending && <Spinner className={signupFormStyles.loadingSpinner} />}
+      <form className={signupFormStyles.self} onSubmit={onSubmit}>
+        <div className={signupFormStyles.fileds}>
+          {signupFormFileds.map(
+            ({ id, label, type, isRequired, placeholder }) => (
+              <InputField
+                key={id}
+                id={id}
+                label={label}
+                direction="vertical"
+                isRequired={isRequired}
+                errorText={errors[id] ? errors[id].message : undefined}
+              >
+                <Input
+                  type={type}
+                  placeholder={placeholder}
+                  className={signupFormStyles.input}
+                  theme={errors[id] ? "error" : "primary"}
+                  {...register(id)}
+                />
+              </InputField>
+            )
+          )}
+        </div>
+        <Button disabled={isSubmitting} className={signupFormStyles.button}>
+          가입하기
+        </Button>
+      </form>
+    </>
   );
 };
 

@@ -20,6 +20,13 @@ export const loginFormStyles = {
     gap: 20,
     marginTop: 40,
   }),
+  loadingSpinner: style({
+    position: "fixed",
+    top: "50%",
+    left: "50%",
+    zIndex: 50,
+    transform: "translate(-50%, -100%)",
+  }),
 };
 
 globalStyle(`${loginFormStyles.field} > strong`, {

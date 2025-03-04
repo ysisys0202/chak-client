@@ -6,7 +6,7 @@ import { logoutButtonStyles } from "./style.css";
 import { useLogoutMutation } from "@/query/auth";
 
 const LogoutButton = ({ className }: { className?: string }) => {
-  const { mutate } = useLogoutMutation();
+  const { mutate, isPending } = useLogoutMutation();
   const handleLogout = () => {
     mutate();
   };
@@ -15,6 +15,7 @@ const LogoutButton = ({ className }: { className?: string }) => {
       theme="dark"
       variant="text"
       onClick={handleLogout}
+      disabled={isPending}
       className={`${className} ${logoutButtonStyles.self}`}
     >
       로그아웃 <Icon name="logout" size={20} color={shades[600]} />

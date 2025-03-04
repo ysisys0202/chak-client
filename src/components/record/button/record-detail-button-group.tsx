@@ -10,7 +10,7 @@ import ButtonGroup from "@/components/record/button/button-group";
 
 const RecordDetailButtonGroup = ({ className }: { className?: string }) => {
   const { id } = useParams();
-  const { mutate } = useDeleteRecordMutation();
+  const { mutate, isPending } = useDeleteRecordMutation();
 
   const handleDelete = () => {
     handleConfirm(
@@ -28,7 +28,12 @@ const RecordDetailButtonGroup = ({ className }: { className?: string }) => {
           수정하기
         </Button>
       </Link>
-      <Button theme="error" variant="outlined" onClick={handleDelete}>
+      <Button
+        theme="error"
+        variant="outlined"
+        onClick={handleDelete}
+        disabled={isPending}
+      >
         삭제하기
       </Button>
     </ButtonGroup>
