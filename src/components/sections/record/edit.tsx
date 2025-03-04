@@ -26,7 +26,7 @@ const RecordEditSection = ({ record }: { record: RecordItemResponse }) => {
     bookId: record.bookId,
     userId: record.userId,
     title: record.title,
-    readingState: readingStateMessage[record.readingState],
+    readingState: record.readingState,
     rating: record.rating || 0,
     recordDetail: record.recordDetail,
     isPublic: record.isPublic,
