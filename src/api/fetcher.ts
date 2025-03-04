@@ -24,7 +24,11 @@ export const fetcher = async (
   } = {}
 ) => {
   try {
-    const response = await axiosClient({ url: api, ...options });
+    const response = await axiosClient({
+      url: api,
+      ...options,
+      adapter: "fetch",
+    });
     onSuccess?.(response.data);
     return response.data;
   } catch (error) {
