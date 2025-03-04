@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { getBook, postBook, searchBooks } from "@/api/books";
+import { getBook, postBook, searchBooks } from "@/api/client/books";
 import { BookItem, SearchBooksOptions } from "@/types/book";
 import queryKey from "@/constants/query-keys";
 

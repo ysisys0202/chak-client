@@ -7,15 +7,10 @@ const defaultOptions = {
   withCredentials: true,
 };
 
-const createAxiosInstance = (baseURL: string) =>
+export const createAxiosInstance = (baseURL: string) =>
   axios.create({ baseURL, ...defaultOptions });
 
-const clientAxios = createAxiosInstance(
-  `${process.env.NEXT_PUBLIC_CLIENT_DOMAIN}/api` || ""
-);
-const apiAxios = createAxiosInstance(process.env.NEXT_PUBLIC_API_DOMAIN || "");
-
-const fetcher = async (
+export const fetcher = async (
   axiosClient: AxiosInstance,
   api: string,
   {
@@ -42,9 +37,3 @@ const fetcher = async (
     );
   }
 };
-
-export const clientFetcher = (api: string, options?: AxiosRequestConfig) =>
-  fetcher(clientAxios, api, { options });
-
-export const apiFetcher = (api: string, options?: AxiosRequestConfig) =>
-  fetcher(apiAxios, api, { options });

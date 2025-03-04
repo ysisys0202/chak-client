@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from "axios";
-import { clientFetcher } from "@/api/fetcher";
+import { clientFetcher } from "@/api/client/fetcher";
 import { Me } from "@/types/auth";
 import { LoginData, SignupData } from "@/util/validation/auth";
 

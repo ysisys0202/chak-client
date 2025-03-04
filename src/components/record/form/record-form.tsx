@@ -87,7 +87,7 @@ const RecordForm = () => {
       <input
         type="text"
         hidden
-        value={user?.id}
+        value={"false"}
         {...register("isPublic", { setValueAs: (value) => value === "true" })}
       />
     </form>

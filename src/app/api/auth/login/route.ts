@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import axios from "axios";
-import { apiFetcher } from "@/api/fetcher";
+import { serverFetcher } from "@/api/server/fetcher";
 
 export const POST = async (req: NextRequest) => {
   try {
     const { loginId, password } = await req.json();
 
-    const data = await apiFetcher("/auth/login", {
+    const data = await serverFetcher("/auth/login", {
       method: "POST",
       data: { loginId, password },
     });

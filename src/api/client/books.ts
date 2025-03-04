@@ -1,4 +1,4 @@
-import { clientFetcher } from "@/api/fetcher";
+import { clientFetcher } from "@/api/client/fetcher";
 import { generateQueryString } from "@/util/url";
 import { BookItem, SearchBooksOptions } from "@/types/book";
 

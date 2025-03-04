@@ -1,7 +1,6 @@
 import { forbidden } from "next/navigation";
 import axios from "axios";
-import { getRecord } from "@/api/record";
-import { getToken } from "@/util/auth";
+import { getRecordServer } from "@/api/server/record";
 import RecordDetailSection from "@/components/sections/record/detail";
 
 export const generateMetadata = async ({
@@ -9,14 +8,9 @@ export const generateMetadata = async ({
 }: {
   params: Promise<{ id: string }>;
 }) => {
-  const token = await getToken();
   const { id } = await params;
 
-  const record = await getRecord(Number(id), {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const record = await getRecordServer(Number(id));
 
   return {
     title: `${record.bookTitle} 기록 | 책에 관한 모든 기억을 Chak`,
@@ -34,15 +28,10 @@ const RecordDetailPage = async ({
 }: {
   params: Promise<{ id: string }>;
 }) => {
-  const token = await getToken();
   const { id } = await params;
 
   try {
-    const record = await getRecord(Number(id), {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const record = await getRecordServer(Number(id));
     return (
       <main>
         <RecordDetailSection record={record} />

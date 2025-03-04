@@ -1,7 +1,6 @@
 import Link from "next/link";
 import path from "@/constants/path";
-import { getRecordCountByReadingState } from "@/api/record";
-import { getToken } from "@/util/auth";
+import { getRecordCountByReadingStateServer } from "@/api/server/record";
 import RecordFolder from "@/components/record/folder/record-folder";
 import withSuspense from "@/components/hocs/withSuspense";
 
@@ -16,12 +15,7 @@ const SuspenseRecordFolers = () => {
 };
 
 const RecordFolders = async () => {
-  const token = await getToken();
-  const data = await getRecordCountByReadingState({
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const data = await getRecordCountByReadingStateServer();
   return (
     <>
       <Link href={`${path.record}?reading-state=pre-reading`}>

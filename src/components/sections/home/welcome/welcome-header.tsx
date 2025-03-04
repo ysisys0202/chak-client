@@ -1,7 +1,6 @@
 import React from "react";
 import { Skeleton } from "chak-blocks/plain";
-import { getToken } from "@/util/auth";
-import { getAuth } from "@/api/auth";
+import { getAuthServer } from "@/api/server/auth";
 import withSuspense from "@/components/hocs/withSuspense";
 import SectionHeader from "@/components/sections/shared/section-header";
 import { styles } from "./style.css";
@@ -20,12 +19,7 @@ const SuspenseWelcomeHeader = () => {
 };
 
 const WelcomeHeader = async () => {
-  const token = await getToken();
-  const data = await getAuth({
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const data = await getAuthServer();
   return (
     <SectionHeader
       title={

@@ -1,14 +1,12 @@
 import { useRouter } from "next/navigation";
-import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useMutation } from "@tanstack/react-query";
 import { useToast } from "chak-blocks/context";
 import {
+  getRecords,
   createRecord,
   deleteRecord,
-  getRecord,
-  getRecordCountByReadingState,
-  getRecords,
   updateRecord,
-} from "@/api/record";
+} from "@/api/client/record";
 import path from "@/constants/path";
 import queryKey from "@/constants/query-keys";
 import { RecordData } from "@/util/validation/record";
@@ -30,20 +28,6 @@ export const useRecordsInfiniteQuery = (userId?: number) => {
       }
       return (lastPage.start + display) / display + 1;
     },
-  });
-};
-
-export const useRecordCountByReadingState = () => {
-  return useQuery({
-    queryKey: [queryKey.records.countByReadingState],
-    queryFn: getRecordCountByReadingState,
-  });
-};
-
-export const useRecordQuery = (id: number) => {
-  return useQuery({
-    queryKey: [queryKey.records.one, id],
-    queryFn: () => getRecord(id),
   });
 };
 

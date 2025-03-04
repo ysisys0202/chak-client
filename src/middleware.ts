@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { cookies } from "next/headers";
+import { getToken } from "@/util/auth";
 
 export const middleware = async (req: NextRequest) => {
   const { pathname, search } = req.nextUrl;
@@ -14,9 +14,8 @@ export const middleware = async (req: NextRequest) => {
 
   const api = `${pathname.replace("/api", "")}${search}`;
   const method = req.method;
-  const cookie = await cookies();
-  const token = cookie.get("token")?.value;
-  const authHeader = req.headers.get("authorization");
+
+  const token = await getToken();
   const body = method !== "GET" ? await req.json() : null;
 
   //TODO : headers 온전히 전달
@@ -24,7 +23,7 @@ export const middleware = async (req: NextRequest) => {
   const options: RequestInit = {
     method,
     headers: {
-      Authorization: token ? `Bearer ${token}` : authHeader || "",
+      Authorization: token ? `Bearer ${token}` : "",
       "Content-Type": "application/json",
     },
     body: body ? JSON.stringify(body) : null,

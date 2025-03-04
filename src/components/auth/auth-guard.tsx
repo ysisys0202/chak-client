@@ -1,16 +1,10 @@
 import { redirect } from "next/navigation";
-import { getToken } from "@/util/auth";
-import { getAuth } from "@/api/auth";
+import { getAuthServer } from "@/api/server/auth";
 import path from "@/constants/path";
 
 const AuthGuard = async ({ children }: { children: React.ReactNode }) => {
   try {
-    const token = await getToken();
-    await getAuth({
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    await getAuthServer();
     return <>{children}</>;
   } catch (error) {
     if (error instanceof Error) {

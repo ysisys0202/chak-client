@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useToast } from "chak-blocks/context";
-import { getAuth, login, logout, signup } from "@/api/auth";
+import { getAuth, login, logout, signup } from "@/api/client/auth";
 import { LoginData, SignupData } from "@/util/validation/auth";
 import path from "@/constants/path";
 import queryKey from "@/constants/query-keys";

@@ -2,9 +2,8 @@ import Link from "next/link";
 import { Button } from "chak-blocks/plain";
 import path from "@/constants/path";
 import { ReadingStates } from "@/types/record";
-import { getAuth } from "@/api/auth";
-import { getRecords } from "@/api/record";
-import { getToken } from "@/util/auth";
+import { getAuthServer } from "@/api/server/auth";
+import { getRecordsServer } from "@/api/server/record";
 import withSuspense from "@/components/hocs/withSuspense";
 import Error from "@/components/error/error";
 import Section from "@/components/sections/shared/section";
@@ -56,25 +55,13 @@ const RecordListSection = async ({
   const start = (page - 1) * display + 1;
 
   try {
-    const token = await getToken();
-    const user = await getAuth({
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+    const user = await getAuthServer();
+    const records = await getRecordsServer({
+      userId: user.id,
+      start: start - 1,
+      display,
+      readingState,
     });
-    const records = await getRecords(
-      {
-        userId: user.id,
-        start: start - 1,
-        display,
-        readingState,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
     return (
       <Section>
         <SectionHeader title="나의 기록" />

@@ -1,13 +1,12 @@
 import { AxiosRequestConfig } from "axios";
 import {
   ReadingStates,
-  RecordCountByReadingStateResponse,
   RecordItemResponse,
   RecordResponse,
 } from "@/types/record";
-import { clientFetcher } from "@/api/fetcher";
-import { generateQueryString } from "@/util/url";
+import { clientFetcher } from "@/api/client/fetcher";
 import { RecordData } from "@/util/validation/record";
+import { generateQueryString } from "@/util/url";
 
 export type GetRecordsOptions = {
   userId?: number;
@@ -24,19 +23,6 @@ export const getRecords = (
     ...queryOptions,
   });
   return clientFetcher(`/records?${queryParams}`, options);
-};
-
-export const getRecord = (
-  id: number,
-  options: AxiosRequestConfig = {}
-): Promise<RecordItemResponse> => {
-  return clientFetcher(`/records/${id}`, options);
-};
-
-export const getRecordCountByReadingState = (
-  options: AxiosRequestConfig = {}
-): Promise<RecordCountByReadingStateResponse> => {
-  return clientFetcher(`/records/count/by-reading-state`, options);
 };
 
 export const createRecord = (
