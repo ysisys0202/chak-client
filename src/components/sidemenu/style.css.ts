@@ -1,6 +1,8 @@
 import { style } from "@vanilla-extract/css";
 import { background, shades } from "@/constants/colors";
 import { breakPoints, media } from "@/constants/break-points";
+import { zIndex } from "@/constants/z-index";
+import { lgHidden } from "@/styles/util.css";
 
 const verticalSpace = 60;
 const sideSpace = 24;
@@ -56,6 +58,15 @@ export const sidemenuStyles = {
     marginLeft: `${sideSpace}px`,
     marginBottom: `${verticalSpace}px`,
   }),
+  menuButton: style([
+    lgHidden,
+    {
+      position: "fixed",
+      top: 20,
+      left: 24,
+      zIndex: zIndex.sidemenuButton,
+    },
+  ]),
 };
 
 export const sidemenuItemStyles = {

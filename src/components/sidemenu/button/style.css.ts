@@ -7,6 +7,7 @@ const selfStyle = style({
   height: 36,
   margin: 0,
   padding: 5,
+  border: "none",
   borderRadius: "50%",
   backdropFilter: "blur(1px)",
   backgroundColor: "rgba(255,255,255,0.6)",

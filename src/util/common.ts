@@ -19,13 +19,6 @@ export const formatShortDate = (dateString?: string) => {
 };
 
 export const scrollHandler = () => {
-  if (isClient) {
-    return {
-      disableScroll: () => {},
-      enableScroll: () => {},
-    };
-  }
-
   const html = document.documentElement;
   const body = document.body;
 

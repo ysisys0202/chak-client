@@ -7,12 +7,13 @@ type Props = {
   path: string;
   label: string;
   icon: IconProps["name"];
+  onClick: () => void;
 };
 
-const SidemenuItem = ({ path, label, icon }: Props) => {
+const SidemenuItem = ({ path, label, icon, onClick }: Props) => {
   return (
     <li>
-      <Link href={path} className={sidemenuItemStyles.link}>
+      <Link href={path} onClick={onClick} className={sidemenuItemStyles.link}>
         <Icon name={icon} size={20} />
         <Typography variant="title5" theme="tertiary">
           {label}
