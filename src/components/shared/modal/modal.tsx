@@ -1,10 +1,10 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { Button, Card, Icon } from "chak-blocks/plain";
 import { modalStyles } from "./style.css";
-import { useRef } from "react";
-import Dimmed from "../dimmed/dimmed";
+import Dimmed from "@/components/shared/dimmed/dimmed";
 
 type Props = {
   onClose?: () => void;
@@ -13,28 +13,27 @@ type Props = {
 };
 
 const Modal = ({ onClose, className, children }: Props) => {
-  const modalRef = useRef<HTMLDialogElement>(null);
-
-  const handleClose = () => {
-    onClose?.();
-  };
-
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+  if (!isClient) {
+    return null;
+  }
   return createPortal(
     <Dimmed
       onClick={(event) => {
         if (event.target === event.currentTarget) {
-          handleClose();
+          onClose?.();
         }
       }}
     >
-      <Card
-        ref={modalRef}
-        rounded
-        className={`${modalStyles.self} ${className}`}
-      >
+      <Card rounded className={`${modalStyles.self} ${className}`}>
         <Button
           variant="text"
-          onClick={handleClose}
+          onClick={() => {
+            onClose?.();
+          }}
           className={modalStyles.closeButton}
         >
           <Icon name="close" />
