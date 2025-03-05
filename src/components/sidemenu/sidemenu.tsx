@@ -5,12 +5,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { IconProps } from "chak-blocks/plain";
 import path from "@/constants/path";
+import { zIndex } from "@/constants/z-index";
 import { combineClassNames, scrollHandler } from "@/util/common";
 import SidemenuItem from "@/components/sidemenu/sidemenu-item";
 import UserProfile from "@/components/user-profile/user-profile";
 import LogoutButton from "@/components/buttons/logout-button/logoutButton";
 import SidemenuButton from "@/components/sidemenu/button/sidemenu-button";
-import { visuallyHidden } from "@/styles/util.css";
+import Dimmed from "@/components/shared/dimmed/dimmed";
+import { lgHidden, visuallyHidden } from "@/styles/util.css";
 import { sidemenuStyles } from "./style.css";
 
 type SideMenu = {
@@ -56,6 +58,9 @@ const Sidemenu = ({ className }: { className: string }) => {
   const handleSidemenuToggle = () => {
     setIsActive((prevState) => !prevState);
   };
+  const handleSidemenuClose = () => {
+    setIsActive(false);
+  };
 
   return (
     <>
@@ -79,13 +84,24 @@ const Sidemenu = ({ className }: { className: string }) => {
                 label={label}
                 path={path}
                 icon={icon}
-                onClick={handleSidemenuToggle}
+                onClick={handleSidemenuClose}
               />
             ))}
           </ul>
         </nav>
         <LogoutButton className={sidemenuStyles.logoutButton} />
       </aside>
+      {isActive && (
+        <Dimmed
+          className={lgHidden}
+          zIndex={zIndex.sidemenu - 50}
+          onClick={(event) => {
+            if (event.target === event.currentTarget) {
+              handleSidemenuClose();
+            }
+          }}
+        />
+      )}
     </>
   );
 };

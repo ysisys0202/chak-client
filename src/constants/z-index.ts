@@ -1,5 +1,5 @@
 export const zIndex = {
-  sidemenu: 200,
-  sidemenuButton: 250,
+  sidemenu: 500,
+  sidemenuButton: 600,
   dimmed: 999,
 };
