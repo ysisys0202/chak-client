@@ -1,4 +1,3 @@
-import { readingStateMessage } from "@/constants/message";
 import { RecordItemResponse } from "@/types/record";
 import { BookData, RecordFormProvider } from "@/providers/record-form";
 import { formatShortDate } from "@/util/common";
