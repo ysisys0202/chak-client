@@ -2,7 +2,7 @@
 
 <img src="./public/image/og.jpg" alt="Chak" width="500">
 
-### [배포 화면 보러가기 🚀🚀 ](https://chak-client.vercel.app)
+### [배포 화면 보러가기 🚀🚀 ](https://chak-client.pages.dev)
 
 | 테스트 ID | tester01 |
 | --------- | -------- |
@@ -23,7 +23,7 @@ Chak은 책과 관련된 기록을 쉽게 작성하고 확인할 수 있도록 �
 | **데이터 통신 및 서버 상태 관리** | Axios, React Query                            |
 | **폼 컨트롤 및 데이터 검증**      | React Hook Form, Zod                          |
 | **스타일링**                      | CSS, Vanilla Extract                          |
-| **배포**                          | Vercel                                        |
+| **배포**                          | Cloudflare                                    |
 
 ## ✨ 구현 기능
 
