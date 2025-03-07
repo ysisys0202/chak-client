@@ -2,11 +2,12 @@ import { shades } from "@/constants/colors";
 import { style } from "@vanilla-extract/css";
 
 const selfStyle = style({
-  display: "block",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
   width: 36,
   height: 36,
   margin: 0,
-  padding: 5,
   border: "none",
   borderRadius: "50%",
   backdropFilter: "blur(1px)",
@@ -25,7 +26,6 @@ export const styles = {
   self: selfStyle,
   bar: style({
     ...barStyle,
-    marginTop: 12,
     transition: "background-color 50ms ease-in-out",
     selectors: {
       "&::before": {
