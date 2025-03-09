@@ -1,7 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter, useParams, useSearchParams } from "next/navigation";
+import {
+  useRouter,
+  useParams,
+  useSearchParams,
+  usePathname,
+} from "next/navigation";
 import { Typography } from "chak-blocks/plain";
 import path from "@/constants/path";
 import { useSearchBooksQuery } from "@/query/books";
@@ -18,14 +23,12 @@ const display = 30;
 
 const BookSearchModal = () => {
   const router = useRouter();
-  const { id } = useParams() as unknown as { id: number };
+  const pathname = usePathname();
   const searchParmas = useSearchParams();
   const isModalOpen = !!searchParmas.get("book-search-modal");
 
   const handleModalClose = () => {
-    router.replace(
-      removeQueryParam(`${path.recordEdit}/${id}`, "book-search-modal")
-    );
+    router.replace(pathname);
   };
   const [query, setQuery] = useState<string>("");
   const [curerntPage, setCurrentPage] = useState<number>(1);
