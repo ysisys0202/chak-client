@@ -16,10 +16,11 @@ const ReadingStateSchema = z.union(
 
 export const RecordSchema = z.object({
   userId: z.number({
-    required_error: "문제가 발생했습니다. 잠시후 다시 시도해주세요.",
+    required_error:
+      "유저 정보를 불러올 수 없습니다.. 잠시후 다시 시도해주세요.",
   }),
   bookId: z.number({
-    required_error: "문제가 발생했습니다. 잠시후 다시 시도해주세요.",
+    required_error: "기록할 책을 선택해주세요.",
   }),
   readingState: ReadingStateSchema,
   rating: z

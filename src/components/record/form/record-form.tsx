@@ -2,7 +2,6 @@
 
 import React, { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { useToast } from "chak-blocks/context";
 import { recordFields, recordFormFields } from "@/constants/record";
 import { useAuth } from "@/providers/auth";
 import { useRecordFormContext } from "@/providers/record-form";
@@ -21,14 +20,9 @@ const RecordForm = () => {
   const { user } = useAuth();
   const {
     bookData,
-    formMethods: {
-      register,
-      setValue,
-      formState: { errors },
-    },
+    formMethods: { register, setValue },
   } = useRecordFormContext();
 
-  const { open } = useToast();
   useEffect(() => {
     setValue("bookId", bookData.id, { shouldValidate: true });
     setValue("userId", user?.id || 0, { shouldValidate: true });
@@ -42,13 +36,6 @@ const RecordForm = () => {
       })}`
     );
   };
-
-  useEffect(() => {
-    if (!Object.values(errors)[0]) {
-      return;
-    }
-    open({ title: Object.values(errors)[0].message, status: "error" });
-  }, [errors]);
 
   return (
     <form>

@@ -1,7 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { FieldErrors } from "react-hook-form";
 import { Button } from "chak-blocks/plain";
+import { useToast } from "chak-blocks/context";
 import { RecordData } from "@/util/validation/record";
 import { useRecordFormContext } from "@/providers/record-form";
 import { useCreateRecordMutation } from "@/query/record";
@@ -13,8 +15,13 @@ const RecordEditButtonGroup = ({ className }: { className?: string }) => {
     formMethods: { handleSubmit },
   } = useRecordFormContext();
   const { mutate, isPending } = useCreateRecordMutation();
+  const { open } = useToast();
 
   const handleSave = (data: RecordData) => mutate(data);
+  const handleFormInvalid = (errors: FieldErrors<RecordData>) => {
+    open({ title: Object.values(errors)[0].message, status: "error" });
+  };
+
   const handleBack = () => {
     router.back();
   };
@@ -23,7 +30,7 @@ const RecordEditButtonGroup = ({ className }: { className?: string }) => {
     <ButtonGroup className={className}>
       <Button
         theme="primary"
-        onClick={handleSubmit(handleSave)}
+        onClick={handleSubmit(handleSave, handleFormInvalid)}
         disabled={isPending}
       >
         저장하기

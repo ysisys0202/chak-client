@@ -10,20 +10,7 @@ const RecordNewSection = () => {
   return (
     <Section>
       <SectionBody>
-        <RecordFormProvider
-          initBookData={{
-            title: "책을 선택하면 자동으로 채워져요.",
-            author: "책을 선택하면 자동으로 채워져요.",
-            publisher: "책을 선택하면 자동으로 채워져요.",
-            pubdate: "책을 선택하면 자동으로 채워져요.",
-            isbn: "책을 선택하면 자동으로 채워져요.",
-            link: "",
-            image: "",
-            discount: "",
-            description: "",
-            id: 0,
-          }}
-        >
+        <RecordFormProvider>
           <RecordForm />
           <RecordNewButtonGroup
             className={recordDetailSectionStyles.buttonGroup}

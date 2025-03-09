@@ -20,7 +20,9 @@ const BookInfo = ({ bookCoverImage, bookData }: Props) => {
         {bookFields.map(({ id, label }) => (
           <RecordRow key={id}>
             <RecordLabel>{label}</RecordLabel>
-            <RecordData>{bookData[id]}</RecordData>
+            <RecordData>
+              {bookData[id] || "책을 선택하면 자동으로 채워져요."}
+            </RecordData>
           </RecordRow>
         ))}
       </div>
