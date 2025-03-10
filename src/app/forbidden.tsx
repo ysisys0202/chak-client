@@ -1,4 +1,4 @@
-import Forbidden from "@/components/error/forbidden";
+import Forbidden from "@/components/fallback/forbidden";
 
 const ForbiddenPage = () => {
   return <Forbidden />;

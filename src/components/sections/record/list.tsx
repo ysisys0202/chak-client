@@ -5,7 +5,7 @@ import { ReadingStates } from "@/types/record";
 import { getAuthServer } from "@/api/server/auth";
 import { getRecordsServer } from "@/api/server/record";
 import withSuspense from "@/components/hocs/withSuspense";
-import Error from "@/components/error/error";
+import Error from "@/components/fallback/error";
 import Section from "@/components/sections/shared/section";
 import SectionHeader from "@/components/sections/shared/section-header";
 import SectionBody from "@/components/sections/shared/section-body";

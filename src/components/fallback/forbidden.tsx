@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Button, Icon, Typography } from "chak-blocks/plain";
 import path from "@/constants/path";
 import { shades } from "@/constants/colors";
-import { styles } from "./error.css";
+import { styles } from "./fallback.css";
 
 const Forbidden = () => {
   return (
