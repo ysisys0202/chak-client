@@ -1,16 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  useRouter,
-  useParams,
-  useSearchParams,
-  usePathname,
-} from "next/navigation";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { Typography } from "chak-blocks/plain";
-import path from "@/constants/path";
 import { useSearchBooksQuery } from "@/query/books";
-import { removeQueryParam } from "@/util/url";
 import List from "@/components/shared/list/list";
 import Modal from "@/components/shared/modal/modal";
 import Searchbar from "@/components/shared/searchbar/searchbar";
