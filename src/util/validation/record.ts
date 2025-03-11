@@ -40,7 +40,7 @@ export const RecordSchema = z.object({
     .max(60, { message: "제목은 최대 60자까지만 입력할 수 있어요." }),
   recordDetail: z
     .string({
-      required_error: "기록을 남겨주세여.",
+      required_error: "기록을 남겨주세요.",
       invalid_type_error: "기록은 1자 이상, 1,000자 이하로 입력해주세요.",
     })
     .trim()
