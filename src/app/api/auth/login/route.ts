@@ -25,7 +25,7 @@ export const POST = async (req: NextRequest) => {
   } catch (error) {
     if (axios.isAxiosError(error)) {
       return NextResponse.json(
-        { message: error.response?.statusText || "로그인 실패" },
+        { message: error.response?.data.message || "로그인 실패" },
         { status: error.response?.status }
       );
     }

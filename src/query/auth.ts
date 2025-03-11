@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { isAxiosError } from "axios";
 import { useToast } from "chak-blocks/context";
 import { getAuth, login, logout, signup } from "@/api/client/auth";
 import { LoginData, SignupData } from "@/util/validation/auth";
@@ -39,10 +40,21 @@ export const useLoginMutation = () => {
       open({ title: "로그인 성공", status: "success" });
     },
     onError: (error) => {
+      console.log(error);
+      if (isAxiosError(error)) {
+        open({
+          title: "로그인 실패",
+          status: "error",
+          description:
+            error.response?.data.message ||
+            "로그인에 실패했습니다. 잠시후 시도해주세요.",
+        });
+        return;
+      }
       open({
         title: "로그인 실패",
         status: "error",
-        description: error.message,
+        description: "로그인에 실패했습니다. 잠시후 시도해주세요.",
       });
     },
   });
