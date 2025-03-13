@@ -11,9 +11,9 @@ import Section from "@/components/sections/shared/section";
 import SectionHeader from "@/components/sections/shared/section-header";
 import SectionBody from "@/components/sections/shared/section-body";
 import List from "@/components/shared/list/list";
-import RecordRow from "@/components/record-row/record-row";
-import RecordFilter from "@/components/record-list/ui/record-filter";
-import RecordListPagination from "@/components/record-list/ui/record-list-pagination";
+import RecordRow from "@/components/record/row/record-row";
+import RecordFilter from "@/components/record/list/ui/record-filter";
+import RecordListPagination from "@/components/record/list/ui/record-list-pagination";
 import { listStyles } from "./style.css";
 
 const display = 10;

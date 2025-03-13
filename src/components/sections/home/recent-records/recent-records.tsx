@@ -7,7 +7,7 @@ import { useRecordsInfiniteQuery } from "@/query/record";
 import Section from "@/components/sections/shared/section";
 import SectionHeader from "@/components/sections/shared/section-header";
 import SectionBody from "@/components/sections/shared/section-body";
-import RecordCard from "@/components/record-card/record-card";
+import RecordCard from "@/components/record/card/record-card";
 import { styles } from "./style.css";
 
 const RecordsEmpty = () => {

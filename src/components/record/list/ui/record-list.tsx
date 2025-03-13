@@ -2,7 +2,7 @@ import { ReadingStates } from "@/types/record";
 import { getAuthServer } from "@/api//server/auth";
 import { getRecordsServer } from "@/api/server/record";
 import List from "@/components/shared/list/list";
-import RecordRow from "@/components/record-row/record-row";
+import RecordRow from "@/components/record/row/record-row";
 
 const display = 10;
 
