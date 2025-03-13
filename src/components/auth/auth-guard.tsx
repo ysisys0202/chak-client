@@ -9,7 +9,7 @@ const AuthGuard = async ({ children }: { children: React.ReactNode }) => {
       fetchOptions: {
         cache: "force-cache",
         next: {
-          tag: [queryKey.auth.me],
+          tags: [queryKey.auth.me],
         },
       },
     });
