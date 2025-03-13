@@ -1,6 +1,7 @@
 "use client";
 
 import { revalidateTag } from "next/cache";
+import { useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Input, InputField } from "chak-blocks/plain";
@@ -46,9 +47,12 @@ const LoginForm = ({ className }: { className: string }) => {
   } = useForm<LoginData>({
     resolver: zodResolver(LoginSchema),
   });
-  const { mutate, isPending } = useLoginMutation();
-  const onSubmit = handleSubmit((data) => {
-    mutate(data);
+  const queryClient = useQueryClient();
+  const { mutateAsync, isPending } = useLoginMutation();
+
+  const onSubmit = handleSubmit(async (data) => {
+    await mutateAsync(data);
+    queryClient.invalidateQueries({ queryKey: [queryKey.auth.me] });
     revalidateTag(queryKey.auth.me);
   });
 
