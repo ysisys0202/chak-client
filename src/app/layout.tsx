@@ -1,5 +1,3 @@
-export const runtime = "edge";
-
 import type { Metadata } from "next";
 import AuthProvider from "@/providers/auth";
 import QueryProvider from "@/providers/query";
