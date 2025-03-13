@@ -1,12 +1,14 @@
 "use client";
 
+import { revalidateTag } from "next/cache";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { InputField, Button, Input } from "chak-blocks/plain";
+import queryKey from "@/constants/query-keys";
 import { useSignupMutation } from "@/query/auth";
 import { SignupClientSchema } from "@/util/validation/auth";
-import { signupFormStyles } from "./style.css";
 import Spinner from "../shared/loading/loading-spinner";
+import { signupFormStyles } from "./style.css";
 
 type FieldNames =
   | "loginId"
@@ -78,6 +80,7 @@ const SignupForm = () => {
 
   const onSubmit = handleSubmit((data) => {
     mutate(data);
+    revalidateTag(queryKey.auth.me);
   });
 
   return (

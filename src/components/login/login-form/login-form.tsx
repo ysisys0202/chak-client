@@ -1,8 +1,10 @@
 "use client";
 
+import { revalidateTag } from "next/cache";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Input, InputField } from "chak-blocks/plain";
+import queryKey from "@/constants/query-keys";
 import { LoginData, LoginSchema } from "@/util/validation/auth";
 import { loginFormStyles } from "./style.css";
 import Link from "next/link";
@@ -47,6 +49,7 @@ const LoginForm = ({ className }: { className: string }) => {
   const { mutate, isPending } = useLoginMutation();
   const onSubmit = handleSubmit((data) => {
     mutate(data);
+    revalidateTag(queryKey.auth.me);
   });
 
   return (

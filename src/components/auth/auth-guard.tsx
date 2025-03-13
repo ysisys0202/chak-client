@@ -1,10 +1,18 @@
 import { redirect } from "next/navigation";
 import { getAuthServer } from "@/api/server/auth";
 import path from "@/constants/path";
+import queryKey from "@/constants/query-keys";
 
 const AuthGuard = async ({ children }: { children: React.ReactNode }) => {
   try {
-    await getAuthServer();
+    await getAuthServer({
+      fetchOptions: {
+        cache: "force-cache",
+        next: {
+          tag: [queryKey.auth.me],
+        },
+      },
+    });
     return <>{children}</>;
   } catch (error) {
     if (error instanceof Error) {
