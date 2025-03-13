@@ -16,7 +16,8 @@ export const middleware = async (req: NextRequest) => {
   const method = req.method;
 
   const token = await getToken();
-  const body = method !== "GET" ? await req.json() : null;
+  const body =
+    method !== "GET" && method !== "DELETE" ? await req.json() : null;
 
   //TODO : headers 온전히 전달
 
@@ -34,10 +35,9 @@ export const middleware = async (req: NextRequest) => {
     options
   );
 
-  const responseBody = await backendResponse.json();
-
-  return NextResponse.json(responseBody, {
+  return new NextResponse(backendResponse.body, {
     status: backendResponse.status,
+    headers: backendResponse.headers,
   });
 };
 
