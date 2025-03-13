@@ -57,12 +57,19 @@ const RecordListSection = async ({ searchParams }: Props) => {
 
   try {
     const user = await getAuthServer();
-    const records = await getRecordsServer({
-      userId: user.id,
-      start: start - 1,
-      display,
-      readingState,
-    });
+    const records = await getRecordsServer(
+      {
+        userId: user.id,
+        start: start - 1,
+        display,
+        readingState,
+      },
+      {
+        fetchOptions: {
+          cache: "force-cache",
+        },
+      }
+    );
     return (
       <Section>
         <SectionHeader title="나의 기록" />

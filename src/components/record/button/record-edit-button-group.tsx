@@ -6,6 +6,7 @@ import { Button } from "chak-blocks/plain";
 import { useToast } from "chak-blocks/context";
 import { RecordData } from "@/util/validation/record";
 import { handleConfirm } from "@/util/common";
+import { revalidateRecords } from "@/actions/revalidate-records.action";
 import { useRecordFormContext } from "@/providers/record-form";
 import { useUpdateRecordMutation } from "@/query/record";
 import ButtonGroup from "@/components/record/button/button-group";
@@ -16,12 +17,14 @@ const RecordEditButtonGroup = ({ className }: { className?: string }) => {
   const {
     formMethods: { handleSubmit },
   } = useRecordFormContext();
-  const { mutate, isPending } = useUpdateRecordMutation();
+  const { mutateAsync, isPending } = useUpdateRecordMutation();
   const { open } = useToast();
 
-  const handleSave = (data: RecordData) => {
-    mutate({ id, recordData: data });
+  const handleSave = async (data: RecordData) => {
+    await mutateAsync({ id, recordData: data });
+    await revalidateRecords();
   };
+
   const handleFormInvalid = (errors: FieldErrors<RecordData>) => {
     open({ title: Object.values(errors)[0].message, status: "error" });
   };
