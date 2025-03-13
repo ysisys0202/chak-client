@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "chak-blocks/plain";
 import path from "@/constants/path";
+import queryKey from "@/constants/query-keys";
 import { ReadingStates } from "@/types/record";
 import { getAuthServer } from "@/api/server/auth";
 import { getRecordsServer } from "@/api/server/record";
@@ -67,6 +68,9 @@ const RecordListSection = async ({ searchParams }: Props) => {
       {
         fetchOptions: {
           cache: "force-cache",
+          next: {
+            tags: [queryKey.records.list],
+          },
         },
       }
     );

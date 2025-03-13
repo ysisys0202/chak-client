@@ -1,7 +1,8 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidateTag } from "next/cache";
+import queryKey from "@/constants/query-keys";
 
 export const revalidateRecords = async () => {
-  revalidatePath("/record");
+  revalidateTag(queryKey.records.list);
 };
