@@ -1,17 +1,15 @@
-"use client";
-
-import { Typography } from "chak-blocks/plain";
 import Image from "next/image";
+import { Typography } from "chak-blocks/plain";
+import { getAuthServer } from "@/api/server/auth";
 import { shades } from "@/constants/colors";
-import { useAuth } from "@/providers/auth";
 import { styles } from "./style.css";
 
 type ProfileImageProps = {
   className?: string;
 };
 
-const UserProfile = ({ className }: ProfileImageProps) => {
-  const { user } = useAuth();
+const UserProfile = async ({ className }: ProfileImageProps) => {
+  const user = await getAuthServer();
   return (
     <div className={`${styles.self} ${className}`}>
       <div className={styles.profileImage}>

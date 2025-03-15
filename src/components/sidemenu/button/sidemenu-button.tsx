@@ -1,18 +1,27 @@
+"use client";
+
 import React, { ButtonHTMLAttributes } from "react";
 import { combineClassNames } from "@/util/common";
 import { styles } from "./style.css";
+import { useSidemenu } from "@/providers/sidemenu";
 
-type Props = { isActive: boolean } & ButtonHTMLAttributes<HTMLButtonElement>;
-
-const SidemenuButton = ({ isActive, ...props }: Props) => {
+const SidemenuButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => {
+  const { sidemenuActive, toggleSidemenu } = useSidemenu();
   const classNames = combineClassNames(
     props.className,
     styles.self,
-    isActive && "is-active"
+    sidemenuActive && "is-active"
   );
 
   return (
-    <button type="button" {...props} className={classNames}>
+    <button
+      type="button"
+      {...props}
+      className={classNames}
+      onClick={() => {
+        toggleSidemenu();
+      }}
+    >
       <div className={styles.bar}></div>
     </button>
   );

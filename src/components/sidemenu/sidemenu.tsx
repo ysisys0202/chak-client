@@ -1,18 +1,13 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { IconProps } from "chak-blocks/plain";
 import path from "@/constants/path";
-import { zIndex } from "@/constants/z-index";
-import { combineClassNames, scrollHandler } from "@/util/common";
+import SidemenuDimmed from "@/components/sidemenu/sidemenu-dimmed";
+import SidemenuContainer from "@/components/sidemenu/sidemenu-container";
 import SidemenuItem from "@/components/sidemenu/sidemenu-item";
 import UserProfile from "@/components/user-profile/user-profile";
 import LogoutButton from "@/components/buttons/logout-button/logoutButton";
-import SidemenuButton from "@/components/sidemenu/button/sidemenu-button";
-import Dimmed from "@/components/shared/dimmed/dimmed";
-import { lgHidden, visuallyHidden } from "@/styles/util.css";
+import { visuallyHidden } from "@/styles/util.css";
 import { sidemenuStyles } from "./style.css";
 
 type SideMenu = {
@@ -38,38 +33,9 @@ const sideMenuList: SideMenu[] = [
 ];
 
 const Sidemenu = ({ className }: { className: string }) => {
-  const [isActive, setIsActive] = useState<boolean>(false);
-  const classNames = combineClassNames(
-    className,
-    sidemenuStyles.self,
-    isActive && "is-active"
-  );
-
-  useEffect(() => {
-    const { disableScroll, enableScroll } = scrollHandler();
-
-    if (isActive) {
-      disableScroll();
-    } else {
-      enableScroll();
-    }
-  }, [isActive]);
-
-  const handleSidemenuToggle = () => {
-    setIsActive((prevState) => !prevState);
-  };
-  const handleSidemenuClose = () => {
-    setIsActive(false);
-  };
-
   return (
     <>
-      <SidemenuButton
-        isActive={isActive}
-        onClick={handleSidemenuToggle}
-        className={sidemenuStyles.menuButton}
-      />
-      <aside className={classNames}>
+      <SidemenuContainer className={className}>
         <Link href={path.home} className={sidemenuStyles.logo}>
           <Image src="/image/logo.svg" alt="Chak" width={68} height={20} />
         </Link>
@@ -84,24 +50,13 @@ const Sidemenu = ({ className }: { className: string }) => {
                 label={label}
                 path={path}
                 icon={icon}
-                onClick={handleSidemenuClose}
               />
             ))}
           </ul>
         </nav>
         <LogoutButton className={sidemenuStyles.logoutButton} />
-      </aside>
-      {isActive && (
-        <Dimmed
-          className={lgHidden}
-          zIndex={zIndex.sidemenu - 50}
-          onClick={(event) => {
-            if (event.target === event.currentTarget) {
-              handleSidemenuClose();
-            }
-          }}
-        />
-      )}
+      </SidemenuContainer>
+      <SidemenuDimmed />
     </>
   );
 };

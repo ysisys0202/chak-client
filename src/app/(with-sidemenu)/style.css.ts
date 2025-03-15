@@ -2,11 +2,21 @@ import { style } from "@vanilla-extract/css";
 import { media } from "@/constants/break-points";
 import { zIndex } from "@/constants/z-index";
 import { sidemenuMaxWidth } from "@/components/sidemenu/style.css";
+import { lgHidden } from "@/styles/util.css";
 
 export const styles = {
   self: style({
     display: "flex",
   }),
+  sidemenuButton: style([
+    lgHidden,
+    {
+      position: "fixed",
+      top: 20,
+      left: 24,
+      zIndex: zIndex.sidemenuButton,
+    },
+  ]),
   sidemenu: style({
     position: "fixed",
     left: 0,
