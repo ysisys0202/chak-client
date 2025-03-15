@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { Typography } from "chak-blocks/plain";
-import { getAuthServer } from "@/api/server/auth";
+import queryKey from "@/constants/query-keys";
 import { shades } from "@/constants/colors";
+import { getAuthServer } from "@/api/server/auth";
 import { styles } from "./style.css";
 
 type ProfileImageProps = {
@@ -9,7 +10,14 @@ type ProfileImageProps = {
 };
 
 const UserProfile = async ({ className }: ProfileImageProps) => {
-  const user = await getAuthServer();
+  const user = await getAuthServer({
+    fetchOptions: {
+      cache: "force-cache",
+      next: {
+        tags: [queryKey.auth.me],
+      },
+    },
+  });
   return (
     <div className={`${styles.self} ${className}`}>
       <div className={styles.profileImage}>
