@@ -3,7 +3,6 @@
 import React, { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { recordFields, recordFormFields } from "@/constants/record";
-import { useAuth } from "@/providers/auth";
 import { useRecordFormContext } from "@/providers/record-form";
 import { generateQueryString } from "@/util/url";
 import RecordFormField from "@/components/record/form/field/record-form-field";
@@ -13,11 +12,12 @@ import RecordData from "@/components/record/viewer/data/record-viewer-data";
 import RecordLabel from "@/components/record/viewer/label/record-viewer-label";
 import RecordRow from "@/components/record/viewer/row/record-viewer-row";
 import RecordViewerTitle from "@/components/record/viewer/title/record-viewer-title";
+import { Me } from "@/types/auth";
 
-const RecordForm = () => {
+const RecordForm = ({ user }: { user: Me }) => {
   const pathname = usePathname();
   const router = useRouter();
-  const { user } = useAuth();
+
   const {
     bookData,
     formMethods: { register, setValue },
