@@ -2,7 +2,7 @@ import { style } from "@vanilla-extract/css";
 import { media } from "@/constants/break-points";
 
 export const styles = {
-  list: style({
+  self: style({
     display: "grid",
     gridTemplateColumns: "repeat(1, 1fr)",
     gap: "16px 14px",
