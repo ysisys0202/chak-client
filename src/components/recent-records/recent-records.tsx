@@ -19,13 +19,13 @@ const RecentRecords = ({ user }: { user: Me }) => {
   const isEmpty = isFetched && data?.pages[0].items.length === 0;
 
   useEffect(() => {
-    if (inView && hasNextPage && hasNextPage && !isFetching) {
+    if (inView && hasNextPage && !isFetching) {
       fetchNextPage();
     }
   }, [inView, hasNextPage, isFetching, fetchNextPage]);
+
   return (
     <div>
-      {" "}
       <>
         {isEmpty && <RecordsEmpty />}
         {!isEmpty && (
