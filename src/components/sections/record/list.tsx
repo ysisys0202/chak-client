@@ -110,12 +110,4 @@ const RecordListSection = async ({ searchParams }: Props) => {
   }
 };
 
-export default withSuspense(
-  (props: Props) => (
-    <RecordListSection
-      {...props}
-      suspenseKey={`${props.searchParams?.["reading-state"]} ${props.searchParams?.page}}`}
-    />
-  ),
-  <SuspenseListSection />
-);
+export default withSuspense(RecordListSection, <SuspenseListSection />);

@@ -24,7 +24,11 @@ const RecordRow = ({
 }: Props) => {
   return (
     <ListRow key={id} className={styles.self}>
-      <Link key={id} href={`${path.record}/${id}`} className={styles.link}>
+      <Link
+        key={id}
+        href={header ? "#" : `${path.record}/${id}`}
+        className={styles.link}
+      >
         {header ? (
           <Typography variant="text2" theme="tertiary" className={styles.text}>
             표지

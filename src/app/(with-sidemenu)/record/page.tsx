@@ -9,7 +9,14 @@ const RecordListPage = async ({
   searchParams: Promise<{ page?: string; "reading-state"?: ReadingStates }>;
 }) => {
   const queryParams = await searchParams;
-  return <main>{<RecordListSection searchParams={queryParams} />}</main>;
+  return (
+    <main>
+      <RecordListSection
+        searchParams={queryParams}
+        suspenseKey={`${queryParams["reading-state"]} ${queryParams.page}`}
+      />
+    </main>
+  );
 };
 
 export default RecordListPage;
