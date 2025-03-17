@@ -15,7 +15,10 @@ const RecordEditButtonGroup = ({ className }: { className?: string }) => {
   const router = useRouter();
   const { id } = useParams() as unknown as { id: number };
   const {
-    formMethods: { handleSubmit },
+    formMethods: {
+      handleSubmit,
+      formState: { isSubmitting },
+    },
   } = useRecordFormContext();
   const { mutateAsync, isPending } = useUpdateRecordMutation();
   const { open } = useToast();
@@ -43,7 +46,7 @@ const RecordEditButtonGroup = ({ className }: { className?: string }) => {
       <Button
         theme="primary"
         onClick={handleSubmit(handleSave, handleFormInvalid)}
-        disabled={isPending}
+        disabled={isSubmitting || isPending}
       >
         저장하기
       </Button>

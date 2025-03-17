@@ -13,7 +13,10 @@ import ButtonGroup from "@/components/record/button/button-group";
 const RecordNewButtonGroup = ({ className }: { className?: string }) => {
   const router = useRouter();
   const {
-    formMethods: { handleSubmit },
+    formMethods: {
+      handleSubmit,
+      formState: { isSubmitting },
+    },
   } = useRecordFormContext();
   const { mutateAsync, isPending } = useCreateRecordMutation();
   const { open } = useToast();
@@ -36,7 +39,7 @@ const RecordNewButtonGroup = ({ className }: { className?: string }) => {
       <Button
         theme="primary"
         onClick={handleSubmit(handleSave, handleFormInvalid)}
-        disabled={isPending}
+        disabled={isSubmitting || isPending}
       >
         저장하기
       </Button>

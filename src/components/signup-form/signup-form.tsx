@@ -109,7 +109,10 @@ const SignupForm = () => {
             )
           )}
         </div>
-        <Button disabled={isSubmitting} className={signupFormStyles.button}>
+        <Button
+          disabled={isSubmitting || isPending}
+          className={signupFormStyles.button}
+        >
           가입하기
         </Button>
       </form>
