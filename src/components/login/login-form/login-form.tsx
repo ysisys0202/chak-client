@@ -1,15 +1,14 @@
 "use client";
 
-import { revalidateTag } from "next/cache";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Input, InputField } from "chak-blocks/plain";
-import queryKey from "@/constants/query-keys";
+import { revalidateAuth } from "@/actions/revalidate-auth.action";
 import { LoginData, LoginSchema } from "@/util/validation/auth";
-import { loginFormStyles } from "./style.css";
-import Link from "next/link";
 import { useLoginMutation } from "@/query/auth";
 import Spinner from "@/components/shared/loading/loading-spinner";
+import { loginFormStyles } from "./style.css";
 
 type FieldNames = "loginId" | "password";
 
@@ -51,7 +50,7 @@ const LoginForm = ({ className }: { className: string }) => {
 
   const onSubmit = handleSubmit(async (data) => {
     await mutateAsync(data);
-    revalidateTag(queryKey.auth.me);
+    revalidateAuth();
   });
 
   return (
