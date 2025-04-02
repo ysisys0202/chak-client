@@ -22,12 +22,13 @@ export const useSignupMutation = () => {
     },
     onError: (error) => {
       revalidateAuth();
-      const axiosError = error as AxiosError;
+      const axiosError = error as AxiosError<{ message: string }>;
       open({
         title: "회원가입 실패",
         status: "error",
         description:
-          axiosError.message || "회원가입에 실패했습니다. 잠시후 시도해주세요.",
+          axiosError.response?.data.message ||
+          "회원가입에 실패했습니다. 잠시후 시도해주세요.",
       });
     },
   });
@@ -46,15 +47,16 @@ export const useLoginMutation = () => {
     },
     onError: (error) => {
       revalidateAuth();
-      const axiosError = error as AxiosError;
+      const axiosError = error as AxiosError<{ message: string }>;
+      console.log(axiosError);
       open({
         title: "로그인 실패",
         status: "error",
         description:
-          axiosError.message || "로그인에 실패했습니다. 잠시후 시도해주세요.",
+          axiosError.response?.data.message ||
+          "로그인에 실패했습니다. 잠시후 시도해주세요.",
       });
     },
-    onSettled: () => {},
   });
 };
 
