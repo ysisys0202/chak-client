@@ -3,7 +3,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { InputField, Button, Input } from "chak-blocks/plain";
-import { revalidateAuth } from "@/actions/revalidate-auth.action";
 import { useSignupMutation } from "@/query/auth";
 import { SignupClientSchema } from "@/util/validation/auth";
 import Spinner from "../shared/loading/loading-spinner";
@@ -75,11 +74,10 @@ const SignupForm = () => {
     resolver: zodResolver(SignupClientSchema),
   });
 
-  const { mutateAsync, isPending } = useSignupMutation();
+  const { mutate, isPending } = useSignupMutation();
 
-  const onSubmit = handleSubmit(async (data) => {
-    await mutateAsync(data);
-    revalidateAuth();
+  const onSubmit = handleSubmit((data) => {
+    mutate(data);
   });
 
   return (

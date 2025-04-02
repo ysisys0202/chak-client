@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Input, InputField } from "chak-blocks/plain";
-import { revalidateAuth } from "@/actions/revalidate-auth.action";
 import { LoginData, LoginSchema } from "@/util/validation/auth";
 import { useLoginMutation } from "@/query/auth";
 import Spinner from "@/components/shared/loading/loading-spinner";
@@ -46,11 +45,10 @@ const LoginForm = ({ className }: { className: string }) => {
     resolver: zodResolver(LoginSchema),
   });
 
-  const { mutateAsync, isPending } = useLoginMutation();
+  const { mutate, isPending } = useLoginMutation();
 
-  const onSubmit = handleSubmit(async (data) => {
-    await mutateAsync(data);
-    revalidateAuth();
+  const onSubmit = handleSubmit((data) => {
+    mutate(data);
   });
 
   return (
