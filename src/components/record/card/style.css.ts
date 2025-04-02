@@ -3,7 +3,7 @@ import { shades } from "@/constants/colors";
 import { bookCoverImageRatio } from "@/constants/size";
 import { lineClampBase } from "@/styles/util.css";
 
-const recordCardStyle = style({
+export const recordCardStyle = style({
   border: `1px solid ${shades[200]}`,
   overflow: "hidden",
   borderRadius: 12,

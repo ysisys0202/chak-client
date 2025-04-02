@@ -5,7 +5,7 @@ import { useInView } from "react-intersection-observer";
 import { Me } from "@/types/auth";
 import { useRecordsInfiniteQuery } from "@/query/record";
 import RecordCard from "@/components/record/card/record-card";
-import { styles } from "./style.css";
+import RecordCardContainer from "@/components/record/card-container/card-container";
 
 const RecordsEmpty = () => {
   return <div>아직 작성된 기록이 없어요</div>;
@@ -29,7 +29,7 @@ const RecentRecords = ({ user }: { user: Me }) => {
       <>
         {isEmpty && <RecordsEmpty />}
         {!isEmpty && (
-          <ul className={styles.self}>
+          <RecordCardContainer>
             {data?.pages.map((page) =>
               page.items.map(
                 ({
@@ -55,7 +55,7 @@ const RecentRecords = ({ user }: { user: Me }) => {
                 )
               )
             )}
-          </ul>
+          </RecordCardContainer>
         )}
         <div ref={triggerRef}></div>
       </>

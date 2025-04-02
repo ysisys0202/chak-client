@@ -1,15 +1,36 @@
-import queryKey from "@/constants/query-keys";
-import { getAuthServer } from "@/api/server/auth";
-import Section from "@/components/sections/shared/section";
-import SectionHeader from "@/components/sections/shared/section-header";
-import SectionBody from "@/components/sections/shared/section-body";
-import RecentRecords from "@/components/recent-records/recent-records";
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
+import queryKey from "@/constants/query-keys";
+import { getAuthServer } from "@/api/server/auth";
 import { getRecordsServer } from "@/api/server/record";
+import withSuspense from "@/components/hocs/withSuspense";
+import Section from "@/components/sections/shared/section";
+import SectionHeader from "@/components/sections/shared/section-header";
+import SectionBody from "@/components/sections/shared/section-body";
+import RecentRecords from "@/components/recent-records/recent-records";
+import CardContainer from "@/components/record/card-container/card-container";
+import RecordCardSkeleton from "@/components/record/card/record-card-skeleton";
+
+const RecentRecordsSectionSuspense = () => {
+  return (
+    <Section>
+      <SectionHeader
+        title="최근 기록 📚"
+        description="기록을 차곡 차곡 쌓아보세요"
+      />
+      <SectionBody>
+        <CardContainer>
+          {Array.from({ length: 8 }).map((_, index) => (
+            <RecordCardSkeleton key={index} />
+          ))}
+        </CardContainer>
+      </SectionBody>
+    </Section>
+  );
+};
 
 const RecentRecordsSection = async () => {
   const user = await getAuthServer({
@@ -51,4 +72,7 @@ const RecentRecordsSection = async () => {
   );
 };
 
-export default RecentRecordsSection;
+export default withSuspense(
+  RecentRecordsSection,
+  <RecentRecordsSectionSuspense />
+);
