@@ -5,7 +5,6 @@ import { FieldErrors } from "react-hook-form";
 import { Button } from "chak-blocks/plain";
 import { useToast } from "chak-blocks/context";
 import { RecordData } from "@/util/validation/record";
-import { revalidateRecords } from "@/actions/revalidate-records.action";
 import { useRecordFormContext } from "@/providers/record-form";
 import { useCreateRecordMutation } from "@/query/record";
 import ButtonGroup from "@/components/record/button/button-group";
@@ -18,12 +17,11 @@ const RecordNewButtonGroup = ({ className }: { className?: string }) => {
       formState: { isSubmitting },
     },
   } = useRecordFormContext();
-  const { mutateAsync, isPending } = useCreateRecordMutation();
+  const { mutate, isPending } = useCreateRecordMutation();
   const { open } = useToast();
 
-  const handleSave = async (data: RecordData) => {
-    await mutateAsync(data);
-    await revalidateRecords();
+  const handleSave = (data: RecordData) => {
+    mutate(data);
   };
 
   const handleFormInvalid = (errors: FieldErrors<RecordData>) => {

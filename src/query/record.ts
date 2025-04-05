@@ -10,6 +10,7 @@ import {
 import path from "@/constants/path";
 import queryKey from "@/constants/query-keys";
 import { RecordData } from "@/util/validation/record";
+import { revalidateRecords } from "@/actions/revalidate-records.action";
 
 export const useRecordsInfiniteQuery = (userId?: number) => {
   const display = 12;
@@ -38,6 +39,7 @@ export const useCreateRecordMutation = () => {
   return useMutation({
     mutationFn: createRecord,
     onSuccess: (data) => {
+      revalidateRecords();
       open({ title: "기록이 성공적으로 추가되었어요." });
       router.replace(`${path.record}/${data.id}`);
     },
@@ -52,6 +54,7 @@ export const useUpdateRecordMutation = () => {
     mutationFn: ({ id, recordData }: { id: number; recordData: RecordData }) =>
       updateRecord(id, recordData),
     onSuccess: (data) => {
+      revalidateRecords();
       open({ title: "기록이 성공적으로 수정되었어요." });
       router.replace(`${path.record}/${data.id}`);
     },
