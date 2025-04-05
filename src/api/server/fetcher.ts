@@ -1,17 +1,9 @@
-import { AxiosRequestConfig } from "axios";
 import { getToken } from "@/util/auth";
-import { createAxiosInstance, fetcher } from "@/api/fetcher";
+import { fetcher } from "@/api/fetcher";
 
-const serverAxios = createAxiosInstance(
-  process.env.NEXT_PUBLIC_API_DOMAIN || ""
-);
-
-export const serverFetcher = async (
-  api: string,
-  options?: AxiosRequestConfig
-) => {
+export const serverFetcher = async (api: string, options?: RequestInit) => {
   const token = await getToken();
-  return fetcher(serverAxios, api, {
+  return fetcher(process.env.NEXT_PUBLIC_API_DOMAIN || "", api, {
     options: {
       ...options,
       headers: {

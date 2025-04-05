@@ -66,11 +66,9 @@ const RecordListSection = async ({ searchParams }: Props) => {
         readingState,
       },
       {
-        fetchOptions: {
-          cache: "force-cache",
-          next: {
-            tags: [queryKey.records.list],
-          },
+        cache: "force-cache",
+        next: {
+          tags: [queryKey.records.list],
         },
       }
     );

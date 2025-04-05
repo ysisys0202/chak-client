@@ -34,11 +34,9 @@ const RecentRecordsSectionSuspense = () => {
 
 const RecentRecordsSection = async () => {
   const user = await getAuthServer({
-    fetchOptions: {
-      cache: "force-cache",
-      next: {
-        tags: [queryKey.auth.me],
-      },
+    cache: "force-cache",
+    next: {
+      tags: [queryKey.auth.me],
     },
   });
 

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import axios from "axios";
 import { serverFetcher } from "@/api/server/fetcher";
+import { FetchError } from "@/util/error";
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -9,26 +9,32 @@ export const POST = async (req: NextRequest) => {
 
     const data = await serverFetcher("/auth/signup", {
       method: "POST",
-      data: { nickname, loginId, email, password, profileImage },
+      body: JSON.stringify({
+        nickname,
+        loginId,
+        email,
+        password,
+        profileImage,
+      }),
     });
 
-    const response = NextResponse.json({ message: "회원가입 성공" });
+    const signupResponse = NextResponse.json({ message: "회원가입 성공" });
 
     const token = data.token;
-    response.cookies.set("token", token, {
+    signupResponse.cookies.set("token", token, {
       httpOnly: true,
       secure: true,
       sameSite: "none",
     });
 
-    return response;
+    return signupResponse;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
+    if (error instanceof FetchError) {
       return NextResponse.json(
-        { message: error.response?.statusText || "회원가입 실패" },
-        { status: error.response?.status }
+        { message: error.message || "회원가입 실패" },
+        { status: error.status }
       );
     }
-    return NextResponse.json({ message: "로그인 실패" }, { status: 500 });
+    return NextResponse.json({ message: "회원가입 실패" }, { status: 500 });
   }
 };

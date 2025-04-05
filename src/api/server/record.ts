@@ -1,4 +1,3 @@
-import { AxiosRequestConfig } from "axios";
 import {
   ReadingStates,
   RecordCountByReadingStateResponse,
@@ -16,14 +15,14 @@ export type GetRecordsOptions = {
 };
 
 export const getRecordCountByReadingStateServer = (
-  options: AxiosRequestConfig = {}
+  options: RequestInit = {}
 ): Promise<RecordCountByReadingStateResponse> => {
   return serverFetcher(`/records/count/by-reading-state`, options);
 };
 
 export const getRecordsServer = (
   queryOptions: GetRecordsOptions,
-  options: AxiosRequestConfig = {}
+  options: RequestInit = {}
 ): Promise<RecordResponse> => {
   const queryParams = generateQueryString({
     ...queryOptions,
@@ -33,7 +32,7 @@ export const getRecordsServer = (
 
 export const getRecordServer = (
   id: number,
-  options: AxiosRequestConfig = {}
+  options: RequestInit = {}
 ): Promise<RecordItemResponse> => {
   return serverFetcher(`/records/${id}`, options);
 };

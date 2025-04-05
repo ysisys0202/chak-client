@@ -28,6 +28,6 @@ export const getBook = (isbn: string) => {
 export const postBook = (formData: BookItem) => {
   return clientFetcher(`/books`, {
     method: "POST",
-    data: formData,
+    body: JSON.stringify(formData),
   });
 };

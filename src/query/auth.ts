@@ -2,12 +2,12 @@
 
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
-import { AxiosError } from "axios";
 import { useToast } from "chak-blocks/context";
 import { login, logout, signup } from "@/api/client/auth";
 import { LoginData, SignupData } from "@/util/validation/auth";
 import path from "@/constants/path";
 import { revalidateAuth } from "@/actions/revalidate-auth.action";
+import { FetchError } from "@/util/error";
 
 export const useSignupMutation = () => {
   const router = useRouter();
@@ -22,13 +22,12 @@ export const useSignupMutation = () => {
     },
     onError: (error) => {
       revalidateAuth();
-      const axiosError = error as AxiosError<{ message: string }>;
+      const fetchError = error as FetchError;
       open({
         title: "회원가입 실패",
         status: "error",
         description:
-          axiosError.response?.data.message ||
-          "회원가입에 실패했습니다. 잠시후 시도해주세요.",
+          fetchError.message || "회원가입에 실패했습니다. 잠시후 시도해주세요.",
       });
     },
   });
@@ -47,14 +46,12 @@ export const useLoginMutation = () => {
     },
     onError: (error) => {
       revalidateAuth();
-      const axiosError = error as AxiosError<{ message: string }>;
-      console.log(axiosError);
+      const fetchError = error as FetchError;
       open({
         title: "로그인 실패",
         status: "error",
         description:
-          axiosError.response?.data.message ||
-          "로그인에 실패했습니다. 잠시후 시도해주세요.",
+          fetchError.message || "로그인에 실패했습니다. 잠시후 시도해주세요.",
       });
     },
   });

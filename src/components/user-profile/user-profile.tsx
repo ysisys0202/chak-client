@@ -11,11 +11,9 @@ type ProfileImageProps = {
 
 const UserProfile = async ({ className }: ProfileImageProps) => {
   const user = await getAuthServer({
-    fetchOptions: {
-      cache: "force-cache",
-      next: {
-        tags: [queryKey.auth.me],
-      },
+    cache: "force-cache",
+    next: {
+      tags: [queryKey.auth.me],
     },
   });
   return (

@@ -42,13 +42,16 @@ const BookListRow = ({ book }: Props) => {
     formMethods: { setValue },
   } = useRecordFormContext();
 
-  const registerBook = (book: BookData) => {
-    updateBookData({ ...book, pubdate: formatShortDate(book.pubdate) });
-    setValue("bookId", book.id, { shouldValidate: true });
-    router.replace(
-      removeQueryParam(`${pathname}?${searchParams}`, "book-search-modal")
-    );
-  };
+  const registerBook = useCallback(
+    (book: BookData) => {
+      updateBookData({ ...book, pubdate: formatShortDate(book.pubdate) });
+      setValue("bookId", book.id, { shouldValidate: true });
+      router.replace(
+        removeQueryParam(`${pathname}?${searchParams}`, "book-search-modal")
+      );
+    },
+    [updateBookData, setValue, router, pathname, searchParams]
+  );
 
   const handleSelectBook = useCallback(async () => {
     try {

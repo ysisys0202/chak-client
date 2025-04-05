@@ -1,9 +1,4 @@
-import { AxiosRequestConfig } from "axios";
-import { createAxiosInstance, fetcher } from "@/api/fetcher";
+import { fetcher } from "@/api/fetcher";
 
-const clientAxios = createAxiosInstance(
-  `${process.env.NEXT_PUBLIC_CLIENT_DOMAIN}/api` || ""
-);
-
-export const clientFetcher = (api: string, options?: AxiosRequestConfig) =>
-  fetcher(clientAxios, api, { options });
+export const clientFetcher = (api: string, options?: RequestInit) =>
+  fetcher(`${process.env.NEXT_PUBLIC_CLIENT_DOMAIN}/api`, api, { options });

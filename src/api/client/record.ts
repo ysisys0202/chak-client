@@ -1,4 +1,3 @@
-import { AxiosRequestConfig } from "axios";
 import {
   ReadingStates,
   RecordItemResponse,
@@ -17,7 +16,7 @@ export type GetRecordsOptions = {
 
 export const getRecords = (
   queryOptions: GetRecordsOptions,
-  options: AxiosRequestConfig = {}
+  options: RequestInit = {}
 ): Promise<RecordResponse> => {
   const queryParams = generateQueryString({
     ...queryOptions,
@@ -30,7 +29,7 @@ export const createRecord = (
 ): Promise<RecordItemResponse> => {
   return clientFetcher(`/records/`, {
     method: "POST",
-    data: recordData,
+    body: JSON.stringify(recordData),
   });
 };
 
@@ -40,7 +39,7 @@ export const updateRecord = (
 ): Promise<RecordItemResponse> => {
   return clientFetcher(`/records/${id}`, {
     method: "PUT",
-    data: recordData,
+    body: JSON.stringify(recordData),
   });
 };
 

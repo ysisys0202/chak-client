@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import axios from "axios";
 import { serverFetcher } from "@/api/server/fetcher";
+import { FetchError } from "@/util/error";
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -8,23 +8,25 @@ export const POST = async (req: NextRequest) => {
 
     const data = await serverFetcher("/auth/login", {
       method: "POST",
-      data: { loginId, password },
+      body: JSON.stringify({ loginId, password }),
     });
 
-    const response = NextResponse.json({ message: "로그인 성공" });
+    const loginResponse = NextResponse.json({ message: "로그인 성공" });
+
     const token = data.token;
-    response.cookies.set("token", token, {
+
+    loginResponse.cookies.set("token", token, {
       httpOnly: true,
       secure: true,
       sameSite: "none",
     });
 
-    return response;
+    return loginResponse;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
+    if (error instanceof FetchError) {
       return NextResponse.json(
-        { message: error.response?.data.message || "로그인 실패" },
-        { status: error.response?.status }
+        { message: error.message || "로그인 실패" },
+        { status: error.status }
       );
     }
     return NextResponse.json({ message: "로그인 실패" }, { status: 500 });

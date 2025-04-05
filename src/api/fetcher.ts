@@ -1,43 +1,46 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosInstance } from "axios";
-
-const defaultOptions = {
-  headers: {
-    "Content-Type": "application/json",
-  },
-  withCredentials: true,
-};
-
-export const createAxiosInstance = (baseURL: string) =>
-  axios.create({ baseURL, ...defaultOptions });
+import { FetchError } from "@/util/error";
 
 export const fetcher = async (
-  axiosClient: AxiosInstance,
+  baseUrl: string,
   api: string,
   {
     options = {},
     onSuccess,
     onError,
   }: {
-    options?: AxiosRequestConfig;
+    options?: RequestInit;
     onSuccess?: (data: unknown) => void;
-    onError?: (error: AxiosError) => void;
+    onError?: (error: FetchError) => void;
   } = {}
 ) => {
   try {
-    const response = await axiosClient({
-      url: api,
+    const response = await fetch(`${baseUrl}${api}`, {
+      credentials: "include",
       ...options,
-      adapter: "fetch",
+      headers: {
+        "Content-Type": "application/json",
+        ...options.headers,
+      },
     });
-    onSuccess?.(response.data);
-    return response.data;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      onError?.(error);
-      throw error;
+    if (!response.ok) {
+      const fetchError = new FetchError({
+        status: response.status,
+        message: response.statusText,
+      });
+      console.error(fetchError);
+
+      throw fetchError;
     }
-    throw new Error(
-      error instanceof Error ? error.message : "예기치 못한 에러"
-    );
+    const data = await response.json();
+    onSuccess?.(data.data);
+
+    return data;
+  } catch (error) {
+    const fetchError = error as FetchError;
+
+    console.error(fetchError);
+    onError?.(fetchError);
+
+    throw fetchError;
   }
 };

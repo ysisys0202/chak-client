@@ -1,7 +1,7 @@
 import { forbidden } from "next/navigation";
-import axios from "axios";
 import { getRecordServer } from "@/api/server/record";
 import RecordEditSection from "@/components/sections/record/edit";
+import { FetchError } from "@/util/error";
 
 export const generateMetadata = async ({
   params,
@@ -38,8 +38,8 @@ const RecordDetailPage = async ({
       </main>
     );
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      if (error.response?.status === 403) {
+    if (error instanceof FetchError) {
+      if (error.status === 403) {
         forbidden();
       }
     }

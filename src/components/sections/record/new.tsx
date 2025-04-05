@@ -10,11 +10,9 @@ import { recordDetailSectionStyles } from "./style.css";
 
 const RecordNewSection = async () => {
   const user = await getAuthServer({
-    fetchOptions: {
-      cache: "force-cache",
-      next: {
-        tags: [queryKey.auth.me],
-      },
+    cache: "force-cache",
+    next: {
+      tags: [queryKey.auth.me],
     },
   });
 

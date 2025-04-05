@@ -6,18 +6,16 @@ import queryKey from "@/constants/query-keys";
 const AuthGuard = async ({ children }: { children: React.ReactNode }) => {
   try {
     await getAuthServer({
-      fetchOptions: {
-        cache: "force-cache",
-        next: {
-          tags: [queryKey.auth.me],
-        },
+      cache: "force-cache",
+      next: {
+        tags: [queryKey.auth.me],
       },
     });
     return <>{children}</>;
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      redirect(path.login);
+      // redirect(path.login);
     }
   }
 };
