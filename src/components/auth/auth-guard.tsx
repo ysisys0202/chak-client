@@ -15,7 +15,7 @@ const AuthGuard = async ({ children }: { children: React.ReactNode }) => {
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      // redirect(path.login);
+      redirect(path.login);
     }
   }
 };
