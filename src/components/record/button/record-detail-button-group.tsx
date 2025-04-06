@@ -29,6 +29,7 @@ const RecordDetailButtonGroup = ({ className }: { className?: string }) => {
         </Button>
       </Link>
       <Button
+        type="button"
         theme="error"
         variant="outlined"
         onClick={handleDelete}

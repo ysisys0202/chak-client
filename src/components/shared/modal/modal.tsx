@@ -30,6 +30,7 @@ const Modal = ({ onClose, className, children }: Props) => {
     >
       <Card rounded className={`${modalStyles.self} ${className}`}>
         <Button
+          type="button"
           variant="text"
           onClick={() => {
             onClose?.();

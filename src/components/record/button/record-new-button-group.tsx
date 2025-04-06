@@ -35,6 +35,7 @@ const RecordNewButtonGroup = ({ className }: { className?: string }) => {
   return (
     <ButtonGroup className={className}>
       <Button
+        type="button"
         theme="primary"
         onClick={handleSubmit(handleSave, handleFormInvalid)}
         disabled={isSubmitting || isPending}

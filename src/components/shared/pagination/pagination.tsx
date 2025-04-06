@@ -57,6 +57,7 @@ const Pagination = ({
       {morePage && (
         <>
           <Button
+            type="button"
             variant="outlined"
             theme="dark"
             size="sm"

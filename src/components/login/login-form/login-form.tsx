@@ -54,10 +54,7 @@ const LoginForm = ({ className }: { className: string }) => {
   return (
     <>
       {isPending && <Spinner className={loginFormStyles.loadingSpinner} />}
-      <form
-        className={`${loginFormStyles.self} ${className}`}
-        onSubmit={onSubmit}
-      >
+      <form className={`${loginFormStyles.self} ${className}`}>
         <div className={loginFormStyles.fields}>
           {loginFormFileds.map(({ id, label, type, placeholder }) => (
             <InputField
@@ -78,7 +75,13 @@ const LoginForm = ({ className }: { className: string }) => {
           ))}
         </div>
         <div className={loginFormStyles.buttonArea}>
-          <Button disabled={isSubmitting || isPending}>로그인</Button>
+          <Button
+            type="button"
+            disabled={isSubmitting || isPending}
+            onClick={onSubmit}
+          >
+            로그인
+          </Button>
           <Link href="/signup">
             <Button as="div" variant="outlined" theme="dark">
               회원가입

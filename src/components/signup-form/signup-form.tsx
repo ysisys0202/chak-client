@@ -83,7 +83,7 @@ const SignupForm = () => {
   return (
     <>
       {isPending && <Spinner className={signupFormStyles.loadingSpinner} />}
-      <form className={signupFormStyles.self} onSubmit={onSubmit}>
+      <form className={signupFormStyles.self}>
         <div className={signupFormStyles.fileds}>
           {signupFormFileds.map(
             ({ id, label, type, isRequired, placeholder }) => (
@@ -107,8 +107,10 @@ const SignupForm = () => {
           )}
         </div>
         <Button
+          type="button"
           disabled={isSubmitting || isPending}
           className={signupFormStyles.button}
+          onClick={onSubmit}
         >
           가입하기
         </Button>

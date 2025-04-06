@@ -12,6 +12,7 @@ const LogoutButton = ({ className }: { className?: string }) => {
   };
   return (
     <Button
+      type="button"
       theme="dark"
       variant="text"
       onClick={handleLogout}
