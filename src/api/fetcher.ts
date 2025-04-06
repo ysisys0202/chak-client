@@ -23,10 +23,13 @@ export const fetcher = async (
       },
     });
     if (!response.ok) {
+      const error = await response.json();
+
       const fetchError = new FetchError({
         status: response.status,
-        message: response.statusText,
+        message: error.message || response.statusText,
       });
+
       console.error(fetchError);
 
       throw fetchError;
