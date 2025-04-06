@@ -43,18 +43,26 @@ const LoginForm = ({ className }: { className: string }) => {
     formState: { errors, isSubmitting },
   } = useForm<LoginData>({
     resolver: zodResolver(LoginSchema),
+    defaultValues: {
+      loginId: "tester01",
+      password: "password",
+    },
   });
 
   const { mutate, isPending } = useLoginMutation();
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit((data, event) => {
+    event?.preventDefault();
     mutate(data);
   });
 
   return (
     <>
       {isPending && <Spinner className={loginFormStyles.loadingSpinner} />}
-      <form className={`${loginFormStyles.self} ${className}`}>
+      <form
+        className={`${loginFormStyles.self} ${className}`}
+        onSubmit={onSubmit}
+      >
         <div className={loginFormStyles.fields}>
           {loginFormFileds.map(({ id, label, type, placeholder }) => (
             <InputField
@@ -75,11 +83,7 @@ const LoginForm = ({ className }: { className: string }) => {
           ))}
         </div>
         <div className={loginFormStyles.buttonArea}>
-          <Button
-            type="button"
-            disabled={isSubmitting || isPending}
-            onClick={onSubmit}
-          >
+          <Button disabled={isSubmitting || isPending} onClick={onSubmit}>
             로그인
           </Button>
           <Link href="/signup">
